@@ -12,7 +12,7 @@ namespace Flock::Graphics {
     };
 
     struct FLK_API Camera {
-        RigidTransform transform  = {};
+        RigidTransform transform  = {.position = {0, 0, -10}};
         Projection     projection = Projection::Orthographic;
         f32            size       = 5.0F;
         f32            fovY       = 60.0F;

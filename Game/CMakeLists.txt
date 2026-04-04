@@ -4,6 +4,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/out/bin/${CMAKE_SYSTEM_
 
 set(PROJECT_SOURCES
         src/main.cpp
+        src/Tile.hpp
+        src/Using.hpp
+        src/Player.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

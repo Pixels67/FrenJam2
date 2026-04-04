@@ -2,6 +2,8 @@
   "registry": {
     "entities": [],
     "components": {
+      "Player": [],
+      "Tile": [],
       "Image": [],
       "Button": [],
       "Text": [],

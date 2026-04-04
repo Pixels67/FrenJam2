@@ -61,7 +61,7 @@ namespace Flock::Graphics {
         FilterMode                   filterMode       = Linear;
         FilterMode                   mipmapFilterMode = Linear;
         WrapMode                     wrapMode         = Clamp;
-        std::optional<TextureFormat> format           = std::nullopt;
+        std::optional<TextureFormat> format           = TextureFormat::Rgba;
         bool                         generateMipmaps  = true;
 
         [[nodiscard]] u32 GetGlWrap() const;

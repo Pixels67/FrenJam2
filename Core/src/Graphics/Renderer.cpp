@@ -184,7 +184,10 @@ void main() {
         FLK_GL_CALL(glViewport(origin.x, origin.y, aspect.x, aspect.y));
 
         if (config.blend.enabled) {
+            FLK_GL_CALL(glEnable(GL_BLEND));
             FLK_GL_CALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+        } else {
+            FLK_GL_CALL(glDisable(GL_BLEND));
         }
 
         if (config.raster.cullMode != CullMode::None) {

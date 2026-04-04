@@ -273,7 +273,7 @@ namespace Flock {
             commands,
             scene,
             {
-                .viewport = viewport, .clear = ClearState{.clearColor = false, .clearDepth = false}
+                .viewport = viewport, .clear = ClearState{.clearColor = false}
             },
             {.enabled = false}
         );

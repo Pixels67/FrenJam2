@@ -6,6 +6,7 @@
 #include "Audio/AudioListener.hpp"
 #include "Audio/AudioSource.hpp"
 #include "Event/EventRegistry.hpp"
+#include "FileIo/File.hpp"
 #include "Graphics/Camera.hpp"
 #include "Graphics/Light.hpp"
 #include "Graphics/ModelRenderer.hpp"
@@ -18,6 +19,7 @@
 #include "Math/Transform.hpp"
 #include "Physics/Collider.hpp"
 #include "Physics/RigidBody.hpp"
+#include "Serial/JsonArchive.hpp"
 #include "Time/Time.hpp"
 
 namespace Flock::Ecs {
@@ -29,9 +31,6 @@ namespace Flock::Ecs {
     }
 
     void World::SetDefaults() {
-        m_Resources.clear();
-        m_Registry.Clear();
-
         InsertResource<Time::TimeState>();
         InsertResource<Input::InputState>();
         InsertResource<Graphics::Camera>();
@@ -77,25 +76,29 @@ namespace Flock::Ecs {
     }
 
     bool World::Load(const std::filesystem::path &filePath) {
-        if (!FileIo::ReadWorld(filePath)) {
+        const auto result = FileIo::ReadText(filePath);
+        if (!result) {
             return false;
         }
 
-        Asset::AssetLoader *loader = nullptr;
-        if (HasResource<Asset::Assets>()) {
-            loader = &GetResource<Asset::Assets>().loader;
+        const std::string file = result.value();
+        if (!Serial::Json::Parse(file)) {
+            return false;
         }
 
-        *this = FileIo::ReadWorld(filePath).value();
+        const Serial::Json json = Serial::Json::Parse(file).value();
+        Serial::JsonReader reader(json);
 
-        if (loader) {
-            InsertResource(Asset::Assets{*loader});
-        }
-
+        Archive(reader);
         return true;
     }
 
     bool World::Save(const std::filesystem::path &filePath) {
-        return FileIo::WriteWorld(filePath, *this);
+        Serial::JsonWriter writer;
+        Archive(writer);
+
+        const Serial::Json json = writer.GetOutput();
+
+        return FileIo::WriteText(filePath, json.ToString());
     }
 }

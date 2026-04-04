@@ -191,6 +191,26 @@ namespace Flock::Ecs {
         }
 
         /**
+         * @brief Retrieves a reference to the component data of an entity and adds it if it doesn't exist.
+         * @tparam T The component type.
+         * @param entity A handle to the entity.
+         * @param value The value to set for the data.
+         * @return A reference to the component.
+         */
+        template<typename T>
+        T &GetOrAddComponent(Entity entity, T value = {}) {
+            if (!IsComponentRegistered<T>()) {
+                RegisterComponent<T>();
+            }
+
+            if (!HasComponent<T>(entity)) {
+                AddComponent(entity, value);
+            }
+
+            return GetComponent<T>(entity).value().get();
+        }
+
+        /**
          * @brief Changes an entity's component data, fails if the component doesn't exist.
          * @tparam T The component type.
          * @param entity A handle to the entity.

@@ -37,6 +37,6 @@ uniform sampler2D uColorMap;
 uniform vec4 uColor;
 
 void main() {
-    vec3 albedo = texture(uColorMap, vTexCoords).rgb * uColor.rgb;
-    FragColor = vec4(albedo, uColor.a);
+    vec4 albedo = texture(uColorMap, vTexCoords) * uColor;
+    FragColor = vec4(albedo);
 }
