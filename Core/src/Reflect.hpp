@@ -5,7 +5,7 @@
 
 namespace Flock {
     template<typename T>
-    struct FLK_API Field {
+    struct Field {
         std::string name;
         T *         value;
 

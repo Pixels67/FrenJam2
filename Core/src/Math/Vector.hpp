@@ -11,7 +11,7 @@ namespace Flock {
     class Quaternion;
 
     template<typename T>
-    struct FLK_API Vector2 {
+    struct Vector2 {
         T x, y;
 
         Vector2() : x(0), y(0) {
