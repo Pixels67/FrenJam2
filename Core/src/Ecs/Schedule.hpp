@@ -39,6 +39,17 @@ namespace Flock::Ecs {
         void AddSystem(Stage stage, const System &system);
 
         /**
+         * Adds multiple systems to a stage; executed in order.
+         * @tparam Args The system types.
+         * @param stage The stage.
+         * @param args The systems.
+         */
+        template<typename... Args>
+        void AddSystems(Stage stage, const Args &... args) {
+            (AddSystem(stage, args), ...);
+        }
+
+        /**
          * @brief Pops the last added system from a stage.
          * @param stage The stage.
          */

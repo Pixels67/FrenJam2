@@ -49,8 +49,13 @@ namespace Flock::Gui {
             OptionalRef<Graphics::Texture> texture = std::nullopt
         ) const;
 
+        bool RenderRect(
+            RectTransform transform,
+            Color4u8      color = Color4u8::Black()
+        ) const;
+
         bool RenderImage(
-            RectTransform      transform,
+            RectTransform            transform,
             const Graphics::Texture &texture
         ) const;
     };

@@ -133,21 +133,28 @@ namespace Flock::Gui {
             return false;
         }
 
-        auto [x, y] = transform.rect.origin;
-        auto [w, h] = transform.rect.aspect;
-
         if (texture) {
             RenderImage(transform, texture->get());
         } else {
-            nvgBeginPath(m_Ctx);
-            nvgRect(m_Ctx, x, y, w, h);
-            nvgFillColor(m_Ctx, nvgRGBA(color.r, color.g, color.b, color.a));
-            nvgFill(m_Ctx);
+            RenderRect(transform, color);
         }
+
+        RenderRect(transform, tint);
+
+        return true;
+    }
+
+    bool GuiRenderer::RenderRect(RectTransform transform, const Color4u8 color) const {
+        if (!m_Ctx) {
+            return false;
+        }
+
+        auto [x, y] = transform.rect.origin;
+        auto [w, h] = transform.rect.aspect;
 
         nvgBeginPath(m_Ctx);
         nvgRect(m_Ctx, x, y, w, h);
-        nvgFillColor(m_Ctx, nvgRGBA(tint.r, tint.g, tint.b, tint.a));
+        nvgFillColor(m_Ctx, nvgRGBA(color.r, color.g, color.b, color.a));
         nvgFill(m_Ctx);
 
         return true;

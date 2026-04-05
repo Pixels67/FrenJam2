@@ -12,6 +12,7 @@
 #include "Graphics/ModelRenderer.hpp"
 #include "Graphics/Skybox.hpp"
 #include "Graphics/SpriteRenderer.hpp"
+#include "Gui/Box.hpp"
 #include "Gui/Button.hpp"
 #include "Gui/Image.hpp"
 #include "Gui/Text.hpp"
@@ -52,6 +53,7 @@ namespace Flock::Ecs {
         GetRegistry().RegisterComponent<Gui::Text>();
         GetRegistry().RegisterComponent<Gui::Button>();
         GetRegistry().RegisterComponent<Gui::Image>();
+        GetRegistry().RegisterComponent<Gui::Box>();
     }
 
     Registry &World::GetRegistry() {

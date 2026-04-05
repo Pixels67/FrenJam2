@@ -190,6 +190,7 @@ set(PROJECT_SOURCES
         src/Event/EventRegistry.cpp
         src/Event/EventRegistry.hpp
         src/Gui/Image.hpp
+        src/Gui/Box.hpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})

@@ -46,17 +46,13 @@ inline auto Reflect(Tile &tile) {
 
 inline void UpdateTiles(World &world) {
     Registry &reg = world.GetRegistry();
-    reg.ForEachEntity<Tile>([&](const Entity entity, const Tile &tile) {
-        auto &trans    = reg.GetOrAddComponent<Transform>(entity);
-        auto &renderer = reg.GetOrAddComponent<SpriteRenderer>(entity);
-
+    reg.ForEach<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, const Tile &tile) {
         trans.position      = Vector3i{tile.position.x, tile.position.y, 0};
-        trans.scale         = {0.5, 0.5, 0.5};
         renderer.spritePath = GetTileSprite(tile.type);
 
-        if (tile.occupant.id != ~0u) {
-            reg.GetOrAddComponent<Transform>(tile.occupant) = trans;
-            reg.GetOrAddComponent<Transform>(tile.occupant).position.z = trans.position.z - 1;
+        if (tile.occupant.id != ~0u && reg.HasComponent<Transform>(tile.occupant)) {
+            reg.GetComponent<Transform>(tile.occupant)->get()            = trans;
+            reg.GetComponent<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
         }
     });
 }

@@ -52,6 +52,10 @@ namespace Flock::Asset {
         bool Load(const std::filesystem::path &filePath) {
             const std::string pathStr = filePath.string();
 
+            if (pathStr == "") {
+                return false;
+            }
+
             if (m_AssetIds.contains(pathStr)) {
                 const AssetId id     = m_AssetIds.at(pathStr);
                 const TypeId  typeId = m_Assets.at(id).value().typeId;
@@ -163,6 +167,10 @@ namespace Flock::Asset {
         template<typename T>
         OptionalRef<T> Get(const std::filesystem::path filePath) {
             const std::string str = filePath.string();
+
+            if (str == "") {
+                return std::nullopt;
+            }
 
             if constexpr (std::same_as<T, Graphics::Pipeline>) {
                 if (str == "@PBR" && m_DefaultPipelines.contains(PipelineType::Pbr)) {

@@ -69,6 +69,17 @@ namespace Flock {
         App &AddSystem(Ecs::Stage stage, const Ecs::System &system);
 
         /**
+         * Adds multiple systems to a stage; executed in order.
+         * @tparam Args The system types.
+         * @param stage The stage.
+         * @param args The systems.
+         */
+        template<typename... Args>
+        void AddSystems(Ecs::Stage stage, const Args &... args) {
+            m_Schedule.AddSystems(stage, args...);
+        }
+
+        /**
          * @brief Pops the last added system from a stage.
          * @param stage The stage.
          * @return A reference to the app.

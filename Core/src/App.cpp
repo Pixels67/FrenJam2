@@ -6,6 +6,7 @@
 #include "Graphics/ModelRenderer.hpp"
 #include "Graphics/Skybox.hpp"
 #include "Graphics/SpriteRenderer.hpp"
+#include "Gui/Box.hpp"
 #include "Gui/Button.hpp"
 #include "Gui/Image.hpp"
 #include "Gui/Text.hpp"
@@ -248,7 +249,7 @@ namespace Flock {
         } else {
             m_World.GetRegistry().ForEach<SpriteRenderer, Transform>([&](const SpriteRenderer &renderer, const Transform &transform) {
                 MaterialProperties props = {
-                    .color     = Color4u8::White(),
+                    .color     = renderer.color,
                     .metallic  = 0.0F,
                     .roughness = 1.0F,
                 };
@@ -273,7 +274,7 @@ namespace Flock {
             commands,
             scene,
             {
-                .viewport = viewport, .clear = ClearState{.clearColor = false}
+                .viewport = viewport, .clear = ClearState{.clearColor = false, .clearDepth = false}
             },
             {.enabled = false}
         );
@@ -284,11 +285,18 @@ namespace Flock {
 
         const auto input = m_World.GetResource<Input::InputState>();
 
-        bool mouseDown     = input.IsMouseDown();
-        bool mouseReleased = input.IsMouseReleased();
-        bool mousePressed  = input.IsMousePressed();
+        const bool mouseDown     = input.IsMouseDown();
+        const bool mouseReleased = input.IsMouseReleased();
+        const bool mousePressed  = input.IsMousePressed();
 
         m_Services.guiRenderer.BeginFrame(m_Services.window.GetSize());
+
+        m_World.GetRegistry().ForEach<RectTransform, Box>([&](const RectTransform &trans, const Box &box) {
+            m_Services.guiRenderer.RenderRect(
+                trans,
+                box.color
+            );
+        });
 
         m_World.GetRegistry().ForEach<RectTransform, Image>([&](const RectTransform &trans, const Image &img) {
             if (img.imagePath == "" || !m_Services.assetLoader.Get<Graphics::Texture>(img.imagePath)) {

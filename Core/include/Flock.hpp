@@ -50,5 +50,6 @@
 #include "Gui/Button.hpp"
 #include "Event/EventRegistry.hpp"
 #include "Gui/Image.hpp"
+#include "Gui/Box.hpp"
 
 #endif //FLK_FLOCK_HPP
