@@ -1,8 +1,8 @@
 #include "TypeId.hpp"
 
 namespace Flock {
-    static std::unordered_map<std::string, TypeId> s_TypeRegistry;
-    static TypeId                                  s_NextId = 1;
+    std::unordered_map<std::string, TypeId> s_TypeRegistry;
+    TypeId                                  s_NextId = 1;
 
     TypeId RegisterType(const char *typeName) {
         const std::string name(typeName);

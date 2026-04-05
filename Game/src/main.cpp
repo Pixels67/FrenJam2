@@ -1,3 +1,4 @@
+#include "DialogueUi.hpp"
 #include "Flock.hpp"
 #include "Player.hpp"
 #include "Tile.hpp"
@@ -6,8 +7,15 @@
 void Init(World &world) {
     world.GetRegistry().RegisterComponent<Tile>();
     world.GetRegistry().RegisterComponent<Player>();
+    world.GetRegistry().RegisterComponent<Message>();
+    world.GetRegistry().RegisterComponent<Dialogue>();
+    world.GetRegistry().RegisterComponent<DialogueText>();
+    world.GetRegistry().RegisterComponent<DialogueTitle>();
+    world.GetRegistry().RegisterComponent<DialogueImage>();
+    world.GetRegistry().RegisterComponent<DialogueBox>();
 
     world.GetResource<AmbientLight>().color = {20, 20, 20};
+    world.InsertResource(Dialogue{.messages = {{.title = "1"}, {.title = "2"}}});
 
     for (i32 i = -5; i <= 5; i++) {
         for (i32 j = -5; j <= 5; j++) {
@@ -28,7 +36,8 @@ void Init(World &world) {
         },
         Box{
             .color = {0, 0, 0, 100}
-        }
+        },
+        DialogueBox{}
     );
 
     world.GetRegistry().Create(
@@ -38,7 +47,8 @@ void Init(World &world) {
         Text{
             .content  = "Title",
             .fontPath = "assets/font.ttf"
-        }
+        },
+        DialogueTitle{}
     );
 
     world.GetRegistry().Create(
@@ -48,7 +58,8 @@ void Init(World &world) {
         Text{
             .content  = "Content\nMore content\nEven more content",
             .fontPath = "assets/font.ttf"
-        }
+        },
+        DialogueText{}
     );
 
     const auto &assets = world.GetResource<Asset::Assets>();
@@ -71,7 +82,7 @@ i32 main() {
     }).value();
 
     app.AddSystems(Stage::Startup, Init);
-    app.AddSystems(Stage::Update, UpdateTiles, UpdatePlayer);
+    app.AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi);
 
     app.Run();
 }

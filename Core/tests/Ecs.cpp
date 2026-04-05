@@ -79,7 +79,7 @@ TEST(Entities, RegistryForEach) {
     }
 
     // Act
-    registry.ForEach<int>([](int &integer) {
+    registry.Iter<int>([](int &integer) {
         integer++;
     });
 

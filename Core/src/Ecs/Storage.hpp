@@ -6,11 +6,27 @@
 #include "Serial/Archive.hpp"
 
 namespace Flock::Ecs {
+    struct ComponentConfig {
+        bool enabled = true;
+    };
+
+    inline auto Reflect(ComponentConfig &cfg) {
+        return Reflectable{
+            "config",
+            std::make_tuple(
+                Field{"enabled", &cfg.enabled}
+            )
+        };
+    }
+
     class IStorage {
     public:
         virtual ~IStorage() = default;
 
         [[nodiscard]] virtual bool Has(EntityId id) const = 0;
+        [[nodiscard]] virtual bool IsEnabled(EntityId id) const = 0;
+        virtual bool               SetEnabled(EntityId id, bool enabled) = 0;
+        virtual void               SetAllEnabled(bool enabled) = 0;
         virtual bool               Remove(EntityId id) = 0;
         virtual void               Clear() = 0;
     };
@@ -22,9 +38,10 @@ namespace Flock::Ecs {
      */
     template<typename T>
     class Storage : public IStorage {
-        std::vector<usize>    m_Sparse;
-        std::vector<EntityId> m_Dense;
-        std::vector<T>        m_Data;
+        std::vector<usize>           m_Sparse;
+        std::vector<EntityId>        m_Dense;
+        std::vector<T>               m_Data;
+        std::vector<ComponentConfig> m_Configs;
 
     public:
         /**
@@ -38,13 +55,15 @@ namespace Flock::Ecs {
             }
 
             if (m_Sparse[id] != ~0u) {
-                m_Data[m_Sparse[id]] = std::move(element);
+                m_Data[m_Sparse[id]]    = std::move(element);
+                m_Configs[m_Sparse[id]] = {};
                 return;
             }
 
             m_Sparse[id] = m_Dense.size();
             m_Dense.push_back(id);
             m_Data.push_back(std::move(element));
+            m_Configs.push_back({});
         }
 
         /**
@@ -68,12 +87,14 @@ namespace Flock::Ecs {
             m_Sparse[id] = ~0u;
 
             // Swap
-            m_Dense[idx] = m_Dense.back();
-            m_Data[idx]  = std::move(m_Data.back());
+            m_Dense[idx]   = m_Dense.back();
+            m_Data[idx]    = std::move(m_Data.back());
+            m_Configs[idx] = std::move(m_Configs.back());
 
             // Pop
             m_Dense.pop_back();
             m_Data.pop_back();
+            m_Configs.pop_back();
 
             // Handle swapped id in sparse set
             if (idx != lastIdx) {
@@ -106,6 +127,45 @@ namespace Flock::Ecs {
         }
 
         /**
+         * @brief Whether the component is enabled or not.
+         * @param id The entity ID.
+         * @return true if the component at id is enabled; false otherwise.
+         */
+        [[nodiscard]] bool IsEnabled(const EntityId id) const override {
+            if (!Has(id)) {
+                return false;
+            }
+
+            return m_Configs[m_Sparse[id]].enabled;
+        }
+
+        /**
+         * @brief Sets the component enabled state.
+         * @param id The entity ID.
+         * @param enabled The boolean value to set.
+         * @return true successful; false otherwise.
+         */
+        bool SetEnabled(const EntityId id, const bool enabled) override {
+            if (!Has(id)) {
+                return false;
+            }
+
+            m_Configs[m_Sparse[id]].enabled = enabled;
+            return true;
+        }
+
+        /**
+         * @brief Sets all components enabled state.
+         * @param enabled The boolean value to set.
+         * @return true successful; false otherwise.
+         */
+        void SetAllEnabled(const bool enabled) override {
+            for (auto &cfg: m_Configs) {
+                cfg.enabled = enabled;
+            }
+        }
+
+        /**
          * @brief Retrieves a reference to all the values inside the storage.
          * @return The storage data.
          */
@@ -128,11 +188,13 @@ namespace Flock::Ecs {
 
             m_Dense.resize(count);
             m_Data.resize(count);
+            m_Configs.resize(count);
 
             for (usize i = 0; i < count; i++) {
                 archive.BeginObject();
                 archive("id", m_Dense[i]);
                 archive("data", m_Data[i]);
+                archive("config", m_Configs[i]);
                 archive.EndObject();
             }
 

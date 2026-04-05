@@ -19,6 +19,7 @@ namespace Flock::Ecs {
         template<typename T>
         World &InsertResource(T &&resource = {}) {
             m_Resources[GetTypeId<T>()] = std::forward<T>(resource);
+
             if constexpr (IsReflectable<T>) {
                 m_ArchiveFns[GetTypeId<T>()] = [](Serial::IArchive &archive, std::any &any) {
                     T &res = std::any_cast<T &>(any);
@@ -30,7 +31,7 @@ namespace Flock::Ecs {
         }
 
         template<typename T>
-        bool HasResource() const {
+        [[nodiscard]] bool HasResource() const {
             return m_Resources.contains(GetTypeId<T>());
         }
 

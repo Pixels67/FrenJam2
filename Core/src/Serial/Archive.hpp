@@ -13,7 +13,7 @@ namespace Flock::Serial {
     class IArchive;
 
     template<typename T>
-    void Serialize(IArchive &archive, T &value);
+    bool Serialize(IArchive &archive, T &value);
 
     class FLK_API IArchive {
     public:
@@ -22,59 +22,81 @@ namespace Flock::Serial {
         virtual ~IArchive() = default;
 
         template<typename T> requires IsReflectable<T>
-        void operator()(const std::string_view key, T &value) {
+        bool operator()(const std::string_view key, T &value) {
             BeginObject(key);
-            Serialize(*this, value);
-            EndObject();
-        }
-
-        template<typename T>
-        void operator()(const std::string_view key, std::vector<T> &value) {
-            usize size = value.size();
-            BeginArray(key, size);
-            value.resize(size);
-            for (T &elem: value) {
-                (*this)("1", elem);
+            if (!Serialize(*this, value)) {
+                EndObject();
+                Debug::LogErr("IArchive: Failed to archive '{}' of type '{}'", key, GetTypeName<T>());
+                return false;
             }
 
             EndObject();
+            return true;
+        }
+
+        template<typename T>
+        bool operator()(const std::string_view key, std::vector<T> &value) {
+            usize size = value.size();
+            BeginArray(key, size);
+            value.resize(size);
+
+            bool success = true;
+
+            i32 idx = 0;
+            for (T &elem: value) {
+                BeginObject();
+                if (!(*this)("value", elem)) {
+                    EndObject();
+                    success = false;
+                    Debug::LogErr("IArchive: Failed to archive array element '{}[{}]' of type '{}'", key, idx, GetTypeName<T>());
+                    continue;
+                }
+
+                EndObject();
+                idx++;
+            }
+
+            EndArray();
+            return success;
         }
 
         template<typename T> requires std::is_enum_v<T>
-        void operator()(std::string_view key, T &value) {
-            auto underlying = static_cast<std::underlying_type_t<T>>(value);
+        bool operator()(const std::string_view key, T &value) {
+            auto underlying = static_cast<u64>(value);
             (*this)(key, underlying);
             value = static_cast<T>(underlying);
+
+            return true;
         }
 
         virtual usize CurrentArraySize() = 0;
 
-        virtual void operator()(std::string_view, bool &) = 0;
+        virtual bool operator()(std::string_view, bool &) = 0;
 
-        virtual void operator()(std::string_view, u32 &) = 0;
-        virtual void operator()(std::string_view, u64 &) = 0;
+        virtual bool operator()(std::string_view, u32 &) = 0;
+        virtual bool operator()(std::string_view, u64 &) = 0;
 
-        virtual void operator()(std::string_view, i32 &) = 0;
-        virtual void operator()(std::string_view, i64 &) = 0;
+        virtual bool operator()(std::string_view, i32 &) = 0;
+        virtual bool operator()(std::string_view, i64 &) = 0;
 
-        virtual void operator()(std::string_view, f32 &) = 0;
-        virtual void operator()(std::string_view, f64 &) = 0;
+        virtual bool operator()(std::string_view, f32 &) = 0;
+        virtual bool operator()(std::string_view, f64 &) = 0;
 
-        virtual void operator()(std::string_view, char &) = 0;
-        virtual void operator()(std::string_view, std::string &) = 0;
+        virtual bool operator()(std::string_view, char &) = 0;
+        virtual bool operator()(std::string_view, std::string &) = 0;
 
-        virtual void operator()(std::string_view, Vector2f &) = 0;
-        virtual void operator()(std::string_view, Vector3f &) = 0;
-        virtual void operator()(std::string_view, Vector4f &) = 0;
+        virtual bool operator()(std::string_view, Vector2f &) = 0;
+        virtual bool operator()(std::string_view, Vector3f &) = 0;
+        virtual bool operator()(std::string_view, Vector4f &) = 0;
 
-        virtual void operator()(std::string_view, Vector2i &) = 0;
-        virtual void operator()(std::string_view, Vector3i &) = 0;
-        virtual void operator()(std::string_view, Vector4i &) = 0;
+        virtual bool operator()(std::string_view, Vector2i &) = 0;
+        virtual bool operator()(std::string_view, Vector3i &) = 0;
+        virtual bool operator()(std::string_view, Vector4i &) = 0;
 
-        virtual void operator()(std::string_view, Color3u8 &) = 0;
-        virtual void operator()(std::string_view, Color4u8 &) = 0;
+        virtual bool operator()(std::string_view, Color3u8 &) = 0;
+        virtual bool operator()(std::string_view, Color4u8 &) = 0;
 
-        virtual void operator()(std::string_view, Quaternion &) = 0;
+        virtual bool operator()(std::string_view, Quaternion &) = 0;
 
         virtual void BeginObject() = 0;
         virtual void BeginObject(std::string_view key) = 0;
@@ -86,11 +108,16 @@ namespace Flock::Serial {
     };
 
     template<typename T>
-    void Serialize(IArchive &archive, T &value) {
+    bool Serialize(IArchive &archive, T &value) {
         auto reflectable = Reflect(value);
+        bool success = true;
         std::apply([&](auto &... fields) {
-            (archive(fields.name, *fields.value), ...);
+            if (!(archive(fields.name, *fields.value) && ...)) {
+                success = false;
+            }
         }, reflectable.fields);
+        
+        return success;
     }
 }
 

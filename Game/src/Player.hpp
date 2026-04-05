@@ -6,19 +6,22 @@
 #include "Using.hpp"
 
 struct Player {
+    bool canMove = true;
 };
 
 inline auto Reflect(Player &player) {
     return Reflectable{
         "Player",
-        std::make_tuple()
+        std::make_tuple(
+            Field{"canMove", &player.canMove}
+        )
     };
 }
 
 inline void UpdatePlayer(World &world) {
     Registry &reg = world.GetRegistry();
 
-    reg.ForEachEntity<Transform, Player>([&](const Entity e, const Transform &trans, Player &) {
+    reg.Iter<Entity, Transform, Player>([&](const Entity e, const Transform &trans, const Player &player) {
         world.GetResource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
 
         Vector2i   movement = {};
@@ -44,14 +47,14 @@ inline void UpdatePlayer(World &world) {
             movement.x = 0;
         }
 
-        if (movement == Vector2i{}) {
+        if (movement == Vector2i{} || !player.canMove) {
             return;
         }
 
         const Vector2i playerPos = Vector2i(trans.position.x, trans.position.y);
 
         bool moved = false;
-        reg.ForEach<Tile>([&](Tile &tile) {
+        reg.Iter<Tile>([&](Tile &tile) {
             if (tile.position == playerPos + movement && IsPassable(tile.type)) {
                 tile.occupant = e;
                 moved         = true;
@@ -62,7 +65,7 @@ inline void UpdatePlayer(World &world) {
             return;
         }
 
-        reg.ForEach<Tile>([&](Tile &tile) {
+        reg.Iter<Tile>([&](Tile &tile) {
             if (tile.position == playerPos) {
                 tile.occupant = {~0u, 0};
             }

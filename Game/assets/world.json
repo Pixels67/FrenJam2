@@ -628,10 +628,34 @@
       }
     ],
     "components": {
+      "DialogueImage": [],
+      "DialogueTitle": [
+        {
+          "id": 123,
+          "data": null,
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "DialogueText": [
+        {
+          "id": 124,
+          "data": null,
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "Dialogue": [],
+      "Message": [],
       "Player": [
         {
           "id": 121,
-          "data": null
+          "data": null,
+          "config": {
+            "enabled": true
+          }
         }
       ],
       "Tile": [
@@ -642,11 +666,14 @@
               "x": -5,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -656,11 +683,14 @@
               "x": -5,
               "y": -4
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -670,11 +700,14 @@
               "x": -5,
               "y": -3
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -684,11 +717,14 @@
               "x": -5,
               "y": -2
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -698,11 +734,14 @@
               "x": -5,
               "y": -1
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -712,11 +751,14 @@
               "x": -5,
               "y": 0
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -726,11 +768,14 @@
               "x": -5,
               "y": 1
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -740,11 +785,14 @@
               "x": -5,
               "y": 2
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -754,11 +802,14 @@
               "x": -5,
               "y": 3
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -768,11 +819,14 @@
               "x": -5,
               "y": 4
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -782,11 +836,14 @@
               "x": -5,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -796,11 +853,14 @@
               "x": -4,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -815,6 +875,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -829,6 +892,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -843,6 +909,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -857,6 +926,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -871,6 +943,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -885,6 +960,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -899,6 +977,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -913,6 +994,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -927,6 +1011,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -936,11 +1023,14 @@
               "x": -4,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -950,11 +1040,14 @@
               "x": -3,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -969,6 +1062,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -983,6 +1079,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -997,6 +1096,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1011,6 +1113,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1025,6 +1130,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1039,6 +1147,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1053,6 +1164,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1067,6 +1181,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1081,6 +1198,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1090,11 +1210,14 @@
               "x": -3,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1104,11 +1227,14 @@
               "x": -2,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1123,6 +1249,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1137,6 +1266,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1151,6 +1283,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1165,6 +1300,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1179,6 +1317,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1193,6 +1334,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1207,6 +1351,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1221,6 +1368,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1235,6 +1385,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1244,11 +1397,14 @@
               "x": -2,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1258,11 +1414,14 @@
               "x": -1,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1277,6 +1436,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1291,6 +1453,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1305,6 +1470,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1319,6 +1487,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1333,6 +1504,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1347,6 +1521,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1361,6 +1538,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1375,6 +1555,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1389,6 +1572,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1398,11 +1584,14 @@
               "x": -1,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1412,11 +1601,14 @@
               "x": 0,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1431,6 +1623,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1445,6 +1640,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1459,6 +1657,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1473,6 +1674,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1487,6 +1691,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1501,6 +1708,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1515,6 +1725,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1529,6 +1742,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1543,6 +1759,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1552,11 +1771,14 @@
               "x": 0,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1566,11 +1788,14 @@
               "x": 1,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1585,6 +1810,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1599,6 +1827,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1613,6 +1844,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1627,6 +1861,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1641,6 +1878,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1655,6 +1895,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1669,6 +1912,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1683,6 +1929,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1697,6 +1946,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1706,11 +1958,14 @@
               "x": 1,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1720,11 +1975,14 @@
               "x": 2,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1739,6 +1997,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1753,6 +2014,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1767,6 +2031,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1781,6 +2048,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1795,6 +2065,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1809,6 +2082,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1823,6 +2099,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1837,6 +2116,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1851,6 +2133,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1860,11 +2145,14 @@
               "x": 2,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1874,11 +2162,14 @@
               "x": 3,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1893,6 +2184,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1907,6 +2201,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1921,6 +2218,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1935,6 +2235,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1949,6 +2252,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1963,6 +2269,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1977,6 +2286,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -1991,6 +2303,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2005,6 +2320,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2014,11 +2332,14 @@
               "x": 3,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2028,11 +2349,14 @@
               "x": 4,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2047,6 +2371,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2061,6 +2388,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2075,6 +2405,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2089,6 +2422,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2103,6 +2439,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2117,6 +2456,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2131,6 +2473,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2145,6 +2490,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2159,6 +2507,9 @@
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2168,11 +2519,14 @@
               "x": 4,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2182,11 +2536,14 @@
               "x": 5,
               "y": -5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2196,11 +2553,14 @@
               "x": 5,
               "y": -4
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2210,11 +2570,14 @@
               "x": 5,
               "y": -3
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2224,11 +2587,14 @@
               "x": 5,
               "y": -2
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2238,11 +2604,14 @@
               "x": 5,
               "y": -1
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2252,11 +2621,14 @@
               "x": 5,
               "y": 0
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2266,11 +2638,14 @@
               "x": 5,
               "y": 1
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2280,11 +2655,14 @@
               "x": 5,
               "y": 2
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2294,11 +2672,14 @@
               "x": 5,
               "y": 3
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2308,11 +2689,14 @@
               "x": 5,
               "y": 4
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2322,11 +2706,14 @@
               "x": 5,
               "y": 5
             },
-            "type": 0,
+            "type": 1,
             "occupant": {
               "id": 4294967295,
               "version": 0
             }
+          },
+          "config": {
+            "enabled": true
           }
         }
       ],
@@ -2340,6 +2727,9 @@
               "b": 0,
               "a": 100
             }
+          },
+          "config": {
+            "enabled": true
           }
         }
       ],
@@ -2360,6 +2750,9 @@
             },
             "horizontalAlignment": 0,
             "verticalAlignment": 0
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -2376,6 +2769,9 @@
             },
             "horizontalAlignment": 0,
             "verticalAlignment": 0
+          },
+          "config": {
+            "enabled": true
           }
         }
       ],
@@ -2388,733 +2784,1831 @@
         {
           "id": 0,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 1,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 2,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 3,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 4,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 5,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 6,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 7,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 8,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 9,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 10,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 11,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 12,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 13,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 14,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 15,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 16,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 17,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 18,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 19,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 20,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 21,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 22,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 23,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 24,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 25,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 26,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 27,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 28,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 29,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 30,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 31,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 32,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 33,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 34,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 35,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 36,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 37,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 38,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 39,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 40,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 41,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 42,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 43,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 44,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 45,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 46,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 47,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 48,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 49,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 50,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 51,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 52,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 53,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 54,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 55,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 56,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 57,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 58,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 59,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 60,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 61,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 62,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 63,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 64,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 65,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 66,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 67,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 68,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 69,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 70,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 71,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 72,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 73,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 74,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 75,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 76,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 77,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 78,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 79,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 80,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 81,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 82,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 83,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 84,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 85,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 86,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 87,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 88,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 89,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 90,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 91,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 92,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 93,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 94,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 95,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 96,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 97,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 98,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 99,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 100,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 101,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 102,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 103,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 104,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 105,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 106,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 107,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 108,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 109,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 110,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 111,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 112,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 113,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 114,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 115,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 116,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 117,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 118,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 119,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 120,
           "data": {
-            "spritePath": ""
+            "spritePath": "",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
           "id": 121,
           "data": {
-            "spritePath": "assets/Circle.png"
+            "spritePath": "assets/Circle.png",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            }
+          },
+          "config": {
+            "enabled": true
           }
         }
       ],
@@ -3132,6 +4626,9 @@
                 "y": 200
               }
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3147,6 +4644,9 @@
                 "y": 190
               }
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3162,6 +4662,9 @@
                 "y": 190
               }
             }
+          },
+          "config": {
+            "enabled": true
           }
         }
       ],
@@ -3191,6 +4694,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3217,6 +4723,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3243,6 +4752,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3269,6 +4781,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3295,6 +4810,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3321,6 +4839,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3347,6 +4868,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3373,6 +4897,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3399,6 +4926,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3425,6 +4955,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3451,6 +4984,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3477,6 +5013,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3503,6 +5042,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3529,6 +5071,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3555,6 +5100,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3581,6 +5129,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3607,6 +5158,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3633,6 +5187,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3659,6 +5216,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3685,6 +5245,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3711,6 +5274,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3737,6 +5303,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3763,6 +5332,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3789,6 +5361,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3815,6 +5390,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3841,6 +5419,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3867,6 +5448,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3893,6 +5477,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3919,6 +5506,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3945,6 +5535,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3971,6 +5564,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -3997,6 +5593,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4023,6 +5622,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4049,6 +5651,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4075,6 +5680,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4101,6 +5709,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4127,6 +5738,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4153,6 +5767,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4179,6 +5796,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4205,6 +5825,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4231,6 +5854,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4257,6 +5883,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4283,6 +5912,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4309,6 +5941,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4335,6 +5970,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4361,6 +5999,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4387,6 +6028,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4413,6 +6057,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4439,6 +6086,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4465,6 +6115,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4491,6 +6144,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4517,6 +6173,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4543,6 +6202,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4569,6 +6231,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4595,6 +6260,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4621,6 +6289,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4647,6 +6318,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4673,6 +6347,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4699,6 +6376,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4725,6 +6405,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4751,6 +6434,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4777,6 +6463,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4803,6 +6492,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4829,6 +6521,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4855,6 +6550,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4881,6 +6579,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4907,6 +6608,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4933,6 +6637,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4959,6 +6666,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -4985,6 +6695,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5011,6 +6724,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5037,6 +6753,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5063,6 +6782,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5089,6 +6811,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5115,6 +6840,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5141,6 +6869,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5167,6 +6898,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5193,6 +6927,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5219,6 +6956,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5245,6 +6985,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5271,6 +7014,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5297,6 +7043,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5323,6 +7072,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5349,6 +7101,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5375,6 +7130,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5401,6 +7159,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5427,6 +7188,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5453,6 +7217,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5479,6 +7246,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5505,6 +7275,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5531,6 +7304,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5557,6 +7333,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5583,6 +7362,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5609,6 +7391,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5635,6 +7420,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5661,6 +7449,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5687,6 +7478,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5713,6 +7507,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5739,6 +7536,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5765,6 +7565,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5791,6 +7594,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5817,6 +7623,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5843,6 +7652,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5869,6 +7681,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5895,6 +7710,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5921,6 +7739,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5947,6 +7768,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5973,6 +7797,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -5999,6 +7826,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6025,6 +7855,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6051,6 +7884,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6077,6 +7913,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6103,6 +7942,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6129,6 +7971,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6155,6 +8000,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6181,6 +8029,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6207,6 +8058,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6233,6 +8087,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6259,6 +8116,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6285,6 +8145,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6311,6 +8174,9 @@
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         },
         {
@@ -6328,21 +8194,47 @@
               "w": 1.0
             },
             "scale": {
-              "x": 0.5,
-              "y": 0.5,
-              "z": 0.5
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0
             },
             "eulerAngles": {
               "x": 0.0,
               "y": 0.0,
               "z": 0.0
             }
+          },
+          "config": {
+            "enabled": true
           }
         }
       ]
     }
   },
   "resources": {
+    "Dialogue": {
+      "messages": [
+        {
+          "value": {
+            "title": "1",
+            "text": "Text",
+            "image": "",
+            "choices": [],
+            "events": []
+          }
+        },
+        {
+          "value": {
+            "title": "2",
+            "text": "Text",
+            "image": "",
+            "choices": [],
+            "events": []
+          }
+        }
+      ],
+      "currentMessage": 0
+    },
     "AudioListener": {
       "position": {
         "x": 0.0,

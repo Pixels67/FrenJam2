@@ -46,7 +46,7 @@ inline auto Reflect(Tile &tile) {
 
 inline void UpdateTiles(World &world) {
     Registry &reg = world.GetRegistry();
-    reg.ForEach<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, const Tile &tile) {
+    reg.Iter<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, const Tile &tile) {
         trans.position      = Vector3i{tile.position.x, tile.position.y, 0};
         renderer.spritePath = GetTileSprite(tile.type);
 

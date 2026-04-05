@@ -19,17 +19,25 @@ namespace Flock::Serial {
         [[nodiscard]] Json GetOutput() const;
 
         template<typename T> requires IsReflectable<T>
-        void operator()(const std::string_view key, T &value) {
+        bool operator()(const std::string_view key, T &value) {
             BeginObject(key);
-            Serialize(*this, value);
+            if (!Serialize(*this, value)) {
+                EndObject();
+                Debug::LogErr("JsonWriter: Failed to archive '{}' of type '{}'", key, GetTypeName<T>());
+                return false;
+            }
+
             EndObject();
+            return true;
         }
 
         template<typename T> requires std::is_enum_v<T>
-        void operator()(std::string_view key, T &value) {
-            auto underlying = static_cast<std::underlying_type_t<T>>(value);
+        bool operator()(const std::string_view key, T &value) {
+            auto underlying = static_cast<u64>(value);
             (*this)(key, underlying);
             value = static_cast<T>(underlying);
+
+            return true;
         }
 
 
@@ -37,32 +45,32 @@ namespace Flock::Serial {
             return 0;
         }
 
-        void operator()(std::string_view key, bool &value) override;
+        bool operator()(std::string_view key, bool &value) override;
 
-        void operator()(std::string_view key, u32 &value) override;
-        void operator()(std::string_view key, u64 &value) override;
+        bool operator()(std::string_view key, u32 &value) override;
+        bool operator()(std::string_view key, u64 &value) override;
 
-        void operator()(std::string_view key, i32 &value) override;
-        void operator()(std::string_view key, i64 &value) override;
+        bool operator()(std::string_view key, i32 &value) override;
+        bool operator()(std::string_view key, i64 &value) override;
 
-        void operator()(std::string_view key, f32 &value) override;
-        void operator()(std::string_view key, f64 &value) override;
+        bool operator()(std::string_view key, f32 &value) override;
+        bool operator()(std::string_view key, f64 &value) override;
 
-        void operator()(std::string_view key, char &value) override;
-        void operator()(std::string_view key, std::string &value) override;
+        bool operator()(std::string_view key, char &value) override;
+        bool operator()(std::string_view key, std::string &value) override;
 
-        void operator()(std::string_view key, Vector2f &value) override;
-        void operator()(std::string_view key, Vector3f &value) override;
-        void operator()(std::string_view key, Vector4f &value) override;
+        bool operator()(std::string_view key, Vector2f &value) override;
+        bool operator()(std::string_view key, Vector3f &value) override;
+        bool operator()(std::string_view key, Vector4f &value) override;
 
-        void operator()(std::string_view key, Vector2i &value) override;
-        void operator()(std::string_view key, Vector3i &value) override;
-        void operator()(std::string_view key, Vector4i &value) override;
+        bool operator()(std::string_view key, Vector2i &value) override;
+        bool operator()(std::string_view key, Vector3i &value) override;
+        bool operator()(std::string_view key, Vector4i &value) override;
 
-        void operator()(std::string_view key, Color3u8 &value) override;
-        void operator()(std::string_view key, Color4u8 &value) override;
+        bool operator()(std::string_view key, Color3u8 &value) override;
+        bool operator()(std::string_view key, Color4u8 &value) override;
 
-        void operator()(std::string_view key, Quaternion &value) override;
+        bool operator()(std::string_view key, Quaternion &value) override;
 
         void BeginObject() override;
         void BeginObject(std::string_view key) override;
@@ -86,49 +94,57 @@ namespace Flock::Serial {
         explicit JsonReader(const Json &data);
 
         template<typename T> requires IsReflectable<T>
-        void operator()(const std::string_view key, T &value) {
+        bool operator()(const std::string_view key, T &value) {
             BeginObject(key);
-            Serialize(*this, value);
+            if (!Serialize(*this, value)) {
+                EndObject();
+                Debug::LogErr("JsonReader: Failed to archive '{}' of type '{}'", key, GetTypeName<T>());
+                return false;
+            }
+
             EndObject();
+            return true;
         }
 
         template<typename T> requires std::is_enum_v<T>
-        void operator()(std::string_view key, T &value) {
-            auto underlying = static_cast<std::underlying_type_t<T>>(value);
+        bool operator()(const std::string_view key, T &value) {
+            auto underlying = static_cast<u64>(value);
             (*this)(key, underlying);
             value = static_cast<T>(underlying);
+
+            return true;
         }
 
         usize CurrentArraySize() override {
             return Current().size();
         }
 
-        void operator()(std::string_view key, bool &value) override;
+        bool operator()(std::string_view key, bool &value) override;
 
-        void operator()(std::string_view key, u32 &value) override;
-        void operator()(std::string_view key, u64 &value) override;
+        bool operator()(std::string_view key, u32 &value) override;
+        bool operator()(std::string_view key, u64 &value) override;
 
-        void operator()(std::string_view key, i32 &value) override;
-        void operator()(std::string_view key, i64 &value) override;
+        bool operator()(std::string_view key, i32 &value) override;
+        bool operator()(std::string_view key, i64 &value) override;
 
-        void operator()(std::string_view key, f32 &value) override;
-        void operator()(std::string_view key, f64 &value) override;
+        bool operator()(std::string_view key, f32 &value) override;
+        bool operator()(std::string_view key, f64 &value) override;
 
-        void operator()(std::string_view key, char &value) override;
-        void operator()(std::string_view key, std::string &value) override;
+        bool operator()(std::string_view key, char &value) override;
+        bool operator()(std::string_view key, std::string &value) override;
 
-        void operator()(std::string_view key, Vector2f &value) override;
-        void operator()(std::string_view key, Vector3f &value) override;
-        void operator()(std::string_view key, Vector4f &value) override;
+        bool operator()(std::string_view key, Vector2f &value) override;
+        bool operator()(std::string_view key, Vector3f &value) override;
+        bool operator()(std::string_view key, Vector4f &value) override;
 
-        void operator()(std::string_view key, Vector2i &value) override;
-        void operator()(std::string_view key, Vector3i &value) override;
-        void operator()(std::string_view key, Vector4i &value) override;
+        bool operator()(std::string_view key, Vector2i &value) override;
+        bool operator()(std::string_view key, Vector3i &value) override;
+        bool operator()(std::string_view key, Vector4i &value) override;
 
-        void operator()(std::string_view key, Color3u8 &value) override;
-        void operator()(std::string_view key, Color4u8 &value) override;
+        bool operator()(std::string_view key, Color3u8 &value) override;
+        bool operator()(std::string_view key, Color4u8 &value) override;
 
-        void operator()(std::string_view key, Quaternion &value) override;
+        bool operator()(std::string_view key, Quaternion &value) override;
 
         void BeginObject() override;
         void BeginObject(std::string_view key) override;

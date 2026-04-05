@@ -7,6 +7,8 @@ set(PROJECT_SOURCES
         src/Tile.hpp
         src/Using.hpp
         src/Player.hpp
+        src/DialogueUi.hpp
+        src/Dialogue.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
