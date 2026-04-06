@@ -9,6 +9,7 @@ set(PROJECT_SOURCES
         src/Player.hpp
         src/DialogueUi.hpp
         src/Dialogue.hpp
+        src/Interactable.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

@@ -31,6 +31,10 @@ struct Tile {
     Vector2i position = {};
     TileType type     = Ground;
     Entity   occupant = {~0u, 0};
+
+    bool HasOccupant() const {
+        return occupant.id != ~0u;
+    }
 };
 
 inline auto Reflect(Tile &tile) {
@@ -46,11 +50,15 @@ inline auto Reflect(Tile &tile) {
 
 inline void UpdateTiles(World &world) {
     Registry &reg = world.GetRegistry();
-    reg.Iter<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, const Tile &tile) {
+    reg.Iter<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, Tile &tile) {
         trans.position      = Vector3i{tile.position.x, tile.position.y, 0};
         renderer.spritePath = GetTileSprite(tile.type);
 
-        if (tile.occupant.id != ~0u && reg.HasComponent<Transform>(tile.occupant)) {
+        if (!reg.IsAlive(tile.occupant)) {
+            tile.occupant = {~0u, 0};
+        }
+
+        if (tile.HasOccupant() && reg.HasComponent<Transform>(tile.occupant)) {
             reg.GetComponent<Transform>(tile.occupant)->get()            = trans;
             reg.GetComponent<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
         }

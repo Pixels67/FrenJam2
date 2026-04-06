@@ -235,7 +235,7 @@ namespace Flock {
             scene,
             {
                 .viewport = viewport,
-                .clear    = ClearState{.color = Color4u8{ambient.color}}
+                .clear    = {.color = Color4u8{ambient.color}}
             },
             m_Config.shadowConfig
         );
@@ -270,13 +270,14 @@ namespace Flock {
         }
 
         scene.skybox = std::nullopt;
+        scene.lights = {};
         m_Services.renderer.Render(
             commands,
             scene,
             {
-                .viewport = viewport, .clear = ClearState{.clearColor = false, .clearDepth = false}
-            },
-            {.enabled = false}
+                .viewport = viewport,
+                .clear = {.clearColor = false, .clearDepth = false}
+            }
         );
     }
 

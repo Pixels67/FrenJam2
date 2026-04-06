@@ -628,6 +628,15 @@
       }
     ],
     "components": {
+      "DialogueBox": [
+        {
+          "id": 122,
+          "data": null,
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
       "DialogueImage": [],
       "DialogueTitle": [
         {
@@ -652,7 +661,9 @@
       "Player": [
         {
           "id": 121,
-          "data": null,
+          "data": {
+            "canMove": true
+          },
           "config": {
             "enabled": true
           }

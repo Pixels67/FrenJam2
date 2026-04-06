@@ -93,12 +93,21 @@ void main() {
         }
     }
 
-    Renderer &Renderer::Render(const RenderList &commands, const SceneData &scene, RenderConfig config, const ShadowConfig shadowConfig) {
+    Renderer &Renderer::Render(const RenderList &commands, const SceneData &scene, RenderConfig config, const ShadowConfig &shadowConfig) {
         const auto     lights       = GetNearestLights(scene.lights, scene.camera.transform.position, s_MaxLightsPerObject);
         const Vector3f shadowCenter = scene.camera.transform.position;
-        ShadowData     shadowData;
+
+        RenderList sortedCmds = commands;
+        std::sort(sortedCmds.begin(), sortedCmds.end(), [&](RenderCommand &lhs, RenderCommand &rhs) {
+            const f32 lhsZ = ((lhs.transform.position - scene.camera.transform.position) * scene.camera.transform.rotation.Inverse()).z;
+            const f32 rhsZ = ((rhs.transform.position - scene.camera.transform.position) * scene.camera.transform.rotation.Inverse()).z;
+
+            return lhsZ > rhsZ;
+        });
+
+        ShadowData shadowData;
         if (shadowConfig.enabled) {
-            shadowData = GenerateShadowMaps(commands, lights, shadowConfig, shadowCenter);
+            shadowData = GenerateShadowMaps(sortedCmds, lights, shadowConfig, shadowCenter);
         }
 
         auto      [origin, aspect] = config.viewport;
@@ -118,7 +127,7 @@ void main() {
         config.clear.clearColor = false;
         ConfigureFramebuffer(config);
 
-        for (auto &cmd: commands) {
+        for (auto &cmd: sortedCmds) {
             auto &[mesh, pipeline, mat, trans] = cmd;
 
             pipeline.get().ResetUniforms();

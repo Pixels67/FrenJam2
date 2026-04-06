@@ -50,15 +50,15 @@ inline auto Reflect(DialogueBox &) {
 inline void ShowDialogue(World &world) {
     world.GetRegistry().Iter<Player>([&](Player &player) { player.canMove = false; });
 
-    world.GetRegistry().Query<DialogueText>().Iter<Entity>([&](Entity e) {
+    world.GetRegistry().Query<DialogueText>().Iter<Entity>([&](const Entity e) {
         world.GetRegistry().SetComponentEnabled<Text>(e, true);
     });
 
-    world.GetRegistry().Query<DialogueTitle>().Iter<Entity>([&](Entity e) {
+    world.GetRegistry().Query<DialogueTitle>().Iter<Entity>([&](const Entity e) {
         world.GetRegistry().SetComponentEnabled<Text>(e, true);
     });
 
-    world.GetRegistry().Query<DialogueBox>().Iter<Entity>([&](Entity e) {
+    world.GetRegistry().Query<DialogueBox>().Iter<Entity>([&](const Entity e) {
         world.GetRegistry().SetComponentEnabled<Box>(e, true);
     });
 }
@@ -98,11 +98,11 @@ inline void UpdateDialogueUi(World &world) {
         HideDialogue(world);
     }
 
-    world.GetRegistry().Query<Text, DialogueText>().Iter<Text>([&](Text &text) {
+    world.GetRegistry().Query<DialogueText>().Iter<Text>([&](Text &text) {
         text.content = content;
     });
 
-    world.GetRegistry().Query<Text, DialogueTitle>().Iter<Text>([&](Text &text) {
+    world.GetRegistry().Query<DialogueTitle>().Iter<Text>([&](Text &text) {
         text.content = title;
     });
 }

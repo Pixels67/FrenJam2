@@ -28,6 +28,10 @@ inline auto Reflect(Message &msg) {
 struct Dialogue {
     std::vector<Message> messages;
     u32                  currentMessage = 0;
+
+    bool IsFinished() const {
+        return currentMessage >= messages.size();
+    }
 };
 
 inline auto Reflect(Dialogue &dialogue) {

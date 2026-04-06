@@ -2,6 +2,7 @@
 #define PLAYER_HPP
 
 #include "Flock.hpp"
+#include "Interactable.hpp"
 #include "Tile.hpp"
 #include "Using.hpp"
 
@@ -18,6 +19,36 @@ inline auto Reflect(Player &player) {
     };
 }
 
+inline std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteractable(World &world, const Transform &transform) {
+    const Vector2i pos = Vector2f{transform.position.x, transform.position.y};
+
+    const std::vector positions = {
+        pos + Vector2i{-1, 1}, pos + Vector2i{0, 1}, pos + Vector2i{1, 1},
+        pos + Vector2i{-1, 0}, pos + Vector2i{0, 0}, pos + Vector2i{1, 0},
+        pos + Vector2i{-1, -1}, pos + Vector2i{0, -1}, pos + Vector2i{1, -1}
+    };
+
+    OptionalRef<Interactable> interactable = std::nullopt;
+    Entity                    entity       = {~0u, 0};
+
+    auto &reg = world.GetRegistry();
+    reg.Iter<Entity, Tile>([&](Entity e, const Tile &tile) {
+        for (const auto &p: positions) {
+            if (tile.position == p && tile.HasOccupant() && reg.HasComponent<Interactable>(tile.occupant)) {
+                interactable = reg.GetComponent<Interactable>(tile.occupant);
+                entity       = tile.occupant;
+                return;
+            }
+        }
+    });
+
+    if (interactable) {
+        return std::make_tuple(entity, interactable.value());
+    }
+
+    return std::nullopt;
+}
+
 inline void UpdatePlayer(World &world) {
     Registry &reg = world.GetRegistry();
 
@@ -26,6 +57,19 @@ inline void UpdatePlayer(World &world) {
 
         Vector2i   movement = {};
         const auto input    = world.GetResource<InputState>();
+
+        const auto maybeInteractable = GetNearbyInteractable(world, trans);
+
+        if (input.IsKeyPressed(Key::E) && world.GetResource<Dialogue>().IsFinished() && maybeInteractable) {
+            auto &[entity, interactable] = maybeInteractable.value();
+
+            world.GetResource<Dialogue>().messages       = interactable.get().dialogue.messages;
+            world.GetResource<Dialogue>().currentMessage = 0;
+
+            if (interactable.get().destroyOnInteract) {
+                reg.Destroy(entity);
+            }
+        }
 
         if (input.IsKeyPressed(Key::D)) {
             movement.x = 1;
@@ -51,11 +95,11 @@ inline void UpdatePlayer(World &world) {
             return;
         }
 
-        const Vector2i playerPos = Vector2i(trans.position.x, trans.position.y);
+        const auto playerPos = Vector2i(trans.position.x, trans.position.y);
 
         bool moved = false;
         reg.Iter<Tile>([&](Tile &tile) {
-            if (tile.position == playerPos + movement && IsPassable(tile.type)) {
+            if (tile.position == playerPos + movement && IsPassable(tile.type) && !tile.HasOccupant()) {
                 tile.occupant = e;
                 moved         = true;
             }

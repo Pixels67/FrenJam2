@@ -101,7 +101,7 @@ namespace Flock::Graphics {
 
     class FLK_API Renderer {
     public:
-        Renderer &Render(const RenderList &commands, const SceneData &scene, RenderConfig config = {}, ShadowConfig shadowConfig = {});
+        Renderer &Render(const RenderList &commands, const SceneData &scene, RenderConfig config = {}, const ShadowConfig &shadowConfig = {});
 
     private:
         static bool SetFramebuffer(OptionalRef<Framebuffer> framebuffer = std::nullopt);

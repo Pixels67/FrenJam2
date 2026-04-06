@@ -24,6 +24,8 @@ namespace Flock {
 
         T &At(const u32 row, const u32 col) { return m[(row * 4) + col]; }
 
+        T &operator[](const u32 idx) { return m[idx]; }
+
         const T &At(const u32 row, const u32 col) const { return m[(row * 4) + col]; }
 
         const T *Data() const { return m.data(); }

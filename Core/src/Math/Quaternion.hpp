@@ -69,7 +69,7 @@ namespace Flock {
         }
 
         Vector3f operator*(const Vector3f &o) const {
-            Quaternion quat(o.x, o.y, o.z, 0);
+            const Quaternion quat(o.x, o.y, o.z, 0);
             Quaternion result = Conjugate() * quat * *this;
 
             return {result.x, result.y, result.z};
