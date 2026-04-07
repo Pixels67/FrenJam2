@@ -20,10 +20,10 @@ namespace Flock::Ecs {
         World &InsertResource(T &&resource = {}) {
             m_Resources[GetTypeId<T>()] = std::forward<T>(resource);
 
-            if constexpr (IsReflectable<T>) {
-                m_ArchiveFns[GetTypeId<T>()] = [](Serial::IArchive &archive, std::any &any) {
+            if constexpr (Serial::Serializable<T>) {
+                m_ArchiveFns[GetTypeId<T>()] = [resource](Serial::IArchive &archive, std::any &any) {
                     T &res = std::any_cast<T &>(any);
-                    archive(GetTypeName<T>(), res);
+                    archive(NameOf(resource), res);
                 };
             }
 
@@ -36,12 +36,12 @@ namespace Flock::Ecs {
         }
 
         template<typename T>
-        T &GetResource() {
+        T &Resource() {
             FLK_EXPECT(HasResource<T>(), "Resource does not exist!");
             return std::any_cast<T &>(m_Resources.at(GetTypeId<T>()));
         }
 
-        [[nodiscard]] Registry &GetRegistry();
+        [[nodiscard]] Ecs::Registry &Registry();
 
         void Archive(Serial::IArchive &archive);
 

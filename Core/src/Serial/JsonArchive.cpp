@@ -1,11 +1,13 @@
 #include "JsonArchive.hpp"
 
+#include "Math/Math.hpp"
+
 namespace Flock::Serial {
     JsonWriter::JsonWriter() {
         m_Stack.push_back(&m_Root);
     }
 
-    Json JsonWriter::GetOutput() const {
+    Json JsonWriter::Output() const {
         return Json(m_Root);
     }
 

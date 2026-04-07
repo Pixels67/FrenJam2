@@ -3,7 +3,7 @@
 #include "Gl.hpp"
 
 namespace Flock::Graphics {
-    u32 TextureConfig::GetGlWrap() const {
+    u32 TextureConfig::GlWrap() const {
         switch (wrapMode) {
             case Clamp:
                 return GL_CLAMP_TO_EDGE;
@@ -16,7 +16,7 @@ namespace Flock::Graphics {
         }
     }
 
-    u32 TextureConfig::GetGlMinFilter() const {
+    u32 TextureConfig::GlMinFilter() const {
         // May god forgive me for what I'm about to do...
         switch (filterMode) {
             case Linear:
@@ -46,7 +46,7 @@ namespace Flock::Graphics {
         }
     }
 
-    u32 TextureConfig::GetGlMagFilter() const {
+    u32 TextureConfig::GlMagFilter() const {
         switch (filterMode) {
             case Linear:
                 return GL_LINEAR;
@@ -58,11 +58,11 @@ namespace Flock::Graphics {
     }
 
     void ConfigureTexture(const u32 glTexture, const TextureConfig config) {
-        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_WRAP_S, config.GetGlWrap()));
-        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_WRAP_T, config.GetGlWrap()));
+        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_WRAP_S, config.GlWrap()));
+        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_WRAP_T, config.GlWrap()));
 
-        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_MIN_FILTER, config.GetGlMinFilter()));
-        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_MAG_FILTER, config.GetGlMagFilter()));
+        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_MIN_FILTER, config.GlMinFilter()));
+        FLK_GL_CALL(glTexParameteri(glTexture, GL_TEXTURE_MAG_FILTER, config.GlMagFilter()));
 
         if (config.generateMipmaps && (!config.format || config.format.value() != TextureFormat::Depth)) {
             FLK_GL_CALL(glGenerateMipmap(glTexture));
@@ -230,23 +230,23 @@ namespace Flock::Graphics {
         FLK_GL_CALL(glBindTexture(GL_TEXTURE_2D, boundTexture));
     }
 
-    TextureConfig Texture::GetConfig() const {
+    TextureConfig Texture::Config() const {
         return m_Config;
     }
 
-    Vector2u Texture::GetSize() const {
+    Vector2u Texture::Size() const {
         return m_Size;
     }
 
-    u32 Texture::GetWidth() const {
-        return GetSize().x;
+    u32 Texture::Width() const {
+        return Size().x;
     }
 
-    u32 Texture::GetHeight() const {
-        return GetSize().y;
+    u32 Texture::Height() const {
+        return Size().y;
     }
 
-    u32 Texture::GetGlId() const {
+    u32 Texture::GlId() const {
         return m_Id;
     }
 }

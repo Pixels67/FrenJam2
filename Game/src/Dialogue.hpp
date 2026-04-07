@@ -12,18 +12,7 @@ struct Message {
     std::vector<std::string> events;
 };
 
-inline auto Reflect(Message &msg) {
-    return Reflectable{
-        "Message",
-        std::make_tuple(
-            Field{"title", &msg.title},
-            Field{"text", &msg.text},
-            Field{"image", &msg.imagePath},
-            Field{"choices", &msg.choices},
-            Field{"events", &msg.events}
-        )
-    };
-}
+FLK_ARCHIVE(Message, title, text, imagePath, choices, events)
 
 struct Dialogue {
     std::vector<Message> messages;
@@ -34,14 +23,6 @@ struct Dialogue {
     }
 };
 
-inline auto Reflect(Dialogue &dialogue) {
-    return Reflectable{
-        "Dialogue",
-        std::make_tuple(
-            Field{"messages", &dialogue.messages},
-            Field{"currentMessage", &dialogue.currentMessage}
-        )
-    };
-}
+FLK_ARCHIVE(Dialogue, messages)
 
 #endif //DIALOGUE_HPP

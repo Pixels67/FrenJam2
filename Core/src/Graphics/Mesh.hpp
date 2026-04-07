@@ -78,9 +78,9 @@ namespace Flock::Graphics {
         /**
          * @return The index count of the mesh.
          */
-        [[nodiscard]] usize GetIndexCount() const;
+        [[nodiscard]] usize IndexCount() const;
 
-        [[nodiscard]] const MeshData &GetData() const;
+        [[nodiscard]] const MeshData &Data() const;
     };
 }
 

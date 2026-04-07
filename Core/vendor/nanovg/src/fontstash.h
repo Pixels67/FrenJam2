@@ -73,7 +73,7 @@ struct FONSquad
 };
 typedef struct FONSquad FONSquad;
 
-struct FONStextIter {
+struct FONStextForEach {
 	float x, y, nextx, nexty, scale, spacing;
 	unsigned int codepoint;
 	short isize, iblur;
@@ -85,7 +85,7 @@ struct FONStextIter {
 	unsigned int utf8state;
 	int bitmapOption;
 };
-typedef struct FONStextIter FONStextIter;
+typedef struct FONStextForEach FONStextForEach;
 
 typedef struct FONScontext FONScontext;
 
@@ -128,8 +128,8 @@ void fonsLineBounds(FONScontext* s, float y, float* miny, float* maxy);
 void fonsVertMetrics(FONScontext* s, float* ascender, float* descender, float* lineh);
 
 // Text iterator
-int fonsTextIterInit(FONScontext* stash, FONStextIter* iter, float x, float y, const char* str, const char* end, int bitmapOption);
-int fonsTextIterNext(FONScontext* stash, FONStextIter* iter, struct FONSquad* quad);
+int fonsTextForEachInit(FONScontext* stash, FONStextForEach* iter, float x, float y, const char* str, const char* end, int bitmapOption);
+int fonsTextForEachNext(FONScontext* stash, FONStextForEach* iter, struct FONSquad* quad);
 
 // Pull texture changes
 const unsigned char* fonsGetTextureData(FONScontext* stash, int* width, int* height);
@@ -1383,7 +1383,7 @@ float fonsDrawText(FONScontext* stash,
 	return x;
 }
 
-int fonsTextIterInit(FONScontext* stash, FONStextIter* iter,
+int fonsTextForEachInit(FONScontext* stash, FONStextForEach* iter,
 					 float x, float y, const char* str, const char* end, int bitmapOption)
 {
 	FONSstate* state = fons__getState(stash);
@@ -1429,7 +1429,7 @@ int fonsTextIterInit(FONScontext* stash, FONStextIter* iter,
 	return 1;
 }
 
-int fonsTextIterNext(FONScontext* stash, FONStextIter* iter, FONSquad* quad)
+int fonsTextForEachNext(FONScontext* stash, FONStextForEach* iter, FONSquad* quad)
 {
 	FONSglyph* glyph = NULL;
 	const char* str = iter->next;

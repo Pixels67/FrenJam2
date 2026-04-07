@@ -16,14 +16,14 @@ namespace Flock::Serial {
 
     public:
         JsonWriter();
-        [[nodiscard]] Json GetOutput() const;
+        [[nodiscard]] Json Output() const;
 
-        template<typename T> requires IsReflectable<T>
+        template<Serializable T>
         bool operator()(const std::string_view key, T &value) {
             BeginObject(key);
             if (!Serialize(*this, value)) {
                 EndObject();
-                Debug::LogErr("JsonWriter: Failed to archive '{}' of type '{}'", key, GetTypeName<T>());
+                Debug::LogErr("JsonWriter: Failed to archive '{}' of type '{}'", key, T::Name());
                 return false;
             }
 
@@ -93,12 +93,12 @@ namespace Flock::Serial {
     public:
         explicit JsonReader(const Json &data);
 
-        template<typename T> requires IsReflectable<T>
+        template<Serializable T>
         bool operator()(const std::string_view key, T &value) {
             BeginObject(key);
             if (!Serialize(*this, value)) {
                 EndObject();
-                Debug::LogErr("JsonReader: Failed to archive '{}' of type '{}'", key, GetTypeName<T>());
+                Debug::LogErr("JsonReader: Failed to archive '{}' of type '{}'", key, T::Name());
                 return false;
             }
 

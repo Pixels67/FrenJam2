@@ -158,7 +158,6 @@ set(PROJECT_SOURCES
         src/Asset/AssetLoader.cpp
         src/Audio/AudioSource.hpp
         src/Audio/AudioListener.hpp
-        src/Reflect.hpp
         src/Serial/Json.cpp
         src/Serial/Json.hpp
         src/Serial/Archive.hpp

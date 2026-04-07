@@ -567,15 +567,15 @@ namespace Flock::Input {
             return cursorPosition.x >= x && cursorPosition.x < x + w && cursorPosition.y >= y && cursorPosition.y < y + h;
         }
 
-        [[nodiscard]] Vector2f GetCursorPosition() const {
+        [[nodiscard]] Vector2f CursorPosition() const {
             return cursorPosition;
         }
 
-        [[nodiscard]] Vector2f GetCursorDelta() const {
+        [[nodiscard]] Vector2f CursorDelta() const {
             return cursorDelta;
         }
 
-        [[nodiscard]] Vector2f GetScrollOffset() const {
+        [[nodiscard]] Vector2f ScrollOffset() const {
             return scrollOffset;
         }
     };

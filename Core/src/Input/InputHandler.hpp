@@ -12,7 +12,7 @@ namespace Flock::Input {
         void HookEvents(Event::EventHandler &eventHandler);
         void ResetState();
 
-        [[nodiscard]] InputState GetState() const;
+        [[nodiscard]] InputState State() const;
     };
 }
 

@@ -15,7 +15,7 @@ namespace Flock::Ecs {
         m_Systems[stage].pop_back();
     }
 
-    std::vector<System> Schedule::GetSystems(const Stage stage) {
+    std::vector<System> Schedule::Systems(const Stage stage) {
         return m_Systems[stage];
     }
 

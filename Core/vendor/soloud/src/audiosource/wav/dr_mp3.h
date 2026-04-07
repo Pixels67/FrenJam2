@@ -3245,12 +3245,12 @@ drmp3_uint64 drmp3_read_pcm_frames_s16(drmp3* pMP3, drmp3_uint64 framesToRead, d
 
     /* Naive implementation: read into a temp f32 buffer, then convert. */
     for (;;) {
-        drmp3_uint64 pcmFramesToReadThisIteration = (framesToRead - totalPCMFramesRead);
-        if (pcmFramesToReadThisIteration > drmp3_countof(tempF32)/pMP3->channels) {
-            pcmFramesToReadThisIteration = drmp3_countof(tempF32)/pMP3->channels;
+        drmp3_uint64 pcmFramesToReadThisForEachation = (framesToRead - totalPCMFramesRead);
+        if (pcmFramesToReadThisForEachation > drmp3_countof(tempF32)/pMP3->channels) {
+            pcmFramesToReadThisForEachation = drmp3_countof(tempF32)/pMP3->channels;
         }
 
-        pcmFramesJustRead = drmp3_read_pcm_frames_f32(pMP3, pcmFramesToReadThisIteration, tempF32);
+        pcmFramesJustRead = drmp3_read_pcm_frames_f32(pMP3, pcmFramesToReadThisForEachation, tempF32);
         if (pcmFramesJustRead == 0) {
             break;
         }
@@ -3260,7 +3260,7 @@ drmp3_uint64 drmp3_read_pcm_frames_s16(drmp3* pMP3, drmp3_uint64 framesToRead, d
 
         totalPCMFramesRead += pcmFramesJustRead;
 
-        if (pcmFramesJustRead < pcmFramesToReadThisIteration) {
+        if (pcmFramesJustRead < pcmFramesToReadThisForEachation) {
             break;
         }
     }

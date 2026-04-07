@@ -82,7 +82,7 @@ namespace Flock::Physics {
             const Quaternion rot = quat * Quaternion::Euler(euler);
 
             auto &collider = *m_Scene[i].collider;
-            const RigidTransform trans = collider.GetTransform();
+            const RigidTransform trans = collider.Transform();
 
             rp::Vector3    rbPos = ToRp3dType(pos + trans.position * rot);
             rp::Quaternion rbRot = ToRp3dType(trans.rotation * rot);
@@ -124,7 +124,7 @@ namespace Flock::Physics {
             const rp::Vector3 angVlc = m_Bodies[i]->getAngularVelocity();
 
             auto &collider = *m_Scene[i].collider;
-            const RigidTransform colTrans = collider.GetTransform();
+            const RigidTransform colTrans = collider.Transform();
 
             m_Scene[i].transform->position    = Rp3dVector(pos) - colTrans.position * Rp3dQuaternion(rot);
             m_Scene[i].transform->rotation    = colTrans.rotation.Inverse() * Rp3dQuaternion(rot);

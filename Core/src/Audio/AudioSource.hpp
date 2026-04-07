@@ -3,6 +3,7 @@
 
 #include "Common.hpp"
 #include "Math/Vector.hpp"
+#include "Serial/Archive.hpp"
 
 namespace Flock::Audio {
     struct FLK_API AudioSource {
@@ -20,21 +21,17 @@ namespace Flock::Audio {
         }
     };
 
-    inline auto Reflect(AudioSource &source) {
-        return Reflectable{
-            "AudioSource",
-            std::make_tuple(
-                Field{"path", &source.audioClipPath},
-                Field{"play", &source.play},
-                Field{"position", &source.position},
-                Field{"volume", &source.volume},
-                Field{"pitch", &source.pitch},
-                Field{"pan", &source.pan},
-                Field{"looping", &source.looping},
-                Field{"spatialize", &source.spatialize}
-            )
-        };
-    }
+    FLK_ARCHIVE(
+        AudioSource,
+        audioClipPath,
+        play,
+        position,
+        volume,
+        pitch,
+        pan,
+        looping,
+        spatialize
+    )
 }
 
 #endif //FLK_AUDIOSOURCE_HPP

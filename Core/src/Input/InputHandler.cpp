@@ -75,7 +75,7 @@ namespace Flock::Input {
         m_InputState.cursorDelta = {};
     }
 
-    InputState InputHandler::GetState() const {
+    InputState InputHandler::State() const {
         return m_InputState;
     }
 }

@@ -48,7 +48,7 @@ namespace Flock::Audio {
     }
 
     bool AudioPlayer::Stop(const AudioClip &clip) const {
-        if (!m_Player || clip.playbackHandle == ~0u) {
+        if (!m_Player || clip.playbackHandle == FLK_INVALID) {
             return false;
         }
 

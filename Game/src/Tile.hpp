@@ -30,37 +30,28 @@ inline std::string GetTileSprite(const TileType type) {
 struct Tile {
     Vector2i position = {};
     TileType type     = Ground;
-    Entity   occupant = {~0u, 0};
+    Entity   occupant = {};
 
     bool HasOccupant() const {
-        return occupant.id != ~0u;
+        return occupant.id != FLK_INVALID;
     }
 };
 
-inline auto Reflect(Tile &tile) {
-    return Reflectable{
-        "Tile",
-        std::make_tuple(
-            Field{"position", &tile.position},
-            Field{"type", &tile.type},
-            Field{"occupant", &tile.occupant}
-        )
-    };
-}
+FLK_ARCHIVE(Tile, position, type, occupant)
 
 inline void UpdateTiles(World &world) {
-    Registry &reg = world.GetRegistry();
-    reg.Iter<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, Tile &tile) {
+    Registry &reg = world.Registry();
+    reg.ForEach<Transform, SpriteRenderer, Tile>([&](Transform &trans, SpriteRenderer &renderer, Tile &tile) {
         trans.position      = Vector3i{tile.position.x, tile.position.y, 0};
         renderer.spritePath = GetTileSprite(tile.type);
 
         if (!reg.IsAlive(tile.occupant)) {
-            tile.occupant = {~0u, 0};
+            tile.occupant = {};
         }
 
         if (tile.HasOccupant() && reg.HasComponent<Transform>(tile.occupant)) {
-            reg.GetComponent<Transform>(tile.occupant)->get()            = trans;
-            reg.GetComponent<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
+            reg.Get<Transform>(tile.occupant)->get()            = trans;
+            reg.Get<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
         }
     });
 }

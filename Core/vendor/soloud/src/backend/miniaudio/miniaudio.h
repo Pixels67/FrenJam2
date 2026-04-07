@@ -5862,16 +5862,16 @@ static MA_INLINE void ma_device__on_data(ma_device* pDevice, void* pFramesOut, c
             ma_uint32 bpfPlayback = ma_get_bytes_per_frame(pDevice->playback.format, pDevice->playback.channels);
             ma_uint32 totalFramesProcessed = 0;
             while (totalFramesProcessed < frameCount) {
-                ma_uint32 framesToProcessThisIteration = frameCount - totalFramesProcessed;
-                if (framesToProcessThisIteration > sizeof(tempFramesIn)/bpfCapture) {
-                    framesToProcessThisIteration = sizeof(tempFramesIn)/bpfCapture;
+                ma_uint32 framesToProcessThisForEachation = frameCount - totalFramesProcessed;
+                if (framesToProcessThisForEachation > sizeof(tempFramesIn)/bpfCapture) {
+                    framesToProcessThisForEachation = sizeof(tempFramesIn)/bpfCapture;
                 }
 
-                ma_copy_and_apply_volume_factor_pcm_frames(tempFramesIn, ma_offset_ptr(pFramesIn, totalFramesProcessed*bpfCapture), framesToProcessThisIteration, pDevice->capture.format, pDevice->capture.channels, pDevice->masterVolumeFactor);
+                ma_copy_and_apply_volume_factor_pcm_frames(tempFramesIn, ma_offset_ptr(pFramesIn, totalFramesProcessed*bpfCapture), framesToProcessThisForEachation, pDevice->capture.format, pDevice->capture.channels, pDevice->masterVolumeFactor);
 
-                onData(pDevice, ma_offset_ptr(pFramesOut, totalFramesProcessed*bpfPlayback), tempFramesIn, framesToProcessThisIteration);
+                onData(pDevice, ma_offset_ptr(pFramesOut, totalFramesProcessed*bpfPlayback), tempFramesIn, framesToProcessThisForEachation);
 
-                totalFramesProcessed += framesToProcessThisIteration;
+                totalFramesProcessed += framesToProcessThisForEachation;
             }
         } else {
             onData(pDevice, pFramesOut, pFramesIn, frameCount);
@@ -6776,12 +6776,12 @@ ma_result ma_device_main_loop__null(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__null(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__null(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -6803,14 +6803,14 @@ ma_result ma_device_main_loop__null(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__null(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__null(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -11133,7 +11133,7 @@ ma_result ma_device_main_loop__dsound(ma_device* pDevice)
                     pDevice->playback._dspFrameCount = inputFramesInExternalFormatCount;
                     pDevice->playback._dspFrames     = (const ma_uint8*)outputFramesInExternalFormat;
                     for (;;) {
-                        ma_uint32 framesWrittenThisIteration;
+                        ma_uint32 framesWrittenThisForEachation;
                         DWORD physicalPlayCursorInBytes;
                         DWORD physicalWriteCursorInBytes;
                         DWORD availableBytesPlayback;
@@ -11232,19 +11232,19 @@ ma_result ma_device_main_loop__dsound(ma_device* pDevice)
                         /* At this point we have a buffer for output. */
                         if (silentPaddingInBytes > 0) {
                             ma_zero_memory(pMappedBufferPlayback, silentPaddingInBytes);
-                            framesWrittenThisIteration = silentPaddingInBytes/bpfPlayback;
+                            framesWrittenThisForEachation = silentPaddingInBytes/bpfPlayback;
                         } else {
-                            framesWrittenThisIteration = (ma_uint32)ma_pcm_converter_read(&pDevice->playback.converter, pMappedBufferPlayback, mappedSizeInBytesPlayback/bpfPlayback);
+                            framesWrittenThisForEachation = (ma_uint32)ma_pcm_converter_read(&pDevice->playback.converter, pMappedBufferPlayback, mappedSizeInBytesPlayback/bpfPlayback);
                         }
                         
 
-                        hr = ma_IDirectSoundBuffer_Unlock((ma_IDirectSoundBuffer*)pDevice->dsound.pPlaybackBuffer, pMappedBufferPlayback, framesWrittenThisIteration*bpfPlayback, NULL, 0);
+                        hr = ma_IDirectSoundBuffer_Unlock((ma_IDirectSoundBuffer*)pDevice->dsound.pPlaybackBuffer, pMappedBufferPlayback, framesWrittenThisForEachation*bpfPlayback, NULL, 0);
                         if (FAILED(hr)) {
                             result = ma_post_error(pDevice, MA_LOG_LEVEL_ERROR, "[DirectSound] Failed to unlock internal buffer from playback device after writing to the device.", MA_FAILED_TO_UNMAP_DEVICE_BUFFER);
                             break;
                         }
 
-                        virtualWriteCursorInBytesPlayback += framesWrittenThisIteration*bpfPlayback;
+                        virtualWriteCursorInBytesPlayback += framesWrittenThisForEachation*bpfPlayback;
                         if ((virtualWriteCursorInBytesPlayback/bpfPlayback) == pDevice->playback.internalBufferSizeInFrames) {
                             virtualWriteCursorInBytesPlayback  = 0;
                             virtualWriteCursorLoopFlagPlayback = !virtualWriteCursorLoopFlagPlayback;
@@ -11254,7 +11254,7 @@ ma_result ma_device_main_loop__dsound(ma_device* pDevice)
                         We may need to start the device. We want two full periods to be written before starting the playback device. Having an extra period adds
                         a bit of a buffer to prevent the playback buffer from getting starved.
                         */
-                        framesWrittenToPlaybackDevice += framesWrittenThisIteration;
+                        framesWrittenToPlaybackDevice += framesWrittenThisForEachation;
                         if (!isPlaybackDeviceStarted && framesWrittenToPlaybackDevice >= ((pDevice->playback.internalBufferSizeInFrames/pDevice->playback.internalPeriods)*2)) {
                             if (FAILED(ma_IDirectSoundBuffer_Play((ma_IDirectSoundBuffer*)pDevice->dsound.pPlaybackBuffer, 0, 0, MA_DSBPLAY_LOOPING))) {
                                 ma_IDirectSoundCaptureBuffer_Stop((ma_IDirectSoundCaptureBuffer*)pDevice->dsound.pCaptureBuffer);
@@ -11263,7 +11263,7 @@ ma_result ma_device_main_loop__dsound(ma_device* pDevice)
                             isPlaybackDeviceStarted = MA_TRUE;
                         }
 
-                        if (framesWrittenThisIteration < mappedSizeInBytesPlayback/bpfPlayback) {
+                        if (framesWrittenThisForEachation < mappedSizeInBytesPlayback/bpfPlayback) {
                             break;  /* We're finished with the output data.*/
                         }
                     }
@@ -12658,12 +12658,12 @@ ma_result ma_device_main_loop__winmm(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__winmm(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__winmm(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -12685,14 +12685,14 @@ ma_result ma_device_main_loop__winmm(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__winmm(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__winmm(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -14757,12 +14757,12 @@ ma_result ma_device_main_loop__alsa(ma_device* pDevice)
                     while (framesReadThisPeriod < periodSizeInFrames) {
                         ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                         ma_uint32 framesProcessed;
-                        ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                        if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                            framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                        ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                        if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                            framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                         }
 
-                        result = ma_device_read__alsa(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                        result = ma_device_read__alsa(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                         if (result != MA_SUCCESS) {
                             exitLoop = MA_TRUE;
                             break;
@@ -14791,14 +14791,14 @@ ma_result ma_device_main_loop__alsa(ma_device* pDevice)
                     while (framesWrittenThisPeriod < periodSizeInFrames) {
                         ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                         ma_uint32 framesProcessed;
-                        ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                        if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                            framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                        ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                        if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                            framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                         }
 
-                        ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                        ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                        result = ma_device_write__alsa(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                        result = ma_device_write__alsa(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                         if (result != MA_SUCCESS) {
                             exitLoop = MA_TRUE;
                             break;
@@ -17044,12 +17044,12 @@ ma_result ma_device_main_loop__pulse(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__pulse(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__pulse(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -17070,14 +17070,14 @@ ma_result ma_device_main_loop__pulse(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__pulse(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__pulse(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -21166,7 +21166,7 @@ ma_uint32 ma_find_best_channels_from_sio_cap__sndio(struct ma_sio_cap* caps, ma_
                 continue;
             }
             
-            /* Getting here means the format is supported. Iterate over each channel count and grab the biggest one. */
+            /* Getting here means the format is supported. ForEachate over each channel count and grab the biggest one. */
             for (iChannel = 0; iChannel < MA_SIO_NCHAN; iChannel += 1) {
                 unsigned int chan = 0;
                 unsigned int channels;
@@ -21237,7 +21237,7 @@ ma_uint32 ma_find_best_sample_rate_from_sio_cap__sndio(struct ma_sio_cap* caps, 
                 continue;
             }
             
-            /* Getting here means the format is supported. Iterate over each channel count and grab the biggest one. */
+            /* Getting here means the format is supported. ForEachate over each channel count and grab the biggest one. */
             for (iChannel = 0; iChannel < MA_SIO_NCHAN; iChannel += 1) {
                 unsigned int chan = 0;
                 unsigned int channels;
@@ -21853,12 +21853,12 @@ ma_result ma_device_main_loop__sndio(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__sndio(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__sndio(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -21880,14 +21880,14 @@ ma_result ma_device_main_loop__sndio(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__sndio(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__sndio(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -22804,12 +22804,12 @@ ma_result ma_device_main_loop__audio4(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__audio4(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__audio4(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -22831,14 +22831,14 @@ ma_result ma_device_main_loop__audio4(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__audio4(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__audio4(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -23512,12 +23512,12 @@ ma_result ma_device_main_loop__oss(ma_device* pDevice)
                 while (framesReadThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesReadThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToReadThisIteration = framesRemainingInPeriod;
-                    if (framesToReadThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToReadThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToReadThisForEachation = framesRemainingInPeriod;
+                    if (framesToReadThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToReadThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    result = ma_device_read__oss(pDevice, intermediaryBuffer, framesToReadThisIteration, &framesProcessed);
+                    result = ma_device_read__oss(pDevice, intermediaryBuffer, framesToReadThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -23539,14 +23539,14 @@ ma_result ma_device_main_loop__oss(ma_device* pDevice)
                 while (framesWrittenThisPeriod < periodSizeInFrames) {
                     ma_uint32 framesRemainingInPeriod = periodSizeInFrames - framesWrittenThisPeriod;
                     ma_uint32 framesProcessed;
-                    ma_uint32 framesToWriteThisIteration = framesRemainingInPeriod;
-                    if (framesToWriteThisIteration > intermediaryBufferSizeInFrames) {
-                        framesToWriteThisIteration = intermediaryBufferSizeInFrames;
+                    ma_uint32 framesToWriteThisForEachation = framesRemainingInPeriod;
+                    if (framesToWriteThisForEachation > intermediaryBufferSizeInFrames) {
+                        framesToWriteThisForEachation = intermediaryBufferSizeInFrames;
                     }
 
-                    ma_device__read_frames_from_client(pDevice, framesToWriteThisIteration, intermediaryBuffer);
+                    ma_device__read_frames_from_client(pDevice, framesToWriteThisForEachation, intermediaryBuffer);
 
-                    result = ma_device_write__oss(pDevice, intermediaryBuffer, framesToWriteThisIteration, &framesProcessed);
+                    result = ma_device_write__oss(pDevice, intermediaryBuffer, framesToWriteThisForEachation, &framesProcessed);
                     if (result != MA_SUCCESS) {
                         exitLoop = MA_TRUE;
                         break;
@@ -26226,8 +26226,8 @@ ma_result ma_context_init(const ma_backend backends[], ma_uint32 backendCount, c
     ma_context_config config;
     ma_backend defaultBackends[ma_backend_null+1];
     ma_uint32 iBackend;
-    ma_backend* pBackendsToIterate;
-    ma_uint32 backendsToIterateCount;
+    ma_backend* pBackendsToForEachate;
+    ma_uint32 backendsToForEachateCount;
 
     if (pContext == NULL) {
         return MA_INVALID_ARGS;
@@ -26256,17 +26256,17 @@ ma_result ma_context_init(const ma_backend backends[], ma_uint32 backendCount, c
         defaultBackends[iBackend] = (ma_backend)iBackend;
     }
 
-    pBackendsToIterate = (ma_backend*)backends;
-    backendsToIterateCount = backendCount;
-    if (pBackendsToIterate == NULL) {
-        pBackendsToIterate = (ma_backend*)defaultBackends;
-        backendsToIterateCount = ma_countof(defaultBackends);
+    pBackendsToForEachate = (ma_backend*)backends;
+    backendsToForEachateCount = backendCount;
+    if (pBackendsToForEachate == NULL) {
+        pBackendsToForEachate = (ma_backend*)defaultBackends;
+        backendsToForEachateCount = ma_countof(defaultBackends);
     }
 
-    ma_assert(pBackendsToIterate != NULL);
+    ma_assert(pBackendsToForEachate != NULL);
 
-    for (iBackend = 0; iBackend < backendsToIterateCount; ++iBackend) {
-        ma_backend backend = pBackendsToIterate[iBackend];
+    for (iBackend = 0; iBackend < backendsToForEachateCount; ++iBackend) {
+        ma_backend backend = pBackendsToForEachate[iBackend];
 
         result = MA_NO_BACKEND;
         switch (backend) {
@@ -26817,8 +26817,8 @@ ma_result ma_device_init_ex(const ma_backend backends[], ma_uint32 backendCount,
     ma_context* pContext;
     ma_backend defaultBackends[ma_backend_null+1];
     ma_uint32 iBackend;
-    ma_backend* pBackendsToIterate;
-    ma_uint32 backendsToIterateCount;
+    ma_backend* pBackendsToForEachate;
+    ma_uint32 backendsToForEachateCount;
 
     if (pConfig == NULL) {
         return MA_INVALID_ARGS;
@@ -26833,17 +26833,17 @@ ma_result ma_device_init_ex(const ma_backend backends[], ma_uint32 backendCount,
         defaultBackends[iBackend] = (ma_backend)iBackend;
     }
 
-    pBackendsToIterate = (ma_backend*)backends;
-    backendsToIterateCount = backendCount;
-    if (pBackendsToIterate == NULL) {
-        pBackendsToIterate = (ma_backend*)defaultBackends;
-        backendsToIterateCount = ma_countof(defaultBackends);
+    pBackendsToForEachate = (ma_backend*)backends;
+    backendsToForEachateCount = backendCount;
+    if (pBackendsToForEachate == NULL) {
+        pBackendsToForEachate = (ma_backend*)defaultBackends;
+        backendsToForEachateCount = ma_countof(defaultBackends);
     }
 
     result = MA_NO_BACKEND;
 
-    for (iBackend = 0; iBackend < backendsToIterateCount; ++iBackend) {
-        result = ma_context_init(&pBackendsToIterate[iBackend], 1, pContextConfig, pContext);
+    for (iBackend = 0; iBackend < backendsToForEachateCount; ++iBackend) {
+        result = ma_context_init(&pBackendsToForEachate[iBackend], 1, pContextConfig, pContext);
         if (result == MA_SUCCESS) {
             result = ma_device_init(pContext, pConfig, pDevice);
             if (result == MA_SUCCESS) {
@@ -31294,8 +31294,8 @@ ma_uint64 ma_channel_router_read_deinterleaved(ma_channel_router* pRouter, ma_ui
     {
         float* ppNextSamplesOut[MA_MAX_CHANNELS];
         float* ppTemp[MA_MAX_CHANNELS];
-        size_t maxBytesToReadPerFrameEachIteration;
-        size_t maxFramesToReadEachIteration;
+        size_t maxBytesToReadPerFrameEachForEachation;
+        size_t maxFramesToReadEachForEachation;
         ma_uint64 totalFramesRead;
         MA_ALIGN(MA_SIMD_ALIGNMENT) float temp[MA_MAX_CHANNELS * 256];
 
@@ -31303,9 +31303,9 @@ ma_uint64 ma_channel_router_read_deinterleaved(ma_channel_router* pRouter, ma_ui
         ma_copy_memory(ppNextSamplesOut, ppSamplesOut, sizeof(float*) * pRouter->config.channelsOut);
         
         
-        ma_split_buffer(temp, sizeof(temp), pRouter->config.channelsIn, MA_SIMD_ALIGNMENT, (void**)&ppTemp, &maxBytesToReadPerFrameEachIteration);
+        ma_split_buffer(temp, sizeof(temp), pRouter->config.channelsIn, MA_SIMD_ALIGNMENT, (void**)&ppTemp, &maxBytesToReadPerFrameEachForEachation);
 
-        maxFramesToReadEachIteration = maxBytesToReadPerFrameEachIteration/sizeof(float);
+        maxFramesToReadEachForEachation = maxBytesToReadPerFrameEachForEachation/sizeof(float);
 
         totalFramesRead = 0;
         while (totalFramesRead < frameCount) {
@@ -31313,8 +31313,8 @@ ma_uint64 ma_channel_router_read_deinterleaved(ma_channel_router* pRouter, ma_ui
             ma_uint32 framesJustRead;
             ma_uint64 framesRemaining = (frameCount - totalFramesRead);
             ma_uint64 framesToReadRightNow = framesRemaining;
-            if (framesToReadRightNow > maxFramesToReadEachIteration) {
-                framesToReadRightNow = maxFramesToReadEachIteration;
+            if (framesToReadRightNow > maxFramesToReadEachForEachation) {
+                framesToReadRightNow = maxFramesToReadEachForEachation;
             }
 
             framesJustRead = pRouter->config.onReadDeinterleaved(pRouter, (ma_uint32)framesToReadRightNow, (void**)ppTemp, pUserData);
@@ -33873,30 +33873,30 @@ ma_bool32 ma_decoder_seek_bytes_64(ma_decoder* pDecoder, ma_uint64 byteOffset, m
     ma_assert(pDecoder != NULL);
 
     if (origin == ma_seek_origin_start) {
-        ma_uint64 bytesToSeekThisIteration = 0x7FFFFFFF;
-        if (bytesToSeekThisIteration > byteOffset) {
-            bytesToSeekThisIteration = byteOffset;
+        ma_uint64 bytesToSeekThisForEachation = 0x7FFFFFFF;
+        if (bytesToSeekThisForEachation > byteOffset) {
+            bytesToSeekThisForEachation = byteOffset;
         }
 
-        if (!ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisIteration, ma_seek_origin_start)) {
+        if (!ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisForEachation, ma_seek_origin_start)) {
             return MA_FALSE;
         }
 
-        byteOffset -= bytesToSeekThisIteration;
+        byteOffset -= bytesToSeekThisForEachation;
     }
 
     /* Getting here means we need to seek relative to the current position. */
     while (byteOffset > 0) {
-        ma_uint64 bytesToSeekThisIteration = 0x7FFFFFFF;
-        if (bytesToSeekThisIteration > byteOffset) {
-            bytesToSeekThisIteration = byteOffset;
+        ma_uint64 bytesToSeekThisForEachation = 0x7FFFFFFF;
+        if (bytesToSeekThisForEachation > byteOffset) {
+            bytesToSeekThisForEachation = byteOffset;
         }
 
-        if (!ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisIteration, ma_seek_origin_current)) {
+        if (!ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisForEachation, ma_seek_origin_current)) {
             return MA_FALSE;
         }
 
-        byteOffset -= bytesToSeekThisIteration;
+        byteOffset -= bytesToSeekThisForEachation;
     }
 
     return MA_TRUE;
@@ -34698,17 +34698,17 @@ ma_result ma_decoder_internal_on_seek_to_pcm_frame__raw(ma_decoder* pDecoder, ma
             totalBytesToSeek -= 0x7FFFFFFF;
 
             while (totalBytesToSeek > 0) {
-                ma_uint64 bytesToSeekThisIteration = totalBytesToSeek;
-                if (bytesToSeekThisIteration > 0x7FFFFFFF) {
-                    bytesToSeekThisIteration = 0x7FFFFFFF;
+                ma_uint64 bytesToSeekThisForEachation = totalBytesToSeek;
+                if (bytesToSeekThisForEachation > 0x7FFFFFFF) {
+                    bytesToSeekThisForEachation = 0x7FFFFFFF;
                 }
 
-                result = ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisIteration, ma_seek_origin_current);
+                result = ma_decoder_seek_bytes(pDecoder, (int)bytesToSeekThisForEachation, ma_seek_origin_current);
                 if (result != MA_TRUE) {
                     break;
                 }
 
-                totalBytesToSeek -= bytesToSeekThisIteration;
+                totalBytesToSeek -= bytesToSeekThisForEachation;
             }
         }
     }

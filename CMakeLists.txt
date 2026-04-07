@@ -14,6 +14,10 @@ if (MSVC)
     )
 endif ()
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    add_compile_options(-Wno-changes-meaning)
+endif ()
+
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     if (MSVC)
         add_compile_options(

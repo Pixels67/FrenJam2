@@ -2468,7 +2468,7 @@ static int nvg__isTransformFlipped(const float *xform)
 float nvgText(NVGcontext* ctx, float x, float y, const char* string, const char* end)
 {
 	NVGstate* state = nvg__getState(ctx);
-	FONStextIter iter, prevIter;
+	FONStextForEach iter, prevForEach;
 	FONSquad q;
 	NVGvertex* verts;
 	float scale = nvg__getFontScale(state) * ctx->devicePxRatio;
@@ -2492,9 +2492,9 @@ float nvgText(NVGcontext* ctx, float x, float y, const char* string, const char*
 	verts = nvg__allocTempVerts(ctx, cverts);
 	if (verts == NULL) return x;
 
-	fonsTextIterInit(ctx->fs, &iter, x*scale, y*scale, string, end, FONS_GLYPH_BITMAP_REQUIRED);
-	prevIter = iter;
-	while (fonsTextIterNext(ctx->fs, &iter, &q)) {
+	fonsTextForEachInit(ctx->fs, &iter, x*scale, y*scale, string, end, FONS_GLYPH_BITMAP_REQUIRED);
+	prevForEach = iter;
+	while (fonsTextForEachNext(ctx->fs, &iter, &q)) {
 		float c[4*2];
 		if (iter.prevGlyphIndex == -1) { // can not retrieve glyph?
 			if (nverts != 0) {
@@ -2503,12 +2503,12 @@ float nvgText(NVGcontext* ctx, float x, float y, const char* string, const char*
 			}
 			if (!nvg__allocTextAtlas(ctx))
 				break; // no memory :(
-			iter = prevIter;
-			fonsTextIterNext(ctx->fs, &iter, &q); // try again
+			iter = prevForEach;
+			fonsTextForEachNext(ctx->fs, &iter, &q); // try again
 			if (iter.prevGlyphIndex == -1) // still can not find glyph?
 				break;
 		}
-		prevIter = iter;
+		prevForEach = iter;
 		if(isFlipped) {
 			float tmp;
 
@@ -2577,7 +2577,7 @@ int nvgTextGlyphPositions(NVGcontext* ctx, float x, float y, const char* string,
 	NVGstate* state = nvg__getState(ctx);
 	float scale = nvg__getFontScale(state) * ctx->devicePxRatio;
 	float invscale = 1.0f / scale;
-	FONStextIter iter, prevIter;
+	FONStextForEach iter, prevForEach;
 	FONSquad q;
 	int npos = 0;
 
@@ -2595,14 +2595,14 @@ int nvgTextGlyphPositions(NVGcontext* ctx, float x, float y, const char* string,
 	fonsSetAlign(ctx->fs, state->textAlign);
 	fonsSetFont(ctx->fs, state->fontId);
 
-	fonsTextIterInit(ctx->fs, &iter, x*scale, y*scale, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
-	prevIter = iter;
-	while (fonsTextIterNext(ctx->fs, &iter, &q)) {
+	fonsTextForEachInit(ctx->fs, &iter, x*scale, y*scale, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
+	prevForEach = iter;
+	while (fonsTextForEachNext(ctx->fs, &iter, &q)) {
 		if (iter.prevGlyphIndex < 0 && nvg__allocTextAtlas(ctx)) { // can not retrieve glyph?
-			iter = prevIter;
-			fonsTextIterNext(ctx->fs, &iter, &q); // try again
+			iter = prevForEach;
+			fonsTextForEachNext(ctx->fs, &iter, &q); // try again
 		}
-		prevIter = iter;
+		prevForEach = iter;
 		positions[npos].str = iter.str;
 		positions[npos].x = iter.x * invscale;
 		positions[npos].minx = nvg__minf(iter.x, q.x0) * invscale;
@@ -2627,7 +2627,7 @@ int nvgTextBreakLines(NVGcontext* ctx, const char* string, const char* end, floa
 	NVGstate* state = nvg__getState(ctx);
 	float scale = nvg__getFontScale(state) * ctx->devicePxRatio;
 	float invscale = 1.0f / scale;
-	FONStextIter iter, prevIter;
+	FONStextForEach iter, prevForEach;
 	FONSquad q;
 	int nrows = 0;
 	float rowStartX = 0;
@@ -2661,14 +2661,14 @@ int nvgTextBreakLines(NVGcontext* ctx, const char* string, const char* end, floa
 
 	breakRowWidth *= scale;
 
-	fonsTextIterInit(ctx->fs, &iter, 0, 0, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
-	prevIter = iter;
-	while (fonsTextIterNext(ctx->fs, &iter, &q)) {
+	fonsTextForEachInit(ctx->fs, &iter, 0, 0, string, end, FONS_GLYPH_BITMAP_OPTIONAL);
+	prevForEach = iter;
+	while (fonsTextForEachNext(ctx->fs, &iter, &q)) {
 		if (iter.prevGlyphIndex < 0 && nvg__allocTextAtlas(ctx)) { // can not retrieve glyph?
-			iter = prevIter;
-			fonsTextIterNext(ctx->fs, &iter, &q); // try again
+			iter = prevForEach;
+			fonsTextForEachNext(ctx->fs, &iter, &q); // try again
 		}
-		prevIter = iter;
+		prevForEach = iter;
 		switch (iter.codepoint) {
 			case 9:			// \t
 			case 11:		// \v

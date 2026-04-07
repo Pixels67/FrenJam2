@@ -110,7 +110,7 @@ namespace Flock::Graphics {
         static void SetMaterialUniforms(Pipeline &pipeline, const MaterialProperties &material);
         static void SetLightUniforms(Pipeline &pipeline, std::vector<Light> lights, ShadowConfig shadowConfig);
 
-        static std::vector<Light> GetNearestLights(std::vector<Light> lights, Vector3f center, usize count);
+        static std::vector<Light> NearestLights(std::vector<Light> lights, Vector3f center, usize count);
 
         static ShadowData GenerateShadowMaps(
             const RenderList &        commands,

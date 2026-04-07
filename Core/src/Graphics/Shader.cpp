@@ -72,7 +72,7 @@ namespace Flock::Graphics {
         FLK_GL_CALL(glDeleteProgram(m_Id));
     }
 
-    u32 Shader::GetGlId() const {
+    u32 Shader::GlId() const {
         return m_Id;
     }
 }

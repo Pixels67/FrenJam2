@@ -1,14 +1,12 @@
 #ifndef FLK_VECTOR_HPP
 #define FLK_VECTOR_HPP
 
-#include <cmath>
-
 #include "Common.hpp"
-#include "Reflect.hpp"
+#include "Serial/Archive.hpp"
 #include "Utils.hpp"
 
 namespace Flock {
-    class Quaternion;
+    struct Quaternion;
 
     template<typename T>
     struct Vector2 {
@@ -215,42 +213,6 @@ namespace Flock {
         }
     };
 
-    template<typename T>
-    auto Reflect(Vector2<T> &vector) {
-        return Reflectable{
-            "Vector2",
-            std::make_tuple(
-                Field("x", &vector.x),
-                Field("y", &vector.y)
-            )
-        };
-    }
-
-    template<typename T>
-    auto Reflect(Vector3<T> &vector) {
-        return Reflectable{
-            "Vector3",
-            std::make_tuple(
-                Field("x", &vector.x),
-                Field("y", &vector.y),
-                Field("z", &vector.z)
-            )
-        };
-    }
-
-    template<typename T>
-    auto Reflect(Vector4<T> &vector) {
-        return Reflectable{
-            "Vector4",
-            std::make_tuple(
-                Field("x", &vector.x),
-                Field("y", &vector.y),
-                Field("z", &vector.z),
-                Field("w", &vector.w)
-            )
-        };
-    }
-
     using Vector2i = Vector2<i32>;
     using Vector3i = Vector3<i32>;
     using Vector4i = Vector4<i32>;
@@ -266,5 +228,14 @@ namespace Flock {
     using Vector2d = Vector2<f64>;
     using Vector3d = Vector3<f64>;
     using Vector4d = Vector4<f64>;
+
+    FLK_ARCHIVE(Vector2u, x, y)
+    FLK_ARCHIVE(Vector3u, x, y, z)
+    FLK_ARCHIVE(Vector4u, x, y, z, w)
+
+    FLK_ARCHIVE(Vector2d, x, y)
+    FLK_ARCHIVE(Vector3d, x, y, z)
+    FLK_ARCHIVE(Vector4d, x, y, z, w)
+
 } // namespace Flock
 #endif // FLK_VECTOR_HPP

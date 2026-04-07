@@ -27,7 +27,7 @@ namespace Flock::Ecs {
         return Entity{.id = entityId, .version = 0};
     }
 
-    std::optional<Entity> Registry::Get(const EntityId id) const {
+    std::optional<Entity> Registry::EntityWithId(const EntityId id) const {
         if (id >= m_EntityData.size() || !m_EntityData.at(id).alive) {
             return std::nullopt;
         }
@@ -44,7 +44,7 @@ namespace Flock::Ecs {
             return false;
         }
 
-        ClearComponents(entity);
+        Clear(entity);
         m_EntityData[entity.id].alive = false;
         m_DeadEntities.push_back(entity.id);
 
@@ -61,7 +61,7 @@ namespace Flock::Ecs {
                m_EntityData.at(entity.id).version == entity.version;
     }
 
-    void Registry::ClearComponents(const Entity entity) {
+    void Registry::Clear(const Entity entity) {
         if (!IsAlive(entity)) {
             return;
         }

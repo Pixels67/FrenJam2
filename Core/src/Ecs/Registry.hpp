@@ -29,13 +29,15 @@ namespace Flock::Ecs {
             Registry *          registry = nullptr;
 
             template<typename... Args, typename F>
-            void Iter(F &&callback) {
+            void ForEach(F &&callback, bool includeDisabled = false) {
                 for (Entity e: entities) {
-                    if (!registry->HasAllComponents<Args...>(e)) {
-                        continue;
+                    if (registry->HasAllComponents<Args...>(e) && registry->AllComponentsEnabled<Args...>(e) && !includeDisabled) {
+                        callback(registry->Get<Args>(e).value().get()...);
                     }
 
-                    callback(registry->GetComponent<Args>(e).value().get()...);
+                    if (registry->HasAllComponents<Args...>(e) && includeDisabled) {
+                        callback(registry->Get<Args>(e).value().get()...);
+                    }
                 }
             }
         };
@@ -69,7 +71,7 @@ namespace Flock::Ecs {
          * @param id The entity's ID.
          * @return A handle to the entity if found; std::nullopt otherwise.
          */
-        [[nodiscard]] std::optional<Entity> Get(EntityId id) const;
+        [[nodiscard]] std::optional<Entity> EntityWithId(EntityId id) const;
 
         /**
          * @brief Destroys an entity if it's alive and valid.
@@ -97,12 +99,12 @@ namespace Flock::Ecs {
          * @tparam T The component type.
          */
         template<typename T>
-        void RegisterComponent() {
-            m_Storages.emplace(GetTypeId<T>(), std::make_shared<Storage<T> >());
+        void Register() {
+            m_Storages.emplace(GetTypeId<T>(), std::make_shared<Ecs::Storage<T> >());
 
-            if constexpr (IsReflectable<T>) {
+            if constexpr (Serial::Serializable<T>) {
                 m_ArchiveFns[GetTypeId<T>()] = [](IStorage &storage, Serial::IArchive &archive) {
-                    auto &store = static_cast<Storage<T> &>(storage);
+                    auto &store = static_cast<Ecs::Storage<T> &>(storage);
                     store.Archive(archive);
                 };
             }
@@ -114,7 +116,7 @@ namespace Flock::Ecs {
          * @return A reference to the storage if successful; std::nullopt otherwise.
          */
         template<typename T>
-        OptionalRef<Storage<T> > GetStorage() const {
+        OptionalRef<Storage<T> > Storage() const {
             if constexpr (std::is_same_v<T, Entity>) {
                 return std::nullopt;
             }
@@ -123,7 +125,7 @@ namespace Flock::Ecs {
                 return std::nullopt;
             }
 
-            return *static_cast<Storage<T> *>(m_Storages.at(GetTypeId<T>()).get());
+            return *static_cast<Ecs::Storage<T> *>(m_Storages.at(GetTypeId<T>()).get());
         }
 
         /**
@@ -152,7 +154,7 @@ namespace Flock::Ecs {
                 return true;
             }
 
-            return IsComponentRegistered<T>() && GetStorage<T>().value().get().Has(entity.id);
+            return IsComponentRegistered<T>() && Storage<T>().value().get().Has(entity.id);
         }
 
         /**
@@ -187,7 +189,7 @@ namespace Flock::Ecs {
             if constexpr (std::is_same_v<T, Entity>) {
                 return true;
             } else {
-                return IsComponentRegistered<T>() && GetStorage<T>().value().get().IsEnabled(entity.id);
+                return IsComponentRegistered<T>() && Storage<T>().value().get().IsEnabled(entity.id);
             }
         }
 
@@ -218,8 +220,8 @@ namespace Flock::Ecs {
          * @return true successful; false otherwise.
          */
         template<typename T>
-        bool SetComponentEnabled(Entity entity, bool enabled = true) {
-            return IsComponentRegistered<T>() && GetStorage<T>().value().get().SetEnabled(entity.id, enabled);
+        bool SetEnabled(Entity entity, bool enabled = true) {
+            return IsComponentRegistered<T>() && Storage<T>().value().get().SetEnabled(entity.id, enabled);
         }
 
         /**
@@ -228,13 +230,33 @@ namespace Flock::Ecs {
          * @return true if successful; false otherwise.
          */
         template<typename T>
-        bool SetAllComponentsEnabled(bool enabled = true) {
+        bool SetAllEnabled(bool enabled = true) {
             if (!IsComponentRegistered<T>()) {
                 return false;
             }
 
-            GetStorage<T>().value().get().SetAllEnabled(enabled);
+            Storage<T>().value().get().SetAllEnabled(enabled);
             return true;
+        }
+
+        template<typename T>
+        bool Enable(const Entity entity) {
+            return SetEnabled<T>(entity);
+        }
+
+        template<typename T>
+        bool Disable(const Entity entity) {
+            return SetEnabled<T>(entity, false);
+        }
+
+        template<typename T>
+        bool EnableAll() {
+            return SetAllEnabled<T>();
+        }
+
+        template<typename T>
+        bool DisableAll() {
+            return SetAllEnabled<T>(false);
         }
 
         /**
@@ -245,7 +267,7 @@ namespace Flock::Ecs {
          */
         template<typename T>
             requires (!std::same_as<T, Entity>)
-        OptionalRef<T> GetComponent(Entity entity) {
+        OptionalRef<T> Get(Entity entity) {
             if (!IsComponentRegistered<T>()) {
                 Debug::LogErr("Failed to get component: {}!", "Component not registered");
                 return std::nullopt;
@@ -255,12 +277,12 @@ namespace Flock::Ecs {
                 return std::nullopt;
             }
 
-            return GetStorage<T>().value().get().Get(entity.id);
+            return Storage<T>().value().get().Get(entity.id);
         }
 
         template<typename T>
             requires std::same_as<T, Entity>
-        OptionalRef<const T> GetComponent(const Entity &entity) {
+        OptionalRef<const T> Get(const Entity &entity) {
             return entity;
         }
 
@@ -278,14 +300,14 @@ namespace Flock::Ecs {
             }
 
             if (!IsComponentRegistered<T>()) {
-                RegisterComponent<T>();
+                Register<T>();
             }
 
             if (HasComponent<T>(entity)) {
                 return false;
             }
 
-            GetStorage<T>().value().get().Insert(entity.id, std::move(value));
+            Storage<T>().value().get().Insert(entity.id, std::move(value));
             return true;
         }
 
@@ -297,16 +319,16 @@ namespace Flock::Ecs {
          * @return A reference to the component.
          */
         template<typename T>
-        T &GetOrAddComponent(Entity entity, T value = {}) {
+        T &GetOrAdd(Entity entity, T value = {}) {
             if (!IsComponentRegistered<T>()) {
-                RegisterComponent<T>();
+                Register<T>();
             }
 
             if (!HasComponent<T>(entity)) {
                 AddComponent(entity, value);
             }
 
-            return GetComponent<T>(entity).value().get();
+            return Get<T>(entity).value().get();
         }
 
         /**
@@ -317,20 +339,20 @@ namespace Flock::Ecs {
          * @return true if successful; false otherwise.
          */
         template<typename T>
-        bool SetComponent(Entity entity, T value = {}) {
+        bool Set(Entity entity, T value = {}) {
             if constexpr (std::is_same_v<T, Entity>) {
                 return false;
             }
 
             if (!IsComponentRegistered<T>()) {
-                RegisterComponent<T>();
+                Register<T>();
             }
 
             if (!HasComponent<T>(entity)) {
                 return false;
             }
 
-            GetStorage<T>().value().get().Insert(entity.id, std::move(value));
+            Storage<T>().value().get().Insert(entity.id, std::move(value));
             return true;
         }
 
@@ -341,20 +363,20 @@ namespace Flock::Ecs {
          * @return true if successful; false otherwise.
          */
         template<typename T>
-        bool RemoveComponent(Entity entity) {
+        bool Remove(Entity entity) {
             if constexpr (std::is_same_v<T, Entity>) {
                 return false;
             }
 
             if (!IsComponentRegistered<T>()) {
-                RegisterComponent<T>();
+                Register<T>();
             }
 
             if (!HasComponent<T>(entity)) {
                 return false;
             }
 
-            GetStorage<T>().value().get().Remove(entity.id);
+            Storage<T>().value().get().Remove(entity.id);
             return true;
         }
 
@@ -362,35 +384,45 @@ namespace Flock::Ecs {
          * @brief Clears all the components of an entity.
          * @param entity A handle to the entity.
          */
-        void ClearComponents(Entity entity);
+        void Clear(Entity entity);
 
         /**
          * @brief Invokes a callback for each entity with its components.
          * @tparam Args The component types.
          * @tparam F The callback type.
          * @param callback The callback to execute.
+         * @param includeDisabled Whether to include disabled components or not.
          */
         template<typename... Args, typename F>
-        void Iter(F &&callback) {
+        void ForEach(F &&callback, bool includeDisabled = false) {
             for (EntityId id = 0; id < m_EntityData.size(); id++) {
-                auto maybeEntity = Get(id);
+                auto maybeEntity = EntityWithId(id);
                 if (!maybeEntity) {
                     continue;
                 }
 
                 Entity entity = maybeEntity.value();
-                if (HasAllComponents<Args...>(entity) && AllComponentsEnabled<Args...>(entity)) {
-                    callback(GetComponent<Args>(entity)->get()...);
+                if (HasAllComponents<Args...>(entity) && AllComponentsEnabled<Args...>(entity) && !includeDisabled) {
+                    callback(Get<Args>(entity)->get()...);
+                }
+
+                if (HasAllComponents<Args...>(entity) && includeDisabled) {
+                    callback(Get<Args>(entity)->get()...);
                 }
             }
         }
 
+        /**
+         * @brief Retrieves a collection containing all the entities with the component types for iteration.
+         * @tparam Args The component types.
+         * @return A collection containing all the entities with the component types.
+         */
         template<typename... Args>
-        Collection Query() {
+        Collection All() {
             Collection collection = {.registry = this};
 
             for (EntityId id = 0; id < m_EntityData.size(); id++) {
-                auto maybeEntity = Get(id);
+                auto maybeEntity = EntityWithId(id);
                 if (!maybeEntity) {
                     continue;
                 }

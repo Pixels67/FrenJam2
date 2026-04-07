@@ -16,7 +16,7 @@ namespace Flock::Graphics {
         F32
     };
 
-    usize GetSize(AttribType type);
+    usize Size(AttribType type);
     u32   ToGlType(AttribType type);
 
     struct VertexLayoutElement {

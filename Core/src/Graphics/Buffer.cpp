@@ -46,7 +46,7 @@ namespace Flock::Graphics {
         FLK_GL_CALL(glGenBuffers(1, &buf.m_Id));
         FLK_GL_CALL(glBindBuffer(ToGlType(type), buf.m_Id));
 
-        FLK_GL_CALL(glBufferData(ToGlType(type), buffer.GetSize(), buffer.Get(), ToGlType(usage)));
+        FLK_GL_CALL(glBufferData(ToGlType(type), buffer.Size(), buffer.Get(), ToGlType(usage)));
 
         FLK_GL_CALL(glBindBuffer(ToGlType(type), 0));
 
@@ -76,7 +76,7 @@ namespace Flock::Graphics {
         Clear();
     }
 
-    BufferType Buffer::GetType() const {
+    BufferType Buffer::Type() const {
         return m_Type;
     }
 

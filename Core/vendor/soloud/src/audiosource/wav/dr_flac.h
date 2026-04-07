@@ -913,13 +913,13 @@ typedef struct
 Initializes a vorbis comment iterator. This can be used for iterating over the vorbis comments in a VORBIS_COMMENT
 metadata block.
 */
-void drflac_init_vorbis_comment_iterator(drflac_vorbis_comment_iterator* pIter, drflac_uint32 commentCount, const void* pComments);
+void drflac_init_vorbis_comment_iterator(drflac_vorbis_comment_iterator* pForEach, drflac_uint32 commentCount, const void* pComments);
 
 /*
 Goes to the next vorbis comment in the given iterator. If null is returned it means there are no more comments. The
 returned string is NOT null terminated.
 */
-const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pIter, drflac_uint32* pCommentLengthOut);
+const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pForEach, drflac_uint32* pCommentLengthOut);
 
 
 /* Structure representing an iterator for cuesheet tracks in a CUESHEET metadata block. */
@@ -954,10 +954,10 @@ typedef struct
 Initializes a cuesheet track iterator. This can be used for iterating over the cuesheet tracks in a CUESHEET metadata
 block.
 */
-void drflac_init_cuesheet_track_iterator(drflac_cuesheet_track_iterator* pIter, drflac_uint32 trackCount, const void* pTrackData);
+void drflac_init_cuesheet_track_iterator(drflac_cuesheet_track_iterator* pForEach, drflac_uint32 trackCount, const void* pTrackData);
 
 /* Goes to the next cuesheet track in the given iterator. If DRFLAC_FALSE is returned it means there are no more comments. */
-drflac_bool32 drflac_next_cuesheet_track(drflac_cuesheet_track_iterator* pIter, drflac_cuesheet_track* pCuesheetTrack);
+drflac_bool32 drflac_next_cuesheet_track(drflac_cuesheet_track_iterator* pForEach, drflac_cuesheet_track* pCuesheetTrack);
 
 
 #ifdef __cplusplus
@@ -8395,10 +8395,10 @@ drflac_uint64 drflac_read_pcm_frames_s32(drflac* pFlac, drflac_uint64 framesToRe
         } else {
             unsigned int channelCount = drflac__get_channel_count_from_channel_assignment(pFlac->currentFLACFrame.header.channelAssignment);
             drflac_uint64 iFirstPCMFrame = pFlac->currentFLACFrame.header.blockSizeInPCMFrames - pFlac->currentFLACFrame.pcmFramesRemaining;
-            drflac_uint64 frameCountThisIteration = framesToRead;
+            drflac_uint64 frameCountThisForEachation = framesToRead;
 
-            if (frameCountThisIteration > pFlac->currentFLACFrame.pcmFramesRemaining) {
-                frameCountThisIteration = pFlac->currentFLACFrame.pcmFramesRemaining;
+            if (frameCountThisForEachation > pFlac->currentFLACFrame.pcmFramesRemaining) {
+                frameCountThisForEachation = pFlac->currentFLACFrame.pcmFramesRemaining;
             }
 
             if (channelCount == 2) {
@@ -8409,29 +8409,29 @@ drflac_uint64 drflac_read_pcm_frames_s32(drflac* pFlac, drflac_uint64 framesToRe
                 {
                     case DRFLAC_CHANNEL_ASSIGNMENT_LEFT_SIDE:
                     {
-                        drflac_read_pcm_frames_s32__decode_left_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s32__decode_left_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_RIGHT_SIDE:
                     {
-                        drflac_read_pcm_frames_s32__decode_right_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s32__decode_right_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_MID_SIDE:
                     {
-                        drflac_read_pcm_frames_s32__decode_mid_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s32__decode_mid_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_INDEPENDENT:
                     default:
                     {
-                        drflac_read_pcm_frames_s32__decode_independent_stereo(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s32__decode_independent_stereo(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
                 }
             } else {
                 /* Generic interleaving. */
                 drflac_uint64 i;
-                for (i = 0; i < frameCountThisIteration; ++i) {
+                for (i = 0; i < frameCountThisForEachation; ++i) {
                     unsigned int j;
                     for (j = 0; j < channelCount; ++j) {
                         pBufferOut[(i*channelCount)+j] = (drflac_int32)((drflac_uint32)(pFlac->currentFLACFrame.subframes[j].pSamplesS32[iFirstPCMFrame + i]) << (unusedBitsPerSample + pFlac->currentFLACFrame.subframes[j].wastedBitsPerSample));
@@ -8439,11 +8439,11 @@ drflac_uint64 drflac_read_pcm_frames_s32(drflac* pFlac, drflac_uint64 framesToRe
                 }
             }
 
-            framesRead                += frameCountThisIteration;
-            pBufferOut                += frameCountThisIteration * channelCount;
-            framesToRead              -= frameCountThisIteration;
-            pFlac->currentPCMFrame    += frameCountThisIteration;
-            pFlac->currentFLACFrame.pcmFramesRemaining -= (drflac_uint32)frameCountThisIteration;
+            framesRead                += frameCountThisForEachation;
+            pBufferOut                += frameCountThisForEachation * channelCount;
+            framesToRead              -= frameCountThisForEachation;
+            pFlac->currentPCMFrame    += frameCountThisForEachation;
+            pFlac->currentFLACFrame.pcmFramesRemaining -= (drflac_uint32)frameCountThisForEachation;
         }
     }
 
@@ -9311,10 +9311,10 @@ drflac_uint64 drflac_read_pcm_frames_s16(drflac* pFlac, drflac_uint64 framesToRe
         } else {
             unsigned int channelCount = drflac__get_channel_count_from_channel_assignment(pFlac->currentFLACFrame.header.channelAssignment);
             drflac_uint64 iFirstPCMFrame = pFlac->currentFLACFrame.header.blockSizeInPCMFrames - pFlac->currentFLACFrame.pcmFramesRemaining;
-            drflac_uint64 frameCountThisIteration = framesToRead;
+            drflac_uint64 frameCountThisForEachation = framesToRead;
 
-            if (frameCountThisIteration > pFlac->currentFLACFrame.pcmFramesRemaining) {
-                frameCountThisIteration = pFlac->currentFLACFrame.pcmFramesRemaining;
+            if (frameCountThisForEachation > pFlac->currentFLACFrame.pcmFramesRemaining) {
+                frameCountThisForEachation = pFlac->currentFLACFrame.pcmFramesRemaining;
             }
 
             if (channelCount == 2) {
@@ -9325,29 +9325,29 @@ drflac_uint64 drflac_read_pcm_frames_s16(drflac* pFlac, drflac_uint64 framesToRe
                 {
                     case DRFLAC_CHANNEL_ASSIGNMENT_LEFT_SIDE:
                     {
-                        drflac_read_pcm_frames_s16__decode_left_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s16__decode_left_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_RIGHT_SIDE:
                     {
-                        drflac_read_pcm_frames_s16__decode_right_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s16__decode_right_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_MID_SIDE:
                     {
-                        drflac_read_pcm_frames_s16__decode_mid_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s16__decode_mid_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_INDEPENDENT:
                     default:
                     {
-                        drflac_read_pcm_frames_s16__decode_independent_stereo(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_s16__decode_independent_stereo(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
                 }
             } else {
                 /* Generic interleaving. */
                 drflac_uint64 i;
-                for (i = 0; i < frameCountThisIteration; ++i) {
+                for (i = 0; i < frameCountThisForEachation; ++i) {
                     unsigned int j;
                     for (j = 0; j < channelCount; ++j) {
                         drflac_int32 sampleS32 = (drflac_int32)((drflac_uint32)(pFlac->currentFLACFrame.subframes[j].pSamplesS32[iFirstPCMFrame + i]) << (unusedBitsPerSample + pFlac->currentFLACFrame.subframes[j].wastedBitsPerSample));
@@ -9356,11 +9356,11 @@ drflac_uint64 drflac_read_pcm_frames_s16(drflac* pFlac, drflac_uint64 framesToRe
                 }
             }
 
-            framesRead                += frameCountThisIteration;
-            pBufferOut                += frameCountThisIteration * channelCount;
-            framesToRead              -= frameCountThisIteration;
-            pFlac->currentPCMFrame    += frameCountThisIteration;
-            pFlac->currentFLACFrame.pcmFramesRemaining -= (drflac_uint32)frameCountThisIteration;
+            framesRead                += frameCountThisForEachation;
+            pBufferOut                += frameCountThisForEachation * channelCount;
+            framesToRead              -= frameCountThisForEachation;
+            pFlac->currentPCMFrame    += frameCountThisForEachation;
+            pFlac->currentFLACFrame.pcmFramesRemaining -= (drflac_uint32)frameCountThisForEachation;
         }
     }
 
@@ -10202,10 +10202,10 @@ drflac_uint64 drflac_read_pcm_frames_f32(drflac* pFlac, drflac_uint64 framesToRe
         } else {
             unsigned int channelCount = drflac__get_channel_count_from_channel_assignment(pFlac->currentFLACFrame.header.channelAssignment);
             drflac_uint64 iFirstPCMFrame = pFlac->currentFLACFrame.header.blockSizeInPCMFrames - pFlac->currentFLACFrame.pcmFramesRemaining;
-            drflac_uint64 frameCountThisIteration = framesToRead;
+            drflac_uint64 frameCountThisForEachation = framesToRead;
 
-            if (frameCountThisIteration > pFlac->currentFLACFrame.pcmFramesRemaining) {
-                frameCountThisIteration = pFlac->currentFLACFrame.pcmFramesRemaining;
+            if (frameCountThisForEachation > pFlac->currentFLACFrame.pcmFramesRemaining) {
+                frameCountThisForEachation = pFlac->currentFLACFrame.pcmFramesRemaining;
             }
 
             if (channelCount == 2) {
@@ -10216,29 +10216,29 @@ drflac_uint64 drflac_read_pcm_frames_f32(drflac* pFlac, drflac_uint64 framesToRe
                 {
                     case DRFLAC_CHANNEL_ASSIGNMENT_LEFT_SIDE:
                     {
-                        drflac_read_pcm_frames_f32__decode_left_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_f32__decode_left_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_RIGHT_SIDE:
                     {
-                        drflac_read_pcm_frames_f32__decode_right_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_f32__decode_right_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_MID_SIDE:
                     {
-                        drflac_read_pcm_frames_f32__decode_mid_side(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_f32__decode_mid_side(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
 
                     case DRFLAC_CHANNEL_ASSIGNMENT_INDEPENDENT:
                     default:
                     {
-                        drflac_read_pcm_frames_f32__decode_independent_stereo(pFlac, frameCountThisIteration, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
+                        drflac_read_pcm_frames_f32__decode_independent_stereo(pFlac, frameCountThisForEachation, unusedBitsPerSample, pDecodedSamples0, pDecodedSamples1, pBufferOut);
                     } break;
                 }
             } else {
                 /* Generic interleaving. */
                 drflac_uint64 i;
-                for (i = 0; i < frameCountThisIteration; ++i) {
+                for (i = 0; i < frameCountThisForEachation; ++i) {
                     unsigned int j;
                     for (j = 0; j < channelCount; ++j) {
                         pBufferOut[(i*channelCount)+j] = (float)((drflac_uint64)((pFlac->currentFLACFrame.subframes[j].pSamplesS32[iFirstPCMFrame + i]) << (unusedBitsPerSample + pFlac->currentFLACFrame.subframes[j].wastedBitsPerSample)) / 2147483648.0);
@@ -10246,11 +10246,11 @@ drflac_uint64 drflac_read_pcm_frames_f32(drflac* pFlac, drflac_uint64 framesToRe
                 }
             }
 
-            framesRead                += frameCountThisIteration;
-            pBufferOut                += frameCountThisIteration * channelCount;
-            framesToRead              -= frameCountThisIteration;
-            pFlac->currentPCMFrame    += frameCountThisIteration;
-            pFlac->currentFLACFrame.pcmFramesRemaining -= (unsigned int)frameCountThisIteration;
+            framesRead                += frameCountThisForEachation;
+            pBufferOut                += frameCountThisForEachation * channelCount;
+            framesToRead              -= frameCountThisForEachation;
+            pFlac->currentPCMFrame    += frameCountThisForEachation;
+            pFlac->currentFLACFrame.pcmFramesRemaining -= (unsigned int)frameCountThisForEachation;
         }
     }
 
@@ -10646,17 +10646,17 @@ void drflac_free(void* p, const drflac_allocation_callbacks* pAllocationCallback
 
 
 
-void drflac_init_vorbis_comment_iterator(drflac_vorbis_comment_iterator* pIter, drflac_uint32 commentCount, const void* pComments)
+void drflac_init_vorbis_comment_iterator(drflac_vorbis_comment_iterator* pForEach, drflac_uint32 commentCount, const void* pComments)
 {
-    if (pIter == NULL) {
+    if (pForEach == NULL) {
         return;
     }
 
-    pIter->countRemaining = commentCount;
-    pIter->pRunningData   = (const char*)pComments;
+    pForEach->countRemaining = commentCount;
+    pForEach->pRunningData   = (const char*)pComments;
 }
 
-const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pIter, drflac_uint32* pCommentLengthOut)
+const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pForEach, drflac_uint32* pCommentLengthOut)
 {
     drflac_int32 length;
     const char* pComment;
@@ -10666,16 +10666,16 @@ const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pIter, dr
         *pCommentLengthOut = 0;
     }
 
-    if (pIter == NULL || pIter->countRemaining == 0 || pIter->pRunningData == NULL) {
+    if (pForEach == NULL || pForEach->countRemaining == 0 || pForEach->pRunningData == NULL) {
         return NULL;
     }
 
-    length = drflac__le2host_32(*(const drflac_uint32*)pIter->pRunningData);
-    pIter->pRunningData += 4;
+    length = drflac__le2host_32(*(const drflac_uint32*)pForEach->pRunningData);
+    pForEach->pRunningData += 4;
 
-    pComment = pIter->pRunningData;
-    pIter->pRunningData += length;
-    pIter->countRemaining -= 1;
+    pComment = pForEach->pRunningData;
+    pForEach->pRunningData += length;
+    pForEach->countRemaining -= 1;
 
     if (pCommentLengthOut) {
         *pCommentLengthOut = length;
@@ -10687,28 +10687,28 @@ const char* drflac_next_vorbis_comment(drflac_vorbis_comment_iterator* pIter, dr
 
 
 
-void drflac_init_cuesheet_track_iterator(drflac_cuesheet_track_iterator* pIter, drflac_uint32 trackCount, const void* pTrackData)
+void drflac_init_cuesheet_track_iterator(drflac_cuesheet_track_iterator* pForEach, drflac_uint32 trackCount, const void* pTrackData)
 {
-    if (pIter == NULL) {
+    if (pForEach == NULL) {
         return;
     }
 
-    pIter->countRemaining = trackCount;
-    pIter->pRunningData   = (const char*)pTrackData;
+    pForEach->countRemaining = trackCount;
+    pForEach->pRunningData   = (const char*)pTrackData;
 }
 
-drflac_bool32 drflac_next_cuesheet_track(drflac_cuesheet_track_iterator* pIter, drflac_cuesheet_track* pCuesheetTrack)
+drflac_bool32 drflac_next_cuesheet_track(drflac_cuesheet_track_iterator* pForEach, drflac_cuesheet_track* pCuesheetTrack)
 {
     drflac_cuesheet_track cuesheetTrack;
     const char* pRunningData;
     drflac_uint64 offsetHi;
     drflac_uint64 offsetLo;
 
-    if (pIter == NULL || pIter->countRemaining == 0 || pIter->pRunningData == NULL) {
+    if (pForEach == NULL || pForEach->countRemaining == 0 || pForEach->pRunningData == NULL) {
         return DRFLAC_FALSE;
     }
 
-    pRunningData = pIter->pRunningData;
+    pRunningData = pForEach->pRunningData;
 
     offsetHi                   = drflac__be2host_32(*(const drflac_uint32*)pRunningData); pRunningData += 4;
     offsetLo                   = drflac__be2host_32(*(const drflac_uint32*)pRunningData); pRunningData += 4;
@@ -10720,8 +10720,8 @@ drflac_bool32 drflac_next_cuesheet_track(drflac_cuesheet_track_iterator* pIter, 
     cuesheetTrack.indexCount   = pRunningData[0];                                         pRunningData += 1;
     cuesheetTrack.pIndexPoints = (const drflac_cuesheet_track_index*)pRunningData;        pRunningData += cuesheetTrack.indexCount * sizeof(drflac_cuesheet_track_index);
 
-    pIter->pRunningData = pRunningData;
-    pIter->countRemaining -= 1;
+    pForEach->pRunningData = pRunningData;
+    pForEach->countRemaining -= 1;
 
     if (pCuesheetTrack) {
         *pCuesheetTrack = cuesheetTrack;

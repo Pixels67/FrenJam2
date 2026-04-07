@@ -73,10 +73,13 @@ namespace Flock {
          * @tparam Args The system types.
          * @param stage The stage.
          * @param args The systems.
+         * @return A reference to the app.
          */
         template<typename... Args>
-        void AddSystems(Ecs::Stage stage, const Args &... args) {
+        App &AddSystems(Ecs::Stage stage, const Args &... args) {
             m_Schedule.AddSystems(stage, args...);
+
+            return *this;
         }
 
         /**
@@ -92,7 +95,7 @@ namespace Flock {
          */
         App &Run();
 
-        [[nodiscard]] Services &GetServices();
+        [[nodiscard]] Services &Services();
 
     private:
         void Prepare();

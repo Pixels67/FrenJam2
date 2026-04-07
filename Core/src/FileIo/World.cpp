@@ -30,7 +30,7 @@ namespace Flock::FileIo {
         Serial::JsonWriter writer;
         world.Archive(writer);
 
-        const Serial::Json json = writer.GetOutput();
+        const Serial::Json json = writer.Output();
 
         return WriteText(filePath, json.ToString());
     }

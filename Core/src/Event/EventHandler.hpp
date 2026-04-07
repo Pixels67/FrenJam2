@@ -54,7 +54,7 @@ namespace Flock::Event {
         void            QueueEvent(std::unique_ptr<Event> &&event = {});
         std::unique_ptr<Event> PopEvent();
 
-        [[nodiscard]] usize GetSize() const;
+        [[nodiscard]] usize Size() const;
         [[nodiscard]] bool  IsEmpty() const;
     };
 

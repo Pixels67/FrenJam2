@@ -73,7 +73,7 @@ namespace Flock::Glfw {
 
     public:
         static std::optional<Window>             Create(const WindowConfig &config = {});
-        [[nodiscard]] static OptionalRef<Window> GetCurrentWindow();
+        [[nodiscard]] static OptionalRef<Window> CurrentWindow();
 
         static void PollEvents(Event::EventHandler &eventHandler);
 
@@ -88,9 +88,9 @@ namespace Flock::Glfw {
 
         void Clear() const;
 
-        [[nodiscard]] std::string GetTitle() const;
-        [[nodiscard]] Vector2u    GetSize() const;
-        [[nodiscard]] f32         GetAspectRatio() const;
+        [[nodiscard]] std::string Title() const;
+        [[nodiscard]] Vector2u    Size() const;
+        [[nodiscard]] f32         AspectRatio() const;
         [[nodiscard]] bool        ShouldClose() const;
 
         void SetTitle(const std::string &title) const;

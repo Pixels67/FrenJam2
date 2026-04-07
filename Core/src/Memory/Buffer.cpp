@@ -87,7 +87,7 @@ namespace Flock::Memory {
         return (void *) ((size_t) Get() + offset);
     }
 
-    size_t Buffer::GetSize() const { return m_Size; }
+    size_t Buffer::Size() const { return m_Size; }
 
     void *Buffer::At(const size_t offset) const {
         if (offset >= m_Size) {

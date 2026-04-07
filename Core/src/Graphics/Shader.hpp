@@ -41,7 +41,7 @@ namespace Flock::Graphics {
          */
         void Clear() const;
 
-        [[nodiscard]] u32 GetGlId() const;
+        [[nodiscard]] u32 GlId() const;
     };
 }
 

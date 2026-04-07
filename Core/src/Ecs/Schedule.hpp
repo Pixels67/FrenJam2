@@ -60,7 +60,7 @@ namespace Flock::Ecs {
          * @param stage The stage.
          * @return All the systems in the stage.
          */
-        std::vector<System> GetSystems(Stage stage);
+        std::vector<System> Systems(Stage stage);
 
         /**
          * @brief Clears the schedule.

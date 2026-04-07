@@ -73,7 +73,7 @@ namespace Flock::Gui {
         }
 
         if (nvgFindFont(m_Ctx, font.filePath.c_str()) == -1) {
-            i32 fontId = nvgCreateFontMem(m_Ctx, font.filePath.c_str(), static_cast<ubyte *>(font.buffer.Get()), font.buffer.GetSize(), 0);
+            i32 fontId = nvgCreateFontMem(m_Ctx, font.filePath.c_str(), static_cast<ubyte *>(font.buffer.Get()), font.buffer.Size(), 0);
             if (fontId == -1) {
                 Debug::LogErr("GuiRenderer::RenderText: Invalid font data");
                 return false;
@@ -168,9 +168,9 @@ namespace Flock::Gui {
         auto [x, y] = transform.rect.origin;
         auto [w, h] = transform.rect.aspect;
 
-        auto [tw, th] = texture.GetSize();
+        auto [tw, th] = texture.Size();
 
-        const i32      img = nvglCreateImageFromHandleGL3(m_Ctx, texture.GetGlId(), tw, th, 0);
+        const i32      img = nvglCreateImageFromHandleGL3(m_Ctx, texture.GlId(), tw, th, 0);
         const NVGpaint p   = nvgImagePattern(m_Ctx, x, y, w, h, 0, img, 1.0F);
 
         nvgBeginPath(m_Ctx);

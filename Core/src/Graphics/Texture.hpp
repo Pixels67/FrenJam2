@@ -64,9 +64,9 @@ namespace Flock::Graphics {
         std::optional<TextureFormat> format           = TextureFormat::Rgba;
         bool                         generateMipmaps  = true;
 
-        [[nodiscard]] u32 GetGlWrap() const;
-        [[nodiscard]] u32 GetGlMinFilter() const;
-        [[nodiscard]] u32 GetGlMagFilter() const;
+        [[nodiscard]] u32 GlWrap() const;
+        [[nodiscard]] u32 GlMinFilter() const;
+        [[nodiscard]] u32 GlMagFilter() const;
     };
 
     void ConfigureTexture(u32 glTexture, TextureConfig config);
@@ -130,13 +130,13 @@ namespace Flock::Graphics {
 
         void Configure(TextureConfig config);
 
-        [[nodiscard]] TextureConfig GetConfig() const;
+        [[nodiscard]] TextureConfig Config() const;
 
-        [[nodiscard]] Vector2u GetSize() const;
-        [[nodiscard]] u32      GetWidth() const;
-        [[nodiscard]] u32      GetHeight() const;
+        [[nodiscard]] Vector2u Size() const;
+        [[nodiscard]] u32      Width() const;
+        [[nodiscard]] u32      Height() const;
 
-        [[nodiscard]] u32 GetGlId() const;
+        [[nodiscard]] u32 GlId() const;
     };
 }
 

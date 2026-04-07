@@ -58,7 +58,7 @@ namespace Flock::Graphics {
     }
 
     bool VertexArray::SetVertexBuffer(const Buffer &buffer, const VertexLayout &layout) {
-        if (m_Id == 0 || buffer.GetType() != BufferType::Vertex) {
+        if (m_Id == 0 || buffer.Type() != BufferType::Vertex) {
             return false;
         }
 
@@ -78,7 +78,7 @@ namespace Flock::Graphics {
     }
 
     bool VertexArray::SetIndexBuffer(const Buffer &buffer) {
-        if (m_Id == 0 || buffer.GetType() != BufferType::Index) {
+        if (m_Id == 0 || buffer.Type() != BufferType::Index) {
             return false;
         }
 

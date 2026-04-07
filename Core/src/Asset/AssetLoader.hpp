@@ -18,7 +18,7 @@
 
 namespace Flock::Asset {
     template<typename T>
-    struct Loader;
+    struct FLK_API Loader;
 
     enum class PipelineType : u8 {
         Pbr,

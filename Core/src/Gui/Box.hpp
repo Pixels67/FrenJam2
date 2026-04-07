@@ -3,20 +3,14 @@
 
 #include "Common.hpp"
 #include "Math/Color.hpp"
+#include "Serial/Archive.hpp"
 
 namespace Flock::Gui {
     struct FLK_API Box {
         Color4u8 color = Color4u8::Black();
     };
 
-    inline auto Reflect(Box &box) {
-        return Reflectable{
-            "Box",
-            std::make_tuple(
-                Field{"color", &box.color}
-            )
-        };
-    }
+    FLK_ARCHIVE(Box, color)
 }
 
 #endif //BOX_HPP

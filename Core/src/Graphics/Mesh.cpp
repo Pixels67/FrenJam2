@@ -10,7 +10,7 @@ namespace Flock::Graphics {
         mesh.m_VertexBuffer = Buffer::Create(data.vertices, BufferType::Vertex);
         mesh.m_IndexBuffer  = Buffer::Create(data.indices, BufferType::Index);
 
-        if (!mesh.m_VertexArray.SetVertexBuffer(mesh.m_VertexBuffer, Vertex::GetLayout())) {
+        if (!mesh.m_VertexArray.SetVertexBuffer(mesh.m_VertexBuffer, Vertex::Layout())) {
             return std::nullopt;
         }
 
@@ -114,11 +114,11 @@ namespace Flock::Graphics {
         VertexArray::Unbind();
     }
 
-    usize Mesh::GetIndexCount() const {
+    usize Mesh::IndexCount() const {
         return m_IndexCount;
     }
 
-    const MeshData &Mesh::GetData() const {
+    const MeshData &Mesh::Data() const {
         return m_Data;
     }
 }

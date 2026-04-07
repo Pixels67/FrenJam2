@@ -10,10 +10,11 @@
 
 namespace Flock {
     template<typename T>
-    class FLK_API Matrix4 {
-    public:
+    struct FLK_API Matrix4 {
+    private:
         std::array<T, 4 * 4> m;
 
+    public:
         Matrix4() { m = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1}; }
 
         Matrix4(std::array<T, 16> array) {

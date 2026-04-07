@@ -10,14 +10,7 @@ namespace Flock::Ecs {
         bool enabled = true;
     };
 
-    inline auto Reflect(ComponentConfig &cfg) {
-        return Reflectable{
-            "config",
-            std::make_tuple(
-                Field{"enabled", &cfg.enabled}
-            )
-        };
-    }
+    FLK_ARCHIVE(ComponentConfig, enabled)
 
     class IStorage {
     public:
@@ -51,10 +44,10 @@ namespace Flock::Ecs {
          */
         void Insert(const EntityId id, T element) {
             if (id >= m_Sparse.size()) {
-                m_Sparse.resize(id + 1, ~0u);
+                m_Sparse.resize(id + 1, FLK_INVALID);
             }
 
-            if (m_Sparse[id] != ~0u) {
+            if (m_Sparse[id] != FLK_INVALID) {
                 m_Data[m_Sparse[id]]    = std::move(element);
                 m_Configs[m_Sparse[id]] = {};
                 return;
@@ -76,7 +69,7 @@ namespace Flock::Ecs {
                 return false;
             }
 
-            if (m_Sparse[id] == ~0u) {
+            if (m_Sparse[id] == FLK_INVALID) {
                 return false;
             }
 
@@ -84,7 +77,7 @@ namespace Flock::Ecs {
             const usize lastIdx = m_Dense.size() - 1;
 
             // Remove
-            m_Sparse[id] = ~0u;
+            m_Sparse[id] = FLK_INVALID;
 
             // Swap
             m_Dense[idx]   = m_Dense.back();
@@ -110,7 +103,7 @@ namespace Flock::Ecs {
          * @return true if there is data at id; false otherwise.
          */
         [[nodiscard]] bool Has(const EntityId id) const override {
-            return id < m_Sparse.size() && m_Sparse[id] != ~0u;
+            return id < m_Sparse.size() && m_Sparse[id] != FLK_INVALID;
         }
 
         /**
@@ -169,7 +162,7 @@ namespace Flock::Ecs {
          * @brief Retrieves a reference to all the values inside the storage.
          * @return The storage data.
          */
-        std::vector<T> &GetData() {
+        std::vector<T> &Data() {
             return m_Data;
         }
 
@@ -184,7 +177,7 @@ namespace Flock::Ecs {
 
         void Archive(Serial::IArchive &archive) {
             usize count = m_Dense.size();
-            archive.BeginArray(GetTypeName<T>(), count);
+            archive.BeginArray(NameOf(T{}), count);
 
             m_Dense.resize(count);
             m_Data.resize(count);
@@ -204,7 +197,7 @@ namespace Flock::Ecs {
             for (usize i = 0; i < m_Dense.size(); i++) {
                 const EntityId id = m_Dense[i];
                 if (id >= m_Sparse.size()) {
-                    m_Sparse.resize(id + 1, ~0u);
+                    m_Sparse.resize(id + 1, FLK_INVALID);
                 }
 
                 m_Sparse[id] = i;

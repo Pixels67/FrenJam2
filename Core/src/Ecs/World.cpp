@@ -41,22 +41,22 @@ namespace Flock::Ecs {
         InsertResource<Application>();
         InsertResource<Event::EventRegistry>();
 
-        GetRegistry().RegisterComponent<Transform>();
-        GetRegistry().RegisterComponent<RigidTransform>();
-        GetRegistry().RegisterComponent<Gui::RectTransform>();
-        GetRegistry().RegisterComponent<Graphics::SpriteRenderer>();
-        GetRegistry().RegisterComponent<Graphics::ModelRenderer>();
-        GetRegistry().RegisterComponent<Physics::BoxCollider>();
-        GetRegistry().RegisterComponent<Physics::SphereCollider>();
-        GetRegistry().RegisterComponent<Physics::RigidBody>();
-        GetRegistry().RegisterComponent<Audio::AudioSource>();
-        GetRegistry().RegisterComponent<Gui::Text>();
-        GetRegistry().RegisterComponent<Gui::Button>();
-        GetRegistry().RegisterComponent<Gui::Image>();
-        GetRegistry().RegisterComponent<Gui::Box>();
+        Registry().Register<Transform>();
+        Registry().Register<RigidTransform>();
+        Registry().Register<Gui::RectTransform>();
+        Registry().Register<Graphics::SpriteRenderer>();
+        Registry().Register<Graphics::ModelRenderer>();
+        Registry().Register<Physics::BoxCollider>();
+        Registry().Register<Physics::SphereCollider>();
+        Registry().Register<Physics::RigidBody>();
+        Registry().Register<Audio::AudioSource>();
+        Registry().Register<Gui::Text>();
+        Registry().Register<Gui::Button>();
+        Registry().Register<Gui::Image>();
+        Registry().Register<Gui::Box>();
     }
 
-    Registry &World::GetRegistry() {
+    Ecs::Registry &World::Registry() {
         return m_Registry;
     }
 
@@ -99,7 +99,7 @@ namespace Flock::Ecs {
         Serial::JsonWriter writer;
         Archive(writer);
 
-        const Serial::Json json = writer.GetOutput();
+        const Serial::Json json = writer.Output();
 
         return FileIo::WriteText(filePath, json.ToString());
     }

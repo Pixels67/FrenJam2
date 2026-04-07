@@ -1789,7 +1789,7 @@ namespace SoLoud
 
 		// If we get this far, there's nothing to it: we'll have to sort the voices to find the most audible.
 
-		// Iterative partial quicksort:
+		// ForEachative partial quicksort:
 		int left = 0, stack[24], pos = 0, right;
 		int len = candidates - mustlive;
 		unsigned int *data = mActiveVoice + mustlive;

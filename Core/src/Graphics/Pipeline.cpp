@@ -161,8 +161,8 @@ namespace Flock::Graphics {
         unsigned int program = 0;
 
         FLK_GL_CALL(program = glCreateProgram());
-        FLK_GL_CALL(glAttachShader(program, vertex.GetGlId()));
-        FLK_GL_CALL(glAttachShader(program, fragment.GetGlId()));
+        FLK_GL_CALL(glAttachShader(program, vertex.GlId()));
+        FLK_GL_CALL(glAttachShader(program, fragment.GlId()));
         FLK_GL_CALL(glLinkProgram(program));
 
         int success = 0;

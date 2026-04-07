@@ -4,7 +4,6 @@
 #include "Dialogue.hpp"
 #include "Flock.hpp"
 #include "Player.hpp"
-#include "Reflect.hpp"
 #include "Using.hpp"
 
 struct DialogueText {
@@ -19,70 +18,47 @@ struct DialogueImage {
 struct DialogueBox {
 };
 
-inline auto Reflect(DialogueText &) {
-    return Reflectable{
-        "DialogueText",
-        std::make_tuple()
-    };
-}
-
-inline auto Reflect(DialogueTitle &) {
-    return Reflectable{
-        "DialogueTitle",
-        std::make_tuple()
-    };
-}
-
-inline auto Reflect(DialogueImage &) {
-    return Reflectable{
-        "DialogueImage",
-        std::make_tuple()
-    };
-}
-
-inline auto Reflect(DialogueBox &) {
-    return Reflectable{
-        "DialogueBox",
-        std::make_tuple()
-    };
-}
+FLK_ARCHIVE_TAG(DialogueText)
+FLK_ARCHIVE_TAG(DialogueTitle)
+FLK_ARCHIVE_TAG(DialogueImage)
+FLK_ARCHIVE_TAG(DialogueBox)
 
 inline void ShowDialogue(World &world) {
-    world.GetRegistry().Iter<Player>([&](Player &player) { player.canMove = false; });
+    world.Registry().ForEach<Player>([&](Player &player) { player.canMove = false; });
 
-    world.GetRegistry().Query<DialogueText>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Text>(e, true);
+    world.Registry().All<DialogueText>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().SetEnabled<Text>(e, true);
     });
 
-    world.GetRegistry().Query<DialogueTitle>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Text>(e, true);
+    world.Registry().All<DialogueTitle>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().SetEnabled<Text>(e, true);
     });
 
-    world.GetRegistry().Query<DialogueBox>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Box>(e, true);
+    world.Registry().All<DialogueBox>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().SetEnabled<Box>(e, true);
     });
 }
 
 inline void HideDialogue(World &world) {
-    world.GetRegistry().Iter<Player>([&](Player &player) { player.canMove = true; });
+    world.Registry().ForEach<Player>([&](Player &player) { player.canMove = true; });
 
-    world.GetRegistry().Query<DialogueText>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Text>(e, false);
+    world.Registry().All<DialogueText>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Disable<Text>(e);
     });
 
-    world.GetRegistry().Query<DialogueTitle>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Text>(e, false);
+    world.Registry().All<DialogueTitle>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Disable<Text>(e);
     });
 
-    world.GetRegistry().Query<DialogueBox>().Iter<Entity>([&](const Entity e) {
-        world.GetRegistry().SetComponentEnabled<Box>(e, false);
+    world.Registry().All<DialogueBox>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Disable<Box>(e);
     });
 }
 
 inline void UpdateDialogueUi(World &world) {
-    auto &[messages, currentMessage] = world.GetResource<Dialogue>();
+    auto &[messages, currentMessage] = world.Resource<Dialogue>();
 
-    const auto input = world.GetResource<InputState>();
+    const auto input = world.Resource<InputState>();
     if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size()) {
         currentMessage++;
     }
@@ -98,11 +74,11 @@ inline void UpdateDialogueUi(World &world) {
         HideDialogue(world);
     }
 
-    world.GetRegistry().Query<DialogueText>().Iter<Text>([&](Text &text) {
+    world.Registry().All<DialogueText>().ForEach<Text>([&](Text &text) {
         text.content = content;
     });
 
-    world.GetRegistry().Query<DialogueTitle>().Iter<Text>([&](Text &text) {
+    world.Registry().All<DialogueTitle>().ForEach<Text>([&](Text &text) {
         text.content = title;
     });
 }

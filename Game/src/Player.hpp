@@ -10,14 +10,7 @@ struct Player {
     bool canMove = true;
 };
 
-inline auto Reflect(Player &player) {
-    return Reflectable{
-        "Player",
-        std::make_tuple(
-            Field{"canMove", &player.canMove}
-        )
-    };
-}
+FLK_ARCHIVE(Player, canMove)
 
 inline std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteractable(World &world, const Transform &transform) {
     const Vector2i pos = Vector2f{transform.position.x, transform.position.y};
@@ -29,13 +22,13 @@ inline std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteracta
     };
 
     OptionalRef<Interactable> interactable = std::nullopt;
-    Entity                    entity       = {~0u, 0};
+    Entity                    entity       = {};
 
-    auto &reg = world.GetRegistry();
-    reg.Iter<Entity, Tile>([&](Entity e, const Tile &tile) {
+    auto &reg = world.Registry();
+    reg.ForEach<Entity, Tile>([&](Entity e, const Tile &tile) {
         for (const auto &p: positions) {
             if (tile.position == p && tile.HasOccupant() && reg.HasComponent<Interactable>(tile.occupant)) {
-                interactable = reg.GetComponent<Interactable>(tile.occupant);
+                interactable = reg.Get<Interactable>(tile.occupant);
                 entity       = tile.occupant;
                 return;
             }
@@ -50,21 +43,21 @@ inline std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteracta
 }
 
 inline void UpdatePlayer(World &world) {
-    Registry &reg = world.GetRegistry();
+    Registry &reg = world.Registry();
 
-    reg.Iter<Entity, Transform, Player>([&](const Entity e, const Transform &trans, const Player &player) {
-        world.GetResource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
+    reg.ForEach<Entity, Transform, Player>([&](const Entity e, const Transform &trans, const Player &player) {
+        world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
 
         Vector2i   movement = {};
-        const auto input    = world.GetResource<InputState>();
+        const auto input    = world.Resource<InputState>();
 
         const auto maybeInteractable = GetNearbyInteractable(world, trans);
 
-        if (input.IsKeyPressed(Key::E) && world.GetResource<Dialogue>().IsFinished() && maybeInteractable) {
+        if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeInteractable) {
             auto &[entity, interactable] = maybeInteractable.value();
 
-            world.GetResource<Dialogue>().messages       = interactable.get().dialogue.messages;
-            world.GetResource<Dialogue>().currentMessage = 0;
+            world.Resource<Dialogue>().messages       = interactable.get().dialogue.messages;
+            world.Resource<Dialogue>().currentMessage = 0;
 
             if (interactable.get().destroyOnInteract) {
                 reg.Destroy(entity);
@@ -98,7 +91,7 @@ inline void UpdatePlayer(World &world) {
         const auto playerPos = Vector2i(trans.position.x, trans.position.y);
 
         bool moved = false;
-        reg.Iter<Tile>([&](Tile &tile) {
+        reg.ForEach<Tile>([&](Tile &tile) {
             if (tile.position == playerPos + movement && IsPassable(tile.type) && !tile.HasOccupant()) {
                 tile.occupant = e;
                 moved         = true;
@@ -109,9 +102,9 @@ inline void UpdatePlayer(World &world) {
             return;
         }
 
-        reg.Iter<Tile>([&](Tile &tile) {
+        reg.ForEach<Tile>([&](Tile &tile) {
             if (tile.position == playerPos) {
-                tile.occupant = {~0u, 0};
+                tile.occupant = {};
             }
         });
     });

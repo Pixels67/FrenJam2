@@ -5,19 +5,19 @@
 #include "Using.hpp"
 
 void RegisterComps(World &world) {
-    world.GetRegistry().RegisterComponent<Tile>();
-    world.GetRegistry().RegisterComponent<Player>();
-    world.GetRegistry().RegisterComponent<Message>();
-    world.GetRegistry().RegisterComponent<Dialogue>();
-    world.GetRegistry().RegisterComponent<DialogueText>();
-    world.GetRegistry().RegisterComponent<DialogueTitle>();
-    world.GetRegistry().RegisterComponent<DialogueImage>();
-    world.GetRegistry().RegisterComponent<DialogueBox>();
-    world.GetRegistry().RegisterComponent<Interactable>();
+    world.Registry().Register<Tile>();
+    world.Registry().Register<Player>();
+    world.Registry().Register<Message>();
+    world.Registry().Register<Dialogue>();
+    world.Registry().Register<DialogueText>();
+    world.Registry().Register<DialogueTitle>();
+    world.Registry().Register<DialogueImage>();
+    world.Registry().Register<DialogueBox>();
+    world.Registry().Register<Interactable>();
 }
 
 void SetPipelines(World &world) {
-    const auto &assets = world.GetResource<Asset::Assets>();
+    const auto &assets = world.Resource<Asset::Assets>();
 
     if (!assets.SetDefaultPipeline(Asset::PipelineType::Pbr, "assets/shader.glsl")) {
         FLK_ASSERT(false);
@@ -30,9 +30,9 @@ void SetPipelines(World &world) {
 
 void Init(World &world) {
     world.InsertResource(Dialogue{.messages = {{.title = "1"}, {.title = "2"}}});
-    world.GetResource<AmbientLight>().color = {20, 20, 20};
+    world.Resource<AmbientLight>().color = {20, 20, 20};
 
-    const Entity character = world.GetRegistry().Create(
+    const Entity character = world.Registry().Create(
         Transform{.position = {2.0F, 2.0F, -1.0F}},
         SpriteRenderer{.spritePath = "assets/Circle.png"},
         Interactable{
@@ -59,17 +59,17 @@ void Init(World &world) {
             }
 
             if (i == 2 && j == 2) {
-                world.GetRegistry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type, .occupant = character});
+                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type, .occupant = character});
                 continue;
             }
 
-            world.GetRegistry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type});
+            world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type});
         }
     }
 
-    world.GetRegistry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/Circle.png"}, Player{});
+    world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/Circle.png"}, Player{});
 
-    world.GetRegistry().Create(
+    world.Registry().Create(
         RectTransform{
             {{0, 520}, {1280, 200}}
         },
@@ -79,7 +79,7 @@ void Init(World &world) {
         DialogueBox{}
     );
 
-    world.GetRegistry().Create(
+    world.Registry().Create(
         RectTransform{
             {{10, 530}, {1270, 190}}
         },
@@ -90,7 +90,7 @@ void Init(World &world) {
         DialogueTitle{}
     );
 
-    world.GetRegistry().Create(
+    world.Registry().Create(
         RectTransform{
             {{10, 560}, {1270, 190}}
         },
@@ -110,8 +110,7 @@ i32 main() {
         },
     }).value();
 
-    app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, Init);
-    app.AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi);
-
-    app.Run();
+    app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, Init)
+       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi)
+       .Run();
 }

@@ -36,7 +36,7 @@ namespace Flock::Memory {
         [[nodiscard]] void *Get() const;
         [[nodiscard]] void *Get(size_t offset) const;
 
-        [[nodiscard]] size_t GetSize() const;
+        [[nodiscard]] size_t Size() const;
         [[nodiscard]] void *At(size_t offset) const;
 
         void Clear();

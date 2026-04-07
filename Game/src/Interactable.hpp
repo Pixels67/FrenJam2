@@ -10,14 +10,6 @@ struct Interactable {
     bool     destroyOnInteract = false;
 };
 
-inline auto Reflect(Interactable &interactable) {
-    return Reflectable{
-        "Interactable",
-        std::make_tuple(
-            Field{"dialogue", &interactable.dialogue},
-            Field{"destroyOnInteract", &interactable.destroyOnInteract}
-        )
-    };
-}
+FLK_ARCHIVE(Interactable, dialogue, destroyOnInteract)
 
 #endif //INTERACTABLE_HPP
