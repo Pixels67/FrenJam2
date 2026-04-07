@@ -93,6 +93,40 @@ namespace Flock::Serial {
             return success;
         }
 
+        template<typename K, typename V>
+        requires std::convertible_to<K, std::string>
+        bool operator()(const std::string_view key, std::map<K, V> &value) {
+            bool success = true;
+            BeginObject(key);
+
+            for (auto &[k, val]: value) {
+                if (!(*this)(std::string(k), val)) {
+                    success = false;
+                    Debug::LogErr("IArchive: Failed to archive map element '{}[{}]'", key, k);
+                }
+            }
+
+            EndObject();
+            return success;
+        }
+
+        template<typename K, typename V>
+        requires std::convertible_to<K, std::string>
+        bool operator()(const std::string_view key, std::unordered_map<K, V> &value) {
+            bool success = true;
+            BeginObject(key);
+
+            for (auto &[k, val]: value) {
+                if (!(*this)(std::string(k), val)) {
+                    success = false;
+                    Debug::LogErr("IArchive: Failed to archive map element '{}[{}]'", key, k);
+                }
+            }
+
+            EndObject();
+            return success;
+        }
+
         template<typename T> requires std::is_enum_v<T>
         bool operator()(const std::string_view key, T &value) {
             auto underlying = static_cast<u64>(value);
@@ -142,17 +176,18 @@ namespace Flock::Serial {
 }
 
 #define FLK_ARCHIVE_TAG(type, ...) \
-    inline const char *NameOf(type) { return #type; } \
+    inline const char *NameOf(const type &) { return #type; } \
     inline bool Archive(Flock::Serial::IArchive &ar, type &val) { return true; }
 
 #define FLK_ARCHIVE(type, ...) \
-    inline const char *NameOf(type) { return #type; } \
+    inline const char *NameOf(const type &) { return #type; } \
     inline bool Archive(Flock::Serial::IArchive &ar, type &val) { \
+        bool success = true; \
         FLK_ARCHIVE_FIELDS(__VA_ARGS__); \
-        return true; \
+        return success; \
     }
 
-#define FLK_FIELD(field) if (!ar(#field, val.field)) return false
+#define FLK_FIELD(field) if (!ar(#field, val.field)) success = false
 
 // We do not talk about the triangle...
 #define FLK_FIELDS_1(a) FLK_FIELD(a)

@@ -49,7 +49,7 @@ inline void UpdateTiles(World &world) {
             tile.occupant = {};
         }
 
-        if (tile.HasOccupant() && reg.HasComponent<Transform>(tile.occupant)) {
+        if (tile.HasOccupant() && reg.Has<Transform>(tile.occupant)) {
             reg.Get<Transform>(tile.occupant)->get()            = trans;
             reg.Get<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
         }

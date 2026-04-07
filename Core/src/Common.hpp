@@ -69,6 +69,6 @@ using Ref = std::reference_wrapper<T>;
 template<typename T>
 using OptionalRef = std::optional<Ref<T> >;
 
-#define FLK_INVALID 0xFFF
+#define FLK_INVALID 0xFFFFFF
 
 #endif //FLK_COMMON_HPP

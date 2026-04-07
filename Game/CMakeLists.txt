@@ -11,6 +11,7 @@ set(PROJECT_SOURCES
         src/Dialogue.hpp
         src/Interactable.hpp
         src/Item.hpp
+        src/ItemUi.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

@@ -31,11 +31,11 @@ namespace Flock::Ecs {
             template<typename... Args, typename F>
             void ForEach(F &&callback, bool includeDisabled = false) {
                 for (Entity e: entities) {
-                    if (registry->HasAllComponents<Args...>(e) && registry->AllComponentsEnabled<Args...>(e) && !includeDisabled) {
+                    if (registry->HasAll<Args...>(e) && registry->AllEnabled<Args...>(e) && !includeDisabled) {
                         callback(registry->Get<Args>(e).value().get()...);
                     }
 
-                    if (registry->HasAllComponents<Args...>(e) && includeDisabled) {
+                    if (registry->HasAll<Args...>(e) && includeDisabled) {
                         callback(registry->Get<Args>(e).value().get()...);
                     }
                 }
@@ -121,7 +121,7 @@ namespace Flock::Ecs {
                 return std::nullopt;
             }
 
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 return std::nullopt;
             }
 
@@ -134,7 +134,7 @@ namespace Flock::Ecs {
          * @return true if the component type is registered; false otherwise.
          */
         template<typename T>
-        [[nodiscard]] bool IsComponentRegistered() const {
+        [[nodiscard]] bool IsRegistered() const {
             if constexpr (std::is_same_v<T, Entity>) {
                 return true;
             }
@@ -149,12 +149,12 @@ namespace Flock::Ecs {
          * @return true if the entity has the component; false otherwise.
          */
         template<typename T>
-        [[nodiscard]] bool HasComponent(Entity entity) const {
+        [[nodiscard]] bool Has(Entity entity) const {
             if constexpr (std::is_same_v<T, Entity>) {
                 return true;
             }
 
-            return IsComponentRegistered<T>() && Storage<T>().value().get().Has(entity.id);
+            return IsRegistered<T>() && Storage<T>().value().get().Has(entity.id);
         }
 
         /**
@@ -164,8 +164,8 @@ namespace Flock::Ecs {
          * @return true if the entity has all the components; false otherwise.
          */
         template<typename... Args>
-        [[nodiscard]] bool HasAllComponents(const Entity entity) const {
-            return ((IsComponentRegistered<Args>() && HasComponent<Args>(entity)) && ...);
+        [[nodiscard]] bool HasAll(const Entity entity) const {
+            return ((IsRegistered<Args>() && Has<Args>(entity)) && ...);
         }
 
         /**
@@ -175,8 +175,8 @@ namespace Flock::Ecs {
          * @return true if the entity has any of the components; false otherwise.
          */
         template<typename... Args>
-        [[nodiscard]] bool HasAnyComponents(const Entity entity) const {
-            return ((IsComponentRegistered<Args>() && HasComponent<Args>(entity)) || ...);
+        [[nodiscard]] bool HasAny(const Entity entity) const {
+            return ((IsRegistered<Args>() && Has<Args>(entity)) || ...);
         }
 
         /**
@@ -185,11 +185,11 @@ namespace Flock::Ecs {
          * @return true if the component is enabled; false otherwise.
          */
         template<typename T>
-        bool IsComponentEnabled(Entity entity) {
+        bool IsEnabled(Entity entity) {
             if constexpr (std::is_same_v<T, Entity>) {
                 return true;
             } else {
-                return IsComponentRegistered<T>() && Storage<T>().value().get().IsEnabled(entity.id);
+                return IsRegistered<T>() && Storage<T>().value().get().IsEnabled(entity.id);
             }
         }
 
@@ -199,8 +199,8 @@ namespace Flock::Ecs {
          * @return true if one of the components is enabled; false otherwise.
          */
         template<typename... Args>
-        bool AnyComponentsEnabled(const Entity entity) {
-            return (IsComponentEnabled<Args>(entity) || ...);
+        bool AnyEnabled(const Entity entity) {
+            return (IsEnabled<Args>(entity) || ...);
         }
 
         /**
@@ -209,8 +209,8 @@ namespace Flock::Ecs {
          * @return true if the components are enabled; false otherwise.
          */
         template<typename... Args>
-        bool AllComponentsEnabled(const Entity entity) {
-            return (IsComponentEnabled<Args>(entity) && ...);
+        bool AllEnabled(const Entity entity) {
+            return (IsEnabled<Args>(entity) && ...);
         }
 
         /**
@@ -221,7 +221,7 @@ namespace Flock::Ecs {
          */
         template<typename T>
         bool SetEnabled(Entity entity, bool enabled = true) {
-            return IsComponentRegistered<T>() && Storage<T>().value().get().SetEnabled(entity.id, enabled);
+            return IsRegistered<T>() && Storage<T>().value().get().SetEnabled(entity.id, enabled);
         }
 
         /**
@@ -231,7 +231,7 @@ namespace Flock::Ecs {
          */
         template<typename T>
         bool SetAllEnabled(bool enabled = true) {
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 return false;
             }
 
@@ -268,12 +268,12 @@ namespace Flock::Ecs {
         template<typename T>
             requires (!std::same_as<T, Entity>)
         OptionalRef<T> Get(Entity entity) {
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 Debug::LogErr("Failed to get component: {}!", "Component not registered");
                 return std::nullopt;
             }
 
-            if (!HasComponent<T>(entity)) {
+            if (!Has<T>(entity)) {
                 return std::nullopt;
             }
 
@@ -299,11 +299,11 @@ namespace Flock::Ecs {
                 return true;
             }
 
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 Register<T>();
             }
 
-            if (HasComponent<T>(entity)) {
+            if (Has<T>(entity)) {
                 return false;
             }
 
@@ -320,11 +320,11 @@ namespace Flock::Ecs {
          */
         template<typename T>
         T &GetOrAdd(Entity entity, T value = {}) {
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 Register<T>();
             }
 
-            if (!HasComponent<T>(entity)) {
+            if (!Has<T>(entity)) {
                 AddComponent(entity, value);
             }
 
@@ -344,11 +344,11 @@ namespace Flock::Ecs {
                 return false;
             }
 
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 Register<T>();
             }
 
-            if (!HasComponent<T>(entity)) {
+            if (!Has<T>(entity)) {
                 return false;
             }
 
@@ -368,11 +368,11 @@ namespace Flock::Ecs {
                 return false;
             }
 
-            if (!IsComponentRegistered<T>()) {
+            if (!IsRegistered<T>()) {
                 Register<T>();
             }
 
-            if (!HasComponent<T>(entity)) {
+            if (!Has<T>(entity)) {
                 return false;
             }
 
@@ -402,11 +402,11 @@ namespace Flock::Ecs {
                 }
 
                 Entity entity = maybeEntity.value();
-                if (HasAllComponents<Args...>(entity) && AllComponentsEnabled<Args...>(entity) && !includeDisabled) {
+                if (HasAll<Args...>(entity) && AllEnabled<Args...>(entity) && !includeDisabled) {
                     callback(Get<Args>(entity)->get()...);
                 }
 
-                if (HasAllComponents<Args...>(entity) && includeDisabled) {
+                if (HasAll<Args...>(entity) && includeDisabled) {
                     callback(Get<Args>(entity)->get()...);
                 }
             }
@@ -428,7 +428,7 @@ namespace Flock::Ecs {
                 }
 
                 Entity e = maybeEntity.value();
-                if (HasAllComponents<Args...>(e)) {
+                if (HasAll<Args...>(e)) {
                     collection.entities.push_back(e);
                 }
             }

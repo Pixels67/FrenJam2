@@ -27,7 +27,7 @@ inline std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteracta
     auto &reg = world.Registry();
     reg.ForEach<Entity, Tile>([&](Entity e, const Tile &tile) {
         for (const auto &p: positions) {
-            if (tile.position == p && tile.HasOccupant() && reg.HasComponent<Interactable>(tile.occupant)) {
+            if (tile.position == p && tile.HasOccupant() && reg.Has<Interactable>(tile.occupant)) {
                 interactable = reg.Get<Interactable>(tile.occupant);
                 entity       = tile.occupant;
                 return;

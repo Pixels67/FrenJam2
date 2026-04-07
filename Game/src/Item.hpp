@@ -5,8 +5,16 @@
 #include "Using.hpp"
 
 struct Item {
+    std::string name;
+    std::string imagePath;
 };
 
-FLK_REFL_TAG(Item)
+FLK_ARCHIVE(Item, name, imagePath)
+
+struct Inventory {
+    std::vector<Item> items;
+};
+
+FLK_ARCHIVE(Inventory, items)
 
 #endif //ITEM_HPP

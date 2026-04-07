@@ -18,29 +18,6 @@ namespace Flock::Serial {
         JsonWriter();
         [[nodiscard]] Json Output() const;
 
-        template<Serializable T>
-        bool operator()(const std::string_view key, T &value) {
-            BeginObject(key);
-            if (!Serialize(*this, value)) {
-                EndObject();
-                Debug::LogErr("JsonWriter: Failed to archive '{}' of type '{}'", key, T::Name());
-                return false;
-            }
-
-            EndObject();
-            return true;
-        }
-
-        template<typename T> requires std::is_enum_v<T>
-        bool operator()(const std::string_view key, T &value) {
-            auto underlying = static_cast<u64>(value);
-            (*this)(key, underlying);
-            value = static_cast<T>(underlying);
-
-            return true;
-        }
-
-
         usize CurrentArraySize() override {
             return 0;
         }
@@ -92,28 +69,6 @@ namespace Flock::Serial {
 
     public:
         explicit JsonReader(const Json &data);
-
-        template<Serializable T>
-        bool operator()(const std::string_view key, T &value) {
-            BeginObject(key);
-            if (!Serialize(*this, value)) {
-                EndObject();
-                Debug::LogErr("JsonReader: Failed to archive '{}' of type '{}'", key, T::Name());
-                return false;
-            }
-
-            EndObject();
-            return true;
-        }
-
-        template<typename T> requires std::is_enum_v<T>
-        bool operator()(const std::string_view key, T &value) {
-            auto underlying = static_cast<u64>(value);
-            (*this)(key, underlying);
-            value = static_cast<T>(underlying);
-
-            return true;
-        }
 
         usize CurrentArraySize() override {
             return Current().size();

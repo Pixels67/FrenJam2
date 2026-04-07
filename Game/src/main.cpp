@@ -1,5 +1,7 @@
 #include "DialogueUi.hpp"
 #include "Flock.hpp"
+#include "Item.hpp"
+#include "ItemUi.hpp"
 #include "Player.hpp"
 #include "Tile.hpp"
 #include "Using.hpp"
@@ -7,8 +9,6 @@
 void RegisterComps(World &world) {
     world.Registry().Register<Tile>();
     world.Registry().Register<Player>();
-    world.Registry().Register<Message>();
-    world.Registry().Register<Dialogue>();
     world.Registry().Register<DialogueText>();
     world.Registry().Register<DialogueTitle>();
     world.Registry().Register<DialogueImage>();
@@ -29,7 +29,17 @@ void SetPipelines(World &world) {
 }
 
 void Init(World &world) {
-    world.InsertResource(Dialogue{.messages = {{.title = "1"}, {.title = "2"}}});
+    world.InsertResource(Dialogue{});
+    world.InsertResource(Inventory{
+        .items = {
+            Item{.name = "Circle", .imagePath = "assets/Circle.png"},
+            Item{.name = "Checkerboard", .imagePath = "assets/Checkerboard.png"},
+            Item{.name = "Box", .imagePath = ""}
+        }
+    });
+
+    world.InsertResource(ItemUi{});
+
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
     const Entity character = world.Registry().Create(
@@ -85,7 +95,8 @@ void Init(World &world) {
         },
         Text{
             .content  = "Title",
-            .fontPath = "assets/font.ttf"
+            .fontPath = "assets/font.ttf",
+            .color    = {40, 120, 140, 255}
         },
         DialogueTitle{}
     );
@@ -100,6 +111,8 @@ void Init(World &world) {
         },
         DialogueText{}
     );
+
+    world.Save("../../../assets/world.json");
 }
 
 i32 main() {
@@ -111,6 +124,6 @@ i32 main() {
     }).value();
 
     app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, Init)
-       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi)
+       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi, UpdateItemUi)
        .Run();
 }

@@ -12,25 +12,25 @@ namespace Flock {
     struct Vector2 {
         T x, y;
 
-        Vector2() : x(0), y(0) {
+        constexpr Vector2() : x(0), y(0) {
         }
 
-        Vector2(T x, T y) : x(x), y(y) {
+        constexpr Vector2(T x, T y) : x(x), y(y) {
         }
 
-        explicit Vector2(T s) : x(s), y(s) {
+        constexpr explicit Vector2(T s) : x(s), y(s) {
         }
 
         template<typename U>
-        Vector2(const Vector2<U> &other) : x(static_cast<T>(other.x)), y(static_cast<T>(other.y)) {
+        constexpr Vector2(const Vector2<U> &other) : x(static_cast<T>(other.x)), y(static_cast<T>(other.y)) {
         }
 
-        static Vector2 Zero() { return Vector2(0, 0); }
-        static Vector2 One() { return Vector2(1, 1); }
-        static Vector2 Up() { return Vector2(0, 1); }
-        static Vector2 Down() { return Vector2(0, -1); }
-        static Vector2 Right() { return Vector2(1, 0); }
-        static Vector2 Left() { return Vector2(-1, 0); }
+        static constexpr Vector2 Zero() { return Vector2(0, 0); }
+        static constexpr Vector2 One() { return Vector2(1, 1); }
+        static constexpr Vector2 Up() { return Vector2(0, 1); }
+        static constexpr Vector2 Down() { return Vector2(0, -1); }
+        static constexpr Vector2 Right() { return Vector2(1, 0); }
+        static constexpr Vector2 Left() { return Vector2(-1, 0); }
 
         Vector2 operator-() const {
             return {-x, -y};

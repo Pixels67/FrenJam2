@@ -300,7 +300,8 @@ namespace Flock {
         });
 
         m_World.Registry().ForEach<RectTransform, Image>([&](const RectTransform &trans, const Image &img) {
-            if (img.imagePath == "" || !m_Services.assetLoader.Get<Graphics::Texture>(img.imagePath)) {
+            if (img.imagePath.empty() || !m_Services.assetLoader.Get<Graphics::Texture>(img.imagePath)) {
+                m_Services.guiRenderer.RenderRect(trans, Color4u8::White());
                 return;
             }
 
