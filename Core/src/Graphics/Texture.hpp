@@ -97,6 +97,13 @@ namespace Flock::Graphics {
          */
         static Texture CreateEmpty(Vector2u size, TextureConfig config = {});
 
+        /**
+         * @brief Static factory method.
+         * @param config The texture configuration.
+         * @return A newly created single-pixel white texture.
+         */
+        static Texture Default(TextureConfig config = {});
+
         Texture() = default;
         ~Texture();
 

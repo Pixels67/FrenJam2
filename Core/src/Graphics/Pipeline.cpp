@@ -11,7 +11,7 @@ namespace Flock::Graphics {
             return std::nullopt;
         }
 
-        pipeline.m_DefaultTexture = Texture::FromImage(Image::Default());
+        pipeline.m_DefaultTexture = Texture::Default();
         pipeline.SetSamplerUnits();
 
         return pipeline;

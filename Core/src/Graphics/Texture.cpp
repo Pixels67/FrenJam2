@@ -96,6 +96,8 @@ namespace Flock::Graphics {
             format = ToGlType(config.format.value());
         }
 
+        const Image flipped = image.FlipY();
+
         FLK_GL_CALL(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
 
         FLK_GL_CALL(glTexImage2D(GL_TEXTURE_2D,
@@ -106,7 +108,7 @@ namespace Flock::Graphics {
                 0,
                 format,
                 GL_UNSIGNED_BYTE,
-                image.data.Get())
+                flipped.data.Get())
         );
 
         ConfigureTexture(GL_TEXTURE_2D, config);
@@ -162,6 +164,10 @@ namespace Flock::Graphics {
         FLK_GL_CALL(glBindTexture(GL_TEXTURE_2D, boundTexture));
 
         return texture;
+    }
+
+    Texture Texture::Default(const TextureConfig config) {
+        return FromImage(Image::Default(), config);
     }
 
     Texture::~Texture() {

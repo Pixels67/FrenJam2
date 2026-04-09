@@ -32,7 +32,7 @@ struct Tile {
     TileType type     = Ground;
     Entity   occupant = {};
 
-    bool HasOccupant() const {
+    [[nodiscard]] bool HasOccupant() const {
         return occupant.id != FLK_INVALID;
     }
 };

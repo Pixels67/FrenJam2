@@ -4,8 +4,6 @@
 
 namespace Flock::FileIo {
     Graphics::Image ReadImage(const std::filesystem::path &filePath) {
-        stbi_set_flip_vertically_on_load(1);
-
         i32   width, height, channels;
         void *data = stbi_load(filePath.string().c_str(), &width, &height, &channels, 0);
         if (!data) {

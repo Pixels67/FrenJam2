@@ -36,13 +36,35 @@ namespace Flock::Memory {
         [[nodiscard]] void *Get() const;
         [[nodiscard]] void *Get(size_t offset) const;
 
+        template<typename T>
+        [[nodiscard]] std::vector<T> Vector() const {
+            if (sizeof(T) > m_Size) {
+                return std::vector<T>{};
+            }
+
+            std::vector<T> vec   = {};
+            auto           begin = 0;
+            const auto     step  = sizeof(T);
+
+            while (begin < m_Size) {
+                if (!At(begin)) {
+                    break;
+                }
+
+                vec.push_back(*static_cast<T *>(At(begin)));
+                begin += step;
+            }
+
+            return vec;
+        }
+
         [[nodiscard]] size_t Size() const;
-        [[nodiscard]] void *At(size_t offset) const;
+        [[nodiscard]] void * At(size_t offset) const;
 
         void Clear();
 
     private:
-        void *m_Data = nullptr;
+        void * m_Data = nullptr;
         size_t m_Size = 0;
     };
 }

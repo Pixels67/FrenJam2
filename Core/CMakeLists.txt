@@ -190,6 +190,8 @@ set(PROJECT_SOURCES
         src/Event/EventRegistry.hpp
         src/Gui/Image.hpp
         src/Gui/Box.hpp
+        src/Graphics/TextureAtlas.cpp
+        src/Graphics/TextureAtlas.hpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})

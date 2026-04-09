@@ -171,7 +171,7 @@ namespace Flock::Gui {
         auto [tw, th] = texture.Size();
 
         const i32      img = nvglCreateImageFromHandleGL3(m_Ctx, texture.GlId(), tw, th, 0);
-        const NVGpaint p   = nvgImagePattern(m_Ctx, x, y, w, h, 0, img, 1.0F);
+        const NVGpaint p   = nvgImagePattern(m_Ctx, x, y + h, w, -h, 0, img, 1.0F);
 
         nvgBeginPath(m_Ctx);
         nvgRect(m_Ctx, x, y, w, h);

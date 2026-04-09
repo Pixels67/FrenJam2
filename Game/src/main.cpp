@@ -63,17 +63,12 @@ void Init(World &world) {
 
     for (i32 i = -5; i <= 5; i++) {
         for (i32 j = -5; j <= 5; j++) {
-            TileType type = Ground;
-            if (i == -5 || i == 5 || j == 5 || j == -5) {
-                type = Wall;
-            }
-
             if (i == 2 && j == 2) {
-                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type, .occupant = character});
+                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .occupant = character});
                 continue;
             }
 
-            world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .type = type});
+            world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}});
         }
     }
 

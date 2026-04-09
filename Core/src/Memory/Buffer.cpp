@@ -94,7 +94,7 @@ namespace Flock::Memory {
             return nullptr;
         }
 
-        return static_cast<char *>(m_Data) + offset;
+        return (void *)((size_t) m_Data + offset);
     }
 
     void Buffer::Clear() {
