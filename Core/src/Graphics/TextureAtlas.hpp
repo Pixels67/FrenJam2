@@ -29,6 +29,15 @@ namespace Flock::Graphics {
          */
         static TextureAtlas CreateEmpty(Vector2u size, Vector2u subtextures, TextureConfig config = {});
 
+        TextureAtlas()  = default;
+        ~TextureAtlas() = default;
+
+        TextureAtlas(const TextureAtlas &other)     = delete;
+        TextureAtlas(TextureAtlas &&other) noexcept = default;
+
+        TextureAtlas &operator=(const TextureAtlas &other)     = delete;
+        TextureAtlas &operator=(TextureAtlas &&other) noexcept = default;
+
         void Configure(TextureConfig config);
 
         [[nodiscard]] TextureConfig Config() const;
