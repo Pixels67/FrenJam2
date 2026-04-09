@@ -1,0 +1,137 @@
+#include "Player.hpp"
+
+#include "Tile.hpp"
+
+static constexpr f32 s_PlayerSpeed = 10.0F;
+
+std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteractable(World &world, const Transform &transform) {
+    const Vector2i pos = Vector2f{transform.position.x, transform.position.y};
+
+    const std::vector positions = {
+        pos + Vector2i{-1, 1}, pos + Vector2i{0, 1}, pos + Vector2i{1, 1},
+        pos + Vector2i{-1, 0}, pos + Vector2i{0, 0}, pos + Vector2i{1, 0},
+        pos + Vector2i{-1, -1}, pos + Vector2i{0, -1}, pos + Vector2i{1, -1}
+    };
+
+    OptionalRef<Interactable> interactable = std::nullopt;
+    Entity                    entity       = {};
+
+    auto &reg = world.Registry();
+    reg.ForEach<Tile>([&](const Tile &tile) {
+        for (const auto &p: positions) {
+            if (tile.position == p && tile.HasOccupant() && reg.Has<Interactable>(tile.occupant)) {
+                interactable = reg.Get<Interactable>(tile.occupant);
+                entity       = tile.occupant;
+                return;
+            }
+        }
+    });
+
+    if (interactable) {
+        return std::make_tuple(entity, interactable.value());
+    }
+
+    return std::nullopt;
+}
+
+Tile &GetPlayerTile(World &world) {
+    Entity tileEntity;
+    world.Registry().ForEach<Entity, Tile>([&](Entity e, const Tile &tile) {
+        if (tile.HasOccupant() && world.Registry().Has<Player>(tile.occupant)) {
+            tileEntity = e;
+        }
+    });
+
+    return world.Registry().Get<Tile>(tileEntity).value().get();
+}
+
+OptionalRef<Tile> GetTile(World &world, const Vector2i position) {
+    OptionalRef<Tile> tile = std::nullopt;
+    world.Registry().ForEach<Tile>([&](Tile &t) {
+        if (t.position != position) {
+            return;
+        }
+
+        tile = t;
+    });
+
+    return tile;
+}
+
+bool IsTileEmpty(World &world, const Vector2i position) {
+    if (!GetTile(world, position)) {
+        return false;
+    }
+
+    if (GetTile(world, position)->get().HasOccupant() || !IsPassable(GetTile(world, position)->get().type)) {
+        return false;
+    }
+
+    return true;
+}
+
+void UpdatePlayer(World &world) {
+    Registry &reg = world.Registry();
+    auto time = world.Resource<Time::TimeState>();
+
+    reg.ForEach<Entity, Transform, Player>([&](Entity e, Transform &trans, Player &player) {
+        Vector2i   movement = {};
+        const auto input    = world.Resource<InputState>();
+
+        const auto maybeInteractable = GetNearbyInteractable(world, trans);
+        if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeInteractable) {
+            auto &[entity, interactable] = maybeInteractable.value();
+
+            world.Resource<Dialogue>().messages       = interactable.get().dialogue.messages;
+            world.Resource<Dialogue>().currentMessage = 0;
+
+            if (interactable.get().destroyOnInteract) {
+                reg.Destroy(entity);
+            }
+        }
+
+        if (input.IsKeyPressed(Key::D)) {
+            movement.x = 1;
+            movement.y = 0;
+        }
+
+        if (input.IsKeyPressed(Key::A)) {
+            movement.x = -1;
+            movement.y = 0;
+        }
+
+        if (input.IsKeyPressed(Key::W)) {
+            movement.y = 1;
+            movement.x = 0;
+        }
+
+        if (input.IsKeyPressed(Key::S)) {
+            movement.y = -1;
+            movement.x = 0;
+        }
+
+        const Vector2i playerTilePos = GetPlayerTile(world).position;
+        if (!player.isMoving && player.canMove && IsTileEmpty(world, playerTilePos + movement)) {
+            GetPlayerTile(world).occupant                            = {FLK_INVALID, 0};
+            GetTile(world, playerTilePos + movement)->get().occupant = e;
+        }
+
+        const Vector2f playerPos = GetPlayerTile(world).position;
+        const Vector2f actualPos = {trans.position.x, trans.position.y};
+
+        if ((playerPos - actualPos).Magnitude() > s_PlayerSpeed * time.deltaTime) {
+            player.isMoving = true;
+        } else {
+            player.isMoving  = false;
+            trans.position   = Vector3f{playerPos};
+            trans.position.z = -1.0F;
+        }
+
+        if (player.isMoving) {
+            const Vector3f dir = (Vector3f{playerPos} - Vector3f{actualPos}).Normalized();
+            trans.position     += dir * s_PlayerSpeed * time.deltaTime;
+        }
+
+        world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
+    });
+}

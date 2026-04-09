@@ -4,7 +4,7 @@
 #include "Texture.hpp"
 
 namespace Flock::Graphics {
-    class TextureAtlas {
+    class FLK_API TextureAtlas {
         std::vector<Texture> m_Textures;
         TextureConfig        m_Config;
         Vector2u             m_Size        = {};

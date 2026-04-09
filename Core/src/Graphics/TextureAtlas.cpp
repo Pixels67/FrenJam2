@@ -10,7 +10,7 @@ namespace Flock::Graphics {
         atlas.m_Config      = config;
 
         for (u32 i = 0; i < image.size.x; i += subTexSize.x) {
-            for (u32 j = 0; i < image.size.y; j += subTexSize.y) {
+            for (u32 j = 0; j < image.size.y; j += subTexSize.y) {
                 Image subImage = image.SubImage(Rect2u{{i, j}, subTexSize}).value();
                 atlas.Insert(Vector2u{i, j}, Texture::FromImage(subImage));
             }

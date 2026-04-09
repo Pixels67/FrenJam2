@@ -68,7 +68,8 @@ namespace Flock {
             return *this;
         }
 
-        bool operator==(const Vector2 &vector2) const = default;
+        bool operator==(const Vector2 & vec) const = default;
+        bool operator!=(const Vector2 & vec) const = default;
     };
 
     template<typename T>
@@ -87,6 +88,9 @@ namespace Flock {
         template<typename U>
         Vector3(const Vector3<U> &other) : x(static_cast<T>(other.x)), y(static_cast<T>(other.y)),
                                            z(static_cast<T>(other.z)) {
+        }
+
+        explicit Vector3(Vector2<T> other) : x(other.x), y(other.y), z(0) {
         }
 
         static Vector3 Zero() { return Vector3(0, 0, 0); }
@@ -146,6 +150,9 @@ namespace Flock {
             z        /= mag;
             return *this;
         }
+
+        bool operator==(const Vector3 & vec) const = default;
+        bool operator!=(const Vector3 & vec) const = default;
     };
 
     template<typename T>
@@ -211,6 +218,9 @@ namespace Flock {
             w        /= mag;
             return *this;
         }
+
+        bool operator==(const Vector4 & vec) const = default;
+        bool operator!=(const Vector4 & vec) const = default;
     };
 
     using Vector2i = Vector2<i32>;

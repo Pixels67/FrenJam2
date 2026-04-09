@@ -12,6 +12,7 @@ set(PROJECT_SOURCES
         src/Interactable.hpp
         src/Item.hpp
         src/ItemUi.hpp
+        src/Player.cpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

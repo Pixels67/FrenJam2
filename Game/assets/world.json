@@ -696,7 +696,7 @@
       ],
       "Player": [
         {
-          "id": 122,
+          "id": 1,
           "data": {
             "canMove": true
           },
@@ -707,28 +707,11 @@
       ],
       "Tile": [
         {
-          "id": 1,
-          "data": {
-            "position": {
-              "x": -5,
-              "y": -5
-            },
-            "type": 0,
-            "occupant": {
-              "id": 16777215,
-              "version": 0
-            }
-          },
-          "config": {
-            "enabled": true
-          }
-        },
-        {
           "id": 2,
           "data": {
             "position": {
               "x": -5,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -745,7 +728,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -762,7 +745,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -779,7 +762,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -796,7 +779,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -813,7 +796,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -830,7 +813,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -847,7 +830,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -864,7 +847,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -881,7 +864,7 @@
           "data": {
             "position": {
               "x": -5,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -897,8 +880,8 @@
           "id": 12,
           "data": {
             "position": {
-              "x": -4,
-              "y": -5
+              "x": -5,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -915,7 +898,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -932,7 +915,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -949,7 +932,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -966,7 +949,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -983,7 +966,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1000,7 +983,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -1017,7 +1000,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1034,7 +1017,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1051,7 +1034,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -1068,7 +1051,7 @@
           "data": {
             "position": {
               "x": -4,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -1084,8 +1067,8 @@
           "id": 23,
           "data": {
             "position": {
-              "x": -3,
-              "y": -5
+              "x": -4,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -1102,7 +1085,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -1119,7 +1102,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -1136,7 +1119,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -1153,7 +1136,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -1170,7 +1153,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1187,7 +1170,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -1204,7 +1187,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1221,7 +1204,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1238,7 +1221,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -1255,7 +1238,7 @@
           "data": {
             "position": {
               "x": -3,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -1271,8 +1254,8 @@
           "id": 34,
           "data": {
             "position": {
-              "x": -2,
-              "y": -5
+              "x": -3,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -1289,7 +1272,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -1306,7 +1289,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -1323,7 +1306,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -1340,7 +1323,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -1357,7 +1340,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1374,7 +1357,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -1391,7 +1374,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1408,7 +1391,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1425,7 +1408,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -1442,7 +1425,7 @@
           "data": {
             "position": {
               "x": -2,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -1458,8 +1441,8 @@
           "id": 45,
           "data": {
             "position": {
-              "x": -1,
-              "y": -5
+              "x": -2,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -1476,7 +1459,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -1493,7 +1476,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -1510,7 +1493,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -1527,7 +1510,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -1544,7 +1527,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1561,7 +1544,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -1578,7 +1561,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1595,7 +1578,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1612,7 +1595,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -1629,7 +1612,7 @@
           "data": {
             "position": {
               "x": -1,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -1645,8 +1628,8 @@
           "id": 56,
           "data": {
             "position": {
-              "x": 0,
-              "y": -5
+              "x": -1,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -1663,7 +1646,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -1680,7 +1663,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -1697,7 +1680,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -1714,7 +1697,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -1731,7 +1714,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1748,11 +1731,11 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
-              "id": 16777215,
+              "id": 1,
               "version": 0
             }
           },
@@ -1765,7 +1748,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1782,7 +1765,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1799,7 +1782,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -1816,7 +1799,7 @@
           "data": {
             "position": {
               "x": 0,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -1832,8 +1815,8 @@
           "id": 67,
           "data": {
             "position": {
-              "x": 1,
-              "y": -5
+              "x": 0,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -1850,7 +1833,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -1867,7 +1850,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -1884,7 +1867,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -1901,7 +1884,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -1918,7 +1901,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -1935,7 +1918,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -1952,7 +1935,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -1969,7 +1952,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -1986,7 +1969,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -2003,7 +1986,7 @@
           "data": {
             "position": {
               "x": 1,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -2019,8 +2002,8 @@
           "id": 78,
           "data": {
             "position": {
-              "x": 2,
-              "y": -5
+              "x": 1,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -2037,7 +2020,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -2054,7 +2037,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -2071,7 +2054,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -2088,7 +2071,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -2105,7 +2088,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -2122,7 +2105,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -2139,6 +2122,23 @@
           "data": {
             "position": {
               "x": 2,
+              "y": 1
+            },
+            "type": 0,
+            "occupant": {
+              "id": 16777215,
+              "version": 0
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 86,
+          "data": {
+            "position": {
+              "x": 2,
               "y": 2
             },
             "type": 0,
@@ -2152,28 +2152,11 @@
           }
         },
         {
-          "id": 86,
-          "data": {
-            "position": {
-              "x": 2,
-              "y": 3
-            },
-            "type": 0,
-            "occupant": {
-              "id": 16777215,
-              "version": 0
-            }
-          },
-          "config": {
-            "enabled": true
-          }
-        },
-        {
           "id": 87,
           "data": {
             "position": {
               "x": 2,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -2190,7 +2173,7 @@
           "data": {
             "position": {
               "x": 2,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -2206,8 +2189,8 @@
           "id": 89,
           "data": {
             "position": {
-              "x": 3,
-              "y": -5
+              "x": 2,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -2224,7 +2207,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -2241,7 +2224,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -2258,7 +2241,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -2275,7 +2258,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -2292,7 +2275,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -2309,7 +2292,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -2326,7 +2309,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -2343,7 +2326,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -2360,7 +2343,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -2377,7 +2360,7 @@
           "data": {
             "position": {
               "x": 3,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -2393,8 +2376,8 @@
           "id": 100,
           "data": {
             "position": {
-              "x": 4,
-              "y": -5
+              "x": 3,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -2411,7 +2394,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -2428,7 +2411,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -2445,7 +2428,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -2462,7 +2445,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -2479,7 +2462,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -2496,7 +2479,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -2513,7 +2496,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -2530,7 +2513,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -2547,7 +2530,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -2564,7 +2547,7 @@
           "data": {
             "position": {
               "x": 4,
-              "y": 5
+              "y": 4
             },
             "type": 0,
             "occupant": {
@@ -2580,8 +2563,8 @@
           "id": 111,
           "data": {
             "position": {
-              "x": 5,
-              "y": -5
+              "x": 4,
+              "y": 5
             },
             "type": 0,
             "occupant": {
@@ -2598,7 +2581,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": -4
+              "y": -5
             },
             "type": 0,
             "occupant": {
@@ -2615,7 +2598,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": -3
+              "y": -4
             },
             "type": 0,
             "occupant": {
@@ -2632,7 +2615,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": -2
+              "y": -3
             },
             "type": 0,
             "occupant": {
@@ -2649,7 +2632,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": -1
+              "y": -2
             },
             "type": 0,
             "occupant": {
@@ -2666,7 +2649,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": 0
+              "y": -1
             },
             "type": 0,
             "occupant": {
@@ -2683,7 +2666,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": 1
+              "y": 0
             },
             "type": 0,
             "occupant": {
@@ -2700,7 +2683,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": 2
+              "y": 1
             },
             "type": 0,
             "occupant": {
@@ -2717,7 +2700,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": 3
+              "y": 2
             },
             "type": 0,
             "occupant": {
@@ -2734,7 +2717,7 @@
           "data": {
             "position": {
               "x": 5,
-              "y": 4
+              "y": 3
             },
             "type": 0,
             "occupant": {
@@ -2748,6 +2731,23 @@
         },
         {
           "id": 121,
+          "data": {
+            "position": {
+              "x": 5,
+              "y": 4
+            },
+            "type": 0,
+            "occupant": {
+              "id": 16777215,
+              "version": 0
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 122,
           "data": {
             "position": {
               "x": 5,
@@ -2846,7 +2846,7 @@
         {
           "id": 1,
           "data": {
-            "spritePath": "",
+            "spritePath": "assets/Circle.png",
             "color": {
               "r": 255,
               "g": 255,
@@ -4661,7 +4661,7 @@
         {
           "id": 122,
           "data": {
-            "spritePath": "assets/Circle.png",
+            "spritePath": "",
             "color": {
               "r": 255,
               "g": 255,

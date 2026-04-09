@@ -61,6 +61,8 @@ void Init(World &world) {
         }
     );
 
+    const Entity player = world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/Circle.png"}, Player{});
+
     for (i32 i = -5; i <= 5; i++) {
         for (i32 j = -5; j <= 5; j++) {
             if (i == 2 && j == 2) {
@@ -68,11 +70,14 @@ void Init(World &world) {
                 continue;
             }
 
+            if (i == 0 && j == 0) {
+                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .occupant = player});
+                continue;
+            }
+
             world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}});
         }
     }
-
-    world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/Circle.png"}, Player{});
 
     world.Registry().Create(
         RectTransform{

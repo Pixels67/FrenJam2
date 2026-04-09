@@ -6,6 +6,7 @@
 #include "TypeId.hpp"
 #include "Audio/AudioClip.hpp"
 #include "FileIo/Audio.hpp"
+#include "FileIo/File.hpp"
 #include "FileIo/Font.hpp"
 #include "FileIo/Image.hpp"
 #include "Graphics/Pipeline.hpp"
@@ -14,6 +15,7 @@
 #include "FileIo/Pipeline.hpp"
 #include "Graphics/Material.hpp"
 #include "Graphics/Model.hpp"
+#include "Graphics/TextureAtlas.hpp"
 #include "Gui/Font.hpp"
 
 namespace Flock::Asset {
@@ -52,11 +54,11 @@ namespace Flock::Asset {
         bool Load(const std::filesystem::path &filePath) {
             const std::string pathStr = filePath.string();
 
-            if (pathStr == "") {
+            if (pathStr.empty()) {
                 return false;
             }
 
-            if (m_AssetIds.contains(pathStr)) {
+            if (IsLoaded<T>(filePath)) {
                 const AssetId id     = m_AssetIds.at(pathStr);
                 const TypeId  typeId = m_Assets.at(id).value().typeId;
 
@@ -168,7 +170,7 @@ namespace Flock::Asset {
         OptionalRef<T> Get(const std::filesystem::path filePath) {
             const std::string str = filePath.string();
 
-            if (str == "") {
+            if (str.empty()) {
                 return std::nullopt;
             }
 
@@ -250,6 +252,27 @@ namespace Flock::Asset {
     };
 
     template<>
+    struct Loader<Graphics::TextureAtlas> {
+        static std::optional<Graphics::TextureAtlas> Load(AssetLoader &, const std::filesystem::path &filePath) {
+            const auto maybeText = FileIo::ReadText(filePath.string() + ".atlas");
+            if (!maybeText) {
+                return std::nullopt;
+            }
+
+            std::string text = maybeText.value();
+            if (!text.find(',')) {
+                return std::nullopt;
+            }
+
+            text.replace(text.find('\n'), std::string::npos, "");
+
+            u32 x = std::stoul(text.substr(0, text.find_first_of(',')));
+            u32 y = std::stoul(text.substr(text.find_first_of(',') + 1));
+            return Graphics::TextureAtlas::FromImage(FileIo::ReadImage(filePath), {x, y});
+        }
+    };
+
+    template<>
     struct Loader<Graphics::CubeMap> {
         static std::optional<Graphics::CubeMap> Load(AssetLoader &, const std::filesystem::path &filePath) {
             if (filePath.empty()) {
@@ -291,15 +314,15 @@ namespace Flock::Asset {
                     loader.Load<Pipeline>(pipeline);
                 }
 
-                if (colorMapPath != "") {
+                if (!colorMapPath.empty()) {
                     loader.Load<Texture>(colorMapPath);
                 }
 
-                if (metallicMapPath != "") {
+                if (!metallicMapPath.empty()) {
                     loader.Load<Texture>(metallicMapPath);
                 }
 
-                if (roughnessMapPath != "") {
+                if (!roughnessMapPath.empty()) {
                     loader.Load<Texture>(roughnessMapPath);
                 }
             }
