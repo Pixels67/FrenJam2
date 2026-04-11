@@ -1,6 +1,7 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "Door.hpp"
 #include "Flock.hpp"
 #include "Tile.hpp"
 #include "Using.hpp"
@@ -152,23 +153,141 @@ inline void CreateDilto(World &world, Tile &tile) {
                     });
 }
 
+inline void CreateMaggie(World &world, Tile &tile) {
+    CreateCharacter(world, tile, "", {
+                        .messages = {
+                            Message{
+                                .title = "Joel",
+                                .text  = "Uh... hey, magpie lady, are you looking for Zanzibar Island, by any chance?",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "Oh, hello, young man! No, I actually live here in this house-tree!" "After all, why would I have things monogrammed with my initials everywhere?",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Uh... you just kinda looked like you were in the wrong ga-",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "Good grief, I forgot to introduce myself! My name is Maggie, Maggie Pie! Nice to meet you, misterrrrr...?",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "...uh, Joel.",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Nice to meet you, Ms. Pie. By the way, everyone I talk to has lost something or needs an item. Do you need anything?",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "Please, just call me Maggie! And no, sweetie, I just finished a grocery trip today.",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "Of course, I won't say no if you found something you'd think I'd like. You're a very sweet young man!",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "By the way, I just baked some Piebald Pie! I was inspired by my late kitty Jess. She was piebald.",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Ooooh! Looks tasty!",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "It's Å-rej-å flavored cookies and cream pie! The creme filling is made from crushed Å-rej-ås.",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Ehhhh, okay. I'll see if I can pay you back for the pie. Thanks, Ms. Maggie Pie.",
+                            },
+                            Message{
+                                .title = "Maggie Pie",
+                                .text  = "It's just 'Maggie!' And don't be a stranger, honey bunny!",
+                            },
+                            Message{
+                                .title = "Fren",
+                                .text  = "Híhi. 'Hönni bönni.",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "SHADDAP!!!",
+                            },
+                        }
+                    });
+}
+
+inline void CreateJack(World &world, Tile &tile) {
+    CreateCharacter(world, tile, "", {
+                        .messages = {
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Yo, yo, yo! How’s it goin’, duderinos? Do ya like the view from up here? Pretty sweet, right?",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "I've seen better, to be honest. Like that one time in-",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Don't care, but check this out. I got this super duper awesomesauce CD stashed here somewhere. could you get it for me? Pretty, pretty please?",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Could you get it for me? Pretty, pretty, pretty, pretty please?",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Maybe. Depends on what we gain from this...",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "You get to hear the most jawdropping symphony of tunes that your puny mind is even capable of hearing!",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Plus it is mandatory to progress in this game.",
+                            },
+                            Message{
+                                .title = "Fren",
+                                .text  = "vat?",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Oh nothing... So, are you brave enough to do such a task?",
+                            },
+                            Message{
+                                .title = "Joel",
+                                .text  = "Fine, but only because you were in my dreams lately, for some odd reason.",
+                            },
+                            Message{
+                                .title = "Jack Black™",
+                                .text  = "Yeeaaahh, that's what I like to hear! Report to me back once you get it.",
+                            },
+                        }
+                    });
+}
+
 inline void CreateGrill(World &world, Tile &tile) {
     CreateItem(world, tile, "", {
                    .messages = {
                        Message{
                            .title = "Grill",
-                           .text  = "You obtained 'Grill'.",
+                           .text  = "You obtained 'Grill'. George Foreman branded.",
                        },
                    }
                });
 }
 
-inline void CreateBeautiful(World &world, Tile &tile) {
+inline void CreateStatuette(World &world, Tile &tile) {
     CreateItem(world, tile, "", {
                    .messages = {
                        Message{
-                           .title = "Is Beautiful",
-                           .text  = "You obtained 'Is Beautiful'.",
+                           .title = "Statuette",
+                           .text  = "You obtained 'Statuette'. The name of this piece is 'Bald Is Beautiful'.",
                        },
                    }
                });
@@ -180,14 +299,66 @@ inline void CreateVerse(World &world, Tile &tile) {
                    .messages = {
                        Message{
                            .title = "Bible Verse",
-                           .text  = "You obtained 'Bible Verse', it reads \"Go up, you bald head\".",
+                           .text  = "You obtained 'Bible Verse'. It's a highlighted verse, Leviticus 13:40.",
                        },
                    }
                });
 }
 
-inline void LoadMap(World &world) {
-    const auto txt = FileIo::ReadText("assets/map.txt").value();
+inline void CreateRadio(World &world, Tile &tile) {
+    CreateItem(world, tile, "", {
+                   .messages = {
+                       Message{
+                           .title = "Radio",
+                           .text  = "You obtained 'Radio'.",
+                       },
+                   }
+               });
+}
+
+inline void CreateMaxwell(World &world, Tile &tile) {
+    CreateItem(world, tile, "", {
+                   .messages = {
+                       Message{
+                           .title = "Maxwell",
+                           .text  = "You obtained 'Maxwell'. The piebald cat. :3",
+                       },
+                   }
+               });
+}
+
+inline void CreateCd(World &world, Tile &tile) {
+    CreateItem(world, tile, "", {
+                   .messages = {
+                       Message{
+                           .title = "CD",
+                           .text  = "You obtained 'CD'. Contains 'Night on Bald Mountain' compositions.",
+                       },
+                   }
+               });
+}
+
+inline void CreateDoor(World &world, Tile &tile, const std::string &mapPath) {
+    const Entity door = world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = ""}, Door{.mapPath = mapPath});
+    tile.occupant     = door;
+}
+
+inline void LoadMap(World &world, const std::string &mapPath, const bool overworld = false) {
+    const auto txt = FileIo::ReadText(mapPath).value();
+
+    Debug::LogInf("Loading '{}', Overworld: {}", mapPath, overworld);
+
+    world.Registry().ForEach<Entity, Tile>([&](const Entity e, const Tile &tile) {
+        if (tile.HasOccupant()) {
+            world.Registry().Destroy(tile.occupant);
+        }
+
+        world.Registry().Destroy(e);
+    });
+
+    world.Registry().All<Fren>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Destroy(e);
+    });
 
     i32 x = 0, y = 0;
     for (const char c: txt) {
@@ -222,19 +393,54 @@ inline void LoadMap(World &world) {
             tile.type = Water;
         }
 
-        if (c == 'P') {
+        Vector2i pos = {world.Resource<PlayerInfo>().overworldPos.x, world.Resource<PlayerInfo>().overworldPos.y};
+        Vector2i prevPos = {world.Resource<PlayerInfo>().overworldPrevPos.x, world.Resource<PlayerInfo>().overworldPrevPos.y};
+
+        if (c == 'P' && !overworld) {
             const Entity player = world.Registry().Create(
-                Transform{.scale = {0.62F, 1.0F, 1.0F}},
+                Transform{.position = Vector3f{tile.position}, .scale = {0.62F, 1.0F, 1.0F}},
                 SpriteRenderer{.spritePath = "assets/joel.png"},
-                Player{}
+                Player{
+                    .inOverworld = false
+                }
             );
 
             tile.occupant = player;
         }
 
-        //if (c == 'f') {
-        //    CreateFren(world, tile);
-        //}
+        if (tile.position == pos && overworld) {
+            const Entity player = world.Registry().Create(
+                Transform{.position = Vector3f{tile.position}, .scale = {0.62F, 1.0F, 1.0F}},
+                SpriteRenderer{.spritePath = "assets/joel.png"},
+                Player{
+                    .inOverworld = true
+                }
+            );
+
+            tile.occupant = player;
+        }
+
+        if (c == 'f' && !overworld) {
+            world.Registry().Create(
+                Transform{
+                    .position = Vector3f{tile.position},
+                    .scale    = {0.62F, 1.0F, 1.0F}
+                },
+                SpriteRenderer{.spritePath = "assets/fren.png"},
+                Fren{}
+            );
+        }
+
+        if (tile.position == prevPos && overworld) {
+            world.Registry().Create(
+                Transform{
+                    .position = Vector3f{tile.position},
+                    .scale    = {0.62F, 1.0F, 1.0F}
+                },
+                SpriteRenderer{.spritePath = "assets/fren.png"},
+                Fren{}
+            );
+        }
 
         if (c == 'M') {
             CreateMike(world, tile);
@@ -252,16 +458,47 @@ inline void LoadMap(World &world) {
             CreateDilto(world, tile);
         }
 
+        if (c == 'p') {
+            CreateMaggie(world, tile);
+        }
+
+        if (c == 'J') {
+            CreateJack(world, tile);
+        }
+
         if (c == 'g') {
             CreateGrill(world, tile);
         }
 
         if (c == 'B') {
-            CreateBeautiful(world, tile);
+            CreateStatuette(world, tile);
         }
 
         if (c == 'b') {
             CreateVerse(world, tile);
+        }
+
+        if (c == 'r') {
+            CreateRadio(world, tile);
+        }
+
+        if (c == 'm') {
+            CreateMaxwell(world, tile);
+        }
+
+        if (c == 'c') {
+            CreateCd(world, tile);
+        }
+
+        if (c == '0') {
+            CreateDoor(world, tile, "assets/map.txt");
+        }
+
+        if (c > '0' && c <= '9') {
+            std::string path = "assets/";
+            path             += c;
+            path             += ".txt";
+            CreateDoor(world, tile, path);
         }
 
         x++;

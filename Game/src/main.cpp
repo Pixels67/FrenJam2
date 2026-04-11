@@ -41,10 +41,11 @@ void Init(World &world) {
     });
 
     world.InsertResource(ItemUi{});
+    world.InsertResource(PlayerInfo{.overworldPos = {5, -5}, .overworldPrevPos = {4, -5}});
 
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
-    LoadMap(world);
+    LoadMap(world, "assets/map.txt", true);
 
     world.Registry().Create(
         RectTransform{
@@ -87,8 +88,6 @@ void Init(World &world) {
         },
         DialogueText{}
     );
-
-    world.Registry().Create(Transform{.scale = {0.62F, 1.0F, 1.0F}}, SpriteRenderer{.spritePath = "assets/fren.png"}, Fren{});
 
     world.Save("../../../assets/world.json");
 }

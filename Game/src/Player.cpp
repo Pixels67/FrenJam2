@@ -1,5 +1,7 @@
 #include "Player.hpp"
 
+#include "Door.hpp"
+#include "Map.hpp"
 #include "Tile.hpp"
 
 static constexpr f32 s_PlayerSpeed = 10.0F;
@@ -32,6 +34,30 @@ std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteractable(Wor
     }
 
     return std::nullopt;
+}
+
+OptionalRef<Door> GetNearbyDoor(World &world, const Transform &transform) {
+    const Vector2i pos = Vector2f{transform.position.x, transform.position.y};
+
+    const std::vector positions = {
+        pos + Vector2i{-1, 1}, pos + Vector2i{0, 1}, pos + Vector2i{1, 1},
+        pos + Vector2i{-1, 0}, pos + Vector2i{0, 0}, pos + Vector2i{1, 0},
+        pos + Vector2i{-1, -1}, pos + Vector2i{0, -1}, pos + Vector2i{1, -1}
+    };
+
+    OptionalRef<Door> door = std::nullopt;
+
+    auto &reg = world.Registry();
+    reg.ForEach<Tile>([&](const Tile &tile) {
+        for (const auto &p: positions) {
+            if (tile.position == p && tile.HasOccupant() && reg.Has<Door>(tile.occupant)) {
+                door = reg.Get<Door>(tile.occupant);
+                return;
+            }
+        }
+    });
+
+    return door;
 }
 
 Tile &GetPlayerTile(World &world) {
@@ -71,12 +97,20 @@ bool IsTileEmpty(World &world, const Vector2i position) {
 }
 
 void UpdatePlayer(World &world) {
-    Registry &reg = world.Registry();
-    auto time = world.Resource<Time::TimeState>();
+    Registry &reg  = world.Registry();
+    auto      time = world.Resource<Time::TimeState>();
 
     reg.ForEach<Entity, Transform, Player>([&](Entity e, Transform &trans, Player &player) {
-        Vector2i   movement = {};
-        const auto input    = world.Resource<InputState>();
+        Vector2i movement = {};
+        auto &   input    = world.Resource<InputState>();
+
+        const auto maybeDoor = GetNearbyDoor(world, trans);
+        if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeDoor) {
+            auto &[mapPath] = maybeDoor.value().get();
+            input.pressedKeys.erase(Key::E);
+            LoadMap(world, mapPath, mapPath == "assets/map.txt");
+            return;
+        }
 
         const auto maybeInteractable = GetNearbyInteractable(world, trans);
         if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeInteractable) {
@@ -113,8 +147,16 @@ void UpdatePlayer(World &world) {
         const Vector2i playerTilePos = GetPlayerTile(world).position;
         if (!player.isMoving && player.canMove && IsTileEmpty(world, playerTilePos + movement)) {
             player.prevPos = GetPlayerTile(world).position;
+            if (player.inOverworld) {
+                world.Resource<PlayerInfo>().overworldPrevPos = player.prevPos;
+            }
+
             GetPlayerTile(world).occupant                            = {FLK_INVALID, 0};
             GetTile(world, playerTilePos + movement)->get().occupant = e;
+
+            if (player.inOverworld) {
+                world.Resource<PlayerInfo>().overworldPos = GetPlayerTile(world).position;
+            }
         }
 
         const Vector2f playerPos = GetPlayerTile(world).position;

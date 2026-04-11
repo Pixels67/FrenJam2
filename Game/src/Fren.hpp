@@ -23,6 +23,14 @@ inline void UpdateFren(World &world) {
     });
 
     reg.All<Fren>().ForEach<Transform>([&](Transform &trans) {
+        trans.position.z = -1.0F;
+    });
+
+    if (frenPos == Vector2i::Zero()) {
+        return;
+    }
+
+    reg.All<Fren>().ForEach<Transform>([&](Transform &trans) {
         const Vector2f actualPos = {trans.position.x, trans.position.y};
 
         const Vector3f dist = Vector3f{frenPos} - Vector3f{actualPos};

@@ -10,7 +10,7 @@ namespace Flock::FileIo {
         std::ifstream file(filePath);
 
         if (!file.is_open()) {
-            Debug::LogErr("FileIo::ReadText: Error opening file!");
+            Debug::LogErr("FileIo::ReadText: Error opening file '{}'", filePath.string());
             return std::nullopt;
         }
 

@@ -5,10 +5,16 @@
 #include "Interactable.hpp"
 #include "Using.hpp"
 
+struct PlayerInfo {
+    Vector2i overworldPos     = {};
+    Vector2i overworldPrevPos = {};
+};
+
 struct Player {
-    bool     canMove  = true;
-    bool     isMoving = false;
-    Vector2i prevPos  = {};
+    bool     canMove     = true;
+    bool     isMoving    = false;
+    bool     inOverworld = true;
+    Vector2i prevPos     = {};
 };
 
 FLK_ARCHIVE(Player, canMove)
