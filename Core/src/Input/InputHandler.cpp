@@ -1,8 +1,6 @@
 #include "InputHandler.hpp"
 
-#include <memory>
 #include <set>
-#include <utility>
 
 #include "Glfw/Window.hpp"
 #include "Event/EventHandler.hpp"

@@ -112,6 +112,7 @@ void UpdatePlayer(World &world) {
 
         const Vector2i playerTilePos = GetPlayerTile(world).position;
         if (!player.isMoving && player.canMove && IsTileEmpty(world, playerTilePos + movement)) {
+            player.prevPos = GetPlayerTile(world).position;
             GetPlayerTile(world).occupant                            = {FLK_INVALID, 0};
             GetTile(world, playerTilePos + movement)->get().occupant = e;
         }

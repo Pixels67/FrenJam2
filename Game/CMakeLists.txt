@@ -14,6 +14,8 @@ set(PROJECT_SOURCES
         src/ItemUi.hpp
         src/Player.cpp
         src/Map.hpp
+        src/Fren.hpp
+        src/Door.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

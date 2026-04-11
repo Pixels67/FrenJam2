@@ -6,8 +6,9 @@
 #include "Using.hpp"
 
 struct Player {
-    bool canMove  = true;
-    bool isMoving = false;
+    bool     canMove  = true;
+    bool     isMoving = false;
+    Vector2i prevPos  = {};
 };
 
 FLK_ARCHIVE(Player, canMove)

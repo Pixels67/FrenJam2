@@ -3,6 +3,7 @@
 
 #include "Flock.hpp"
 #include "Player.hpp"
+#include "Fren.hpp"
 #include "Using.hpp"
 
 enum TileType {
@@ -62,7 +63,7 @@ inline void UpdateTiles(World &world) {
             tile.occupant = {};
         }
 
-        if (tile.HasOccupant() && reg.Has<Transform>(tile.occupant) && !reg.Has<Player>(tile.occupant)) {
+        if (tile.HasOccupant() && reg.Has<Transform>(tile.occupant) && !reg.Has<Player>(tile.occupant) && !reg.Has<Fren>(tile.occupant)) {
             reg.Get<Transform>(tile.occupant)->get()            = trans;
             reg.Get<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
 

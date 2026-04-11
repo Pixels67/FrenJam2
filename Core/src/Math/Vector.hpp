@@ -67,8 +67,8 @@ namespace Flock {
             return *this;
         }
 
-        bool operator==(const Vector2 & vec) const = default;
-        bool operator!=(const Vector2 & vec) const = default;
+        bool operator==(const Vector2 &vec) const = default;
+        bool operator!=(const Vector2 &vec) const = default;
     };
 
     template<typename T>
@@ -137,9 +137,25 @@ namespace Flock {
             };
         }
 
-        f64     SqrMagnitude() const { return x * x + y * y + z * z; }
-        f64     Magnitude() const { return sqrt(SqrMagnitude()); }
-        Vector3 Normalized() const { return *this / Magnitude(); }
+        f64 SqrMagnitude() const {
+            return x * x + y * y + z * z;
+        }
+
+        f64 Magnitude() const {
+            if (SqrMagnitude() == 0.0F) {
+                return 0.0F;
+            }
+
+            return sqrt(SqrMagnitude());
+        }
+
+        Vector3 Normalized() const {
+            if (Magnitude() == 0.0F) {
+                return Vector3{};
+            }
+
+            return *this / Magnitude();
+        }
 
         Vector3 &Normalize() {
             auto mag = Magnitude();
@@ -149,8 +165,8 @@ namespace Flock {
             return *this;
         }
 
-        bool operator==(const Vector3 & vec) const = default;
-        bool operator!=(const Vector3 & vec) const = default;
+        bool operator==(const Vector3 &vec) const = default;
+        bool operator!=(const Vector3 &vec) const = default;
     };
 
     template<typename T>
@@ -216,8 +232,8 @@ namespace Flock {
             return *this;
         }
 
-        bool operator==(const Vector4 & vec) const = default;
-        bool operator!=(const Vector4 & vec) const = default;
+        bool operator==(const Vector4 &vec) const = default;
+        bool operator!=(const Vector4 &vec) const = default;
     };
 
     using Vector2i = Vector2<i32>;
@@ -243,6 +259,5 @@ namespace Flock {
     FLK_ARCHIVE(Vector2d, x, y)
     FLK_ARCHIVE(Vector3d, x, y, z)
     FLK_ARCHIVE(Vector4d, x, y, z, w)
-
 } // namespace Flock
 #endif // FLK_VECTOR_HPP

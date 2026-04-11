@@ -1,8 +1,5 @@
 #include "Window.hpp"
 
-#include <memory>
-#include <utility>
-
 #include "Input/Input.hpp"
 #include "glad/glad.h"
 

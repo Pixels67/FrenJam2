@@ -1,21 +1,50 @@
 
+(/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp should remove these lines:
+- #include <GLFW/glfw3.h>  // lines 5-5
+- #include "Debug/Log.hpp"  // lines 7-7
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp:
+#include <glad/glad.h>  // for GLenum
+---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.cpp has correct #includes/fwd-decls)
+
+
+(/Users/hasan/Projects/FrenJam2/Core/src/TypeId.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/TypeId.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp should add these lines:
+namespace Flock { namespace Memory { class Buffer; } }
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp should remove these lines:
+- #include "Memory/Buffer.hpp"  // lines 5-5
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp:
+#include "Common.hpp"  // for u32, u8, FLK_API
+namespace Flock { namespace Memory { class Buffer; } }
+---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.cpp has correct #includes/fwd-decls)
+
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.cpp has correct #includes/fwd-decls)
+
+
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.hpp should add these lines:
-#include <concepts>            // for same_as
-#include <functional>          // for function
-#include <memory>              // for shared_ptr, make_shared
-#include <optional>            // for optional, nullopt
-#include <string>              // for basic_string
-#include <type_traits>         // for is_same_v
-#include <unordered_map>       // for unordered_map
-#include <utility>             // for move
-#include <vector>              // for vector
-#include "Debug/Log.hpp"       // for LogErr
-#include "Serial/Archive.hpp"  // for IArchive (ptr only), Serializable
-namespace Flock { namespace Ecs { class IStorage; } }
-namespace Flock { namespace Ecs { template <typename T> class Storage; } }
 
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.hpp should remove these lines:
-- #include "Storage.hpp"  // lines 6-6
+- #include "Storage.hpp"  // lines 16-16
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.hpp:
 #include <concepts>            // for same_as
@@ -32,191 +61,28 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.h
 #include "Entity.hpp"          // for Entity, EntityId, EntityVersion
 #include "Serial/Archive.hpp"  // for IArchive (ptr only), Serializable
 #include "TypeId.hpp"          // for GetTypeId, TypeId
-namespace Flock { namespace Ecs { class IStorage; } }
-namespace Flock { namespace Ecs { template <typename T> class Storage; } }
+namespace Flock { namespace Ecs { class IStorage; } }  // lines 23-23
+namespace Flock { namespace Ecs { template <typename T> class Storage; } }  // lines 24-24
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.cpp should add these lines:
-#include <string_view>      // for basic_string_view
-#include "Ecs/Entity.hpp"   // for Entity, EntityId
-#include "Ecs/Storage.hpp"  // for IStorage
-
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.cpp:
-#include "Registry.hpp"
-#include <string_view>      // for basic_string_view
-#include "Ecs/Entity.hpp"   // for Entity, EntityId
-#include "Ecs/Storage.hpp"  // for IStorage
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Registry.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/TypeId.hpp should add these lines:
-#include <typeinfo>    // for type_info
+(/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/TypeId.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/TypeId.hpp:
-#include <typeinfo>    // for type_info
-#include "Common.hpp"  // for FLK_API, u64
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/TypeId.cpp should add these lines:
-#include <string>         // for basic_string, hash, string
-#include <unordered_map>  // for unordered_map
-
-/Users/hasan/Projects/FrenJam2/Core/src/TypeId.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/TypeId.cpp:
-#include "TypeId.hpp"
-#include <string>         // for basic_string, hash, string
-#include <unordered_map>  // for unordered_map
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.hpp should add these lines:
-#include <functional>     // for function
-#include <unordered_map>  // for unordered_map
-#include <vector>         // for vector
-
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.hpp:
-#include <functional>     // for function
-#include <unordered_map>  // for unordered_map
-#include <vector>         // for vector
-#include "Common.hpp"     // for FLK_API
-#include "World.hpp"      // for World
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.cpp should add these lines:
-namespace Flock { namespace Ecs { class World; } }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.cpp:
-#include "Schedule.hpp"
-namespace Flock { namespace Ecs { class World; } }
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.hpp should add these lines:
-#include <stddef.h>    // for size_t
-#include <vector>      // for vector
-
-/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.hpp:
-#include <stddef.h>    // for size_t
-#include <vector>      // for vector
-#include "Common.hpp"  // for FLK_API
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.cpp should add these lines:
-#include <stdlib.h>   // for free, malloc
-#include <string.h>   // for memcpy
-#include <algorithm>  // for min
-
-/Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Memory/Buffer.cpp:
-#include "Buffer.hpp"
-#include <stdlib.h>   // for free, malloc
-#include <string.h>   // for memcpy
-#include <algorithm>  // for min
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp should add these lines:
-namespace Flock { namespace Memory { class Buffer; } }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp should remove these lines:
-- #include "Memory/Buffer.hpp"  // lines 5-5
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.hpp:
-#include "Common.hpp"  // for u32, u8, FLK_API
-namespace Flock { namespace Memory { class Buffer; } }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.cpp should add these lines:
-#include "Memory/Buffer.hpp"  // for Buffer
-#include "glad/glad.h"        // for glBindBuffer, GL_ARRAY_BUFFER, GL_DYNAM...
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Buffer.cpp:
-#include "Buffer.hpp"
-#include "Gl.hpp"             // for FLK_GL_CALL
-#include "Memory/Buffer.hpp"  // for Buffer
-#include "glad/glad.h"        // for glBindBuffer, GL_ARRAY_BUFFER, GL_DYNAM...
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp should add these lines:
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp should remove these lines:
-- #include <GLFW/glfw3.h>  // lines 5-5
-- #include "Debug/Log.hpp"  // lines 7-7
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.hpp:
-#include <glad/glad.h>  // for GLenum
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.cpp should add these lines:
-#include "glad/glad.h"  // for GL_INVALID_ENUM, GL_INVALID_FRAMEBUFFER_OPERA...
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Gl.cpp:
-#include "Gl.hpp"
-#include "glad/glad.h"  // for GL_INVALID_ENUM, GL_INVALID_FRAMEBUFFER_OPERA...
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.hpp should add these lines:
-#include <optional>    // for optional
-#include <string>      // for string
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.hpp:
-#include <optional>    // for optional
-#include <string>      // for string
-#include "Common.hpp"  // for u32, FLK_API, u8
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.cpp should add these lines:
-#include "Debug/Log.hpp"  // for LogErr
-#include "glad/glad.h"    // for GL_COMPILE_STATUS, GL_FRAGMENT_SHADER, GL_TRUE
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.cpp should remove these lines:
-- #include "Math/Math.hpp"  // lines 4-4
-- #include "Memory/Buffer.hpp"  // lines 5-5
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Shader.cpp:
-#include "Shader.hpp"
-#include "Debug/Log.hpp"  // for LogErr
-#include "Gl.hpp"         // for FLK_GL_CALL
-#include "glad/glad.h"    // for GL_COMPILE_STATUS, GL_FRAGMENT_SHADER, GL_TRUE
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Ecs/Schedule.cpp has correct #includes/fwd-decls)
 
 
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.hpp should add these lines:
-#include <optional>         // for optional
-#include <string>           // for basic_string, string, hash
-#include <unordered_map>    // for unordered_map
 #include "Math/Color.hpp"   // for Color3u8, Color4u8
 #include "Math/Matrix.hpp"  // for Matrix4f
 #include "Math/Vector.hpp"  // for Vector2f, Vector3f, Vector4f
-namespace Flock { namespace Graphics { class CubeMap; } }
-namespace Flock { namespace Graphics { class Shader; } }
-namespace Flock { namespace Graphics { class TextureArray; } }
 
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.hpp should remove these lines:
-- #include "CubeMap.hpp"  // lines 7-7
-- #include "Math/Math.hpp"  // lines 11-11
-- #include "Shader.hpp"  // lines 8-8
-- #include "TextureArray.hpp"  // lines 10-10
+- #include "CubeMap.hpp"  // lines 10-10
+- #include "Math/Math.hpp"  // lines 14-14
+- #include "Shader.hpp"  // lines 11-11
+- #include "TextureArray.hpp"  // lines 13-13
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.hpp:
 #include <any>              // for any
@@ -228,33 +94,12 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipel
 #include "Math/Matrix.hpp"  // for Matrix4f
 #include "Math/Vector.hpp"  // for Vector2f, Vector3f, Vector4f
 #include "Texture.hpp"      // for Texture
-namespace Flock { namespace Graphics { class CubeMap; } }
-namespace Flock { namespace Graphics { class Shader; } }
-namespace Flock { namespace Graphics { class TextureArray; } }
+namespace Flock { namespace Graphics { class CubeMap; } }  // lines 17-17
+namespace Flock { namespace Graphics { class Shader; } }  // lines 18-18
+namespace Flock { namespace Graphics { class TextureArray; } }  // lines 19-19
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.cpp should add these lines:
-#include <utility>                    // for move, get
-#include "Debug/Log.hpp"              // for LogErr
-#include "Graphics/CubeMap.hpp"       // for CubeMap
-#include "Graphics/Shader.hpp"        // for Shader
-#include "Graphics/Texture.hpp"       // for Texture
-#include "Graphics/TextureArray.hpp"  // for TextureArray
-#include "glad/glad.h"                // for glGetUniformLocation, glUseProgram
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.cpp:
-#include "Pipeline.hpp"
-#include <utility>                    // for move, get
-#include "Debug/Log.hpp"              // for LogErr
-#include "Gl.hpp"                     // for FLK_GL_CALL
-#include "Graphics/CubeMap.hpp"       // for CubeMap
-#include "Graphics/Shader.hpp"        // for Shader
-#include "Graphics/Texture.hpp"       // for Texture
-#include "Graphics/TextureArray.hpp"  // for TextureArray
-#include "glad/glad.h"                // for glGetUniformLocation, glUseProgram
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipeline.cpp has correct #includes/fwd-decls)
 
 
 (/Users/hasan/Projects/FrenJam2/Core/src/Math/Utils.hpp has correct #includes/fwd-decls)
@@ -262,99 +107,7 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Pipel
 (/Users/hasan/Projects/FrenJam2/Core/src/Math/Utils.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp should add these lines:
-#include <optional>         // for optional
-#include "Math/Vector.hpp"  // for Vector2u
-#include "glad/glad.h"      // for GL_DEPTH_COMPONENT, GL_RED, GL_RG, GL_RGB
-namespace Flock { namespace Graphics { struct Image; } }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp should remove these lines:
-- #include "Graphics/Image.hpp"  // lines 5-5
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp:
-#include <optional>         // for optional
-#include "Common.hpp"       // for u32, u8, FLK_API, i32
-#include "Math/Vector.hpp"  // for Vector2u
-#include "glad/glad.h"      // for GL_DEPTH_COMPONENT, GL_RED, GL_RG, GL_RGB
-namespace Flock { namespace Graphics { struct Image; } }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.cpp should add these lines:
-#include "Graphics/Image.hpp"  // for Image, ToGlType
-#include "Memory/Buffer.hpp"   // for Buffer
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.cpp:
-#include "Texture.hpp"
-#include "Gl.hpp"              // for FLK_GL_CALL
-#include "Graphics/Image.hpp"  // for Image, ToGlType
-#include "Memory/Buffer.hpp"   // for Buffer
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.hpp should add these lines:
-#include <optional>             // for optional
-#include <vector>               // for vector
-#include "Graphics/Buffer.hpp"  // for Buffer
-#include "Math/Vector.hpp"      // for Vector2f, Vector3f, Vector2, Vector3
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.hpp:
-#include <optional>             // for optional
-#include <vector>               // for vector
-#include "Common.hpp"           // for FLK_API, usize, u32
-#include "Graphics/Buffer.hpp"  // for Buffer
-#include "Math/Vector.hpp"      // for Vector2f, Vector3f, Vector2, Vector3
-#include "Vertex.hpp"           // for Vertex
-#include "VertexArray.hpp"      // for VertexArray
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.cpp should add these lines:
-#include <stdint.h>                  // for uint32_t
-#include "Graphics/Vertex.hpp"       // for Vertex
-#include "Graphics/VertexArray.hpp"  // for VertexArray
-#include "Memory/Buffer.hpp"         // for Buffer
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.cpp:
-#include "Mesh.hpp"
-#include <stdint.h>                  // for uint32_t
-#include "Graphics/Vertex.hpp"       // for Vertex
-#include "Graphics/VertexArray.hpp"  // for VertexArray
-#include "Memory/Buffer.hpp"         // for Buffer
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.hpp should add these lines:
-#include <vector>      // for vector
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.hpp:
-#include <vector>      // for vector
-#include "Common.hpp"  // for u32, usize, FLK_API, u8
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.cpp should add these lines:
-#include <algorithm>    // for max
-#include "glad/glad.h"  // for GL_BYTE, GL_FLOAT, GL_INT, GL_UNSIGNED_BYTE
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.cpp:
-#include "VertexLayout.hpp"
-#include <algorithm>    // for max
-#include "Gl.hpp"       // for FLK_GL_CALL
-#include "glad/glad.h"  // for GL_BYTE, GL_FLOAT, GL_INT, GL_UNSIGNED_BYTE
----
-
-
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.hpp should add these lines:
-namespace Flock { namespace Graphics { class Buffer; } }
-namespace Flock { namespace Graphics { class VertexLayout; } }
 
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.hpp should remove these lines:
 - #include "Buffer.hpp"  // lines 5-5
@@ -362,37 +115,45 @@ namespace Flock { namespace Graphics { class VertexLayout; } }
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.hpp:
 #include "Common.hpp"  // for FLK_API, u32
-namespace Flock { namespace Graphics { class Buffer; } }
-namespace Flock { namespace Graphics { class VertexLayout; } }
+namespace Flock { namespace Graphics { class Buffer; } }  // lines 10-10
+namespace Flock { namespace Graphics { class VertexLayout; } }  // lines 11-11
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.cpp should add these lines:
-#include "Graphics/Buffer.hpp"        // for Buffer, BufferType
-#include "Graphics/VertexLayout.hpp"  // for VertexLayout
-#include "glad/glad.h"                // for glBindVertexArray, GL_VERTEX_AR...
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.cpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.cpp should remove these lines:
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexArray.cpp:
-#include "VertexArray.hpp"
-#include "Gl.hpp"                     // for FLK_GL_CALL
-#include "Graphics/Buffer.hpp"        // for Buffer, BufferType
-#include "Graphics/VertexLayout.hpp"  // for VertexLayout
-#include "glad/glad.h"                // for glBindVertexArray, GL_VERTEX_AR...
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/VertexLayout.cpp has correct #includes/fwd-decls)
+
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Mesh.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp should remove these lines:
+- #include "Graphics/Image.hpp"  // lines 7-7
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.hpp:
+#include <optional>         // for optional
+#include "Common.hpp"       // for u32, u8, FLK_API, i32
+#include "Math/Vector.hpp"  // for Vector2u
+#include "glad/glad.h"      // for GL_DEPTH_COMPONENT, GL_RED, GL_RG, GL_RGB
+namespace Flock { namespace Graphics { struct Image; } }  // lines 12-12
 ---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Texture.cpp has correct #includes/fwd-decls)
 
 
 /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.hpp should add these lines:
-#include <optional>                // for optional
-#include <string>                  // for basic_string, string
-#include "GLFW/glfw3.h"            // for GLFWwindow
-#include "Math/Vector.hpp"         // for Vector2u, Vector2
-namespace Flock { namespace Input { enum class CursorMode; } }
 
 /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.hpp should remove these lines:
-- #include "Graphics/Gl.hpp"  // lines 4-4
-- #include "Input/Input.hpp"  // lines 7-7
-- #include "Math/Math.hpp"  // lines 8-8
+- #include "Graphics/Gl.hpp"  // lines 7-7
+- #include "Input/Input.hpp"  // lines 10-10
+- #include "Math/Math.hpp"  // lines 11-11
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.hpp:
 #include <optional>                // for optional
@@ -401,21 +162,17 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.hp
 #include "Event/EventHandler.hpp"  // for Event, EventQueue, EventHandler (p...
 #include "GLFW/glfw3.h"            // for GLFWwindow
 #include "Math/Vector.hpp"         // for Vector2u, Vector2
-namespace Flock { namespace Input { enum class CursorMode; } }
+namespace Flock { namespace Input { enum class CursorMode; } }  // lines 17-17
 ---
 
 /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.cpp should add these lines:
-#include <memory>           // for make_unique
-#include <utility>          // for forward, move
-#include "Input/Input.hpp"  // for CursorMode (ptr only), ToGlfwType
-#include "glad/glad.h"      // for GLADloadproc, GL_TRUE, gladLoadGLLoader
 
 /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.cpp should remove these lines:
+- #include <memory>  // lines 3-3
+- #include <utility>  // lines 4-4
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.cpp:
 #include "Window.hpp"
-#include <memory>           // for make_unique
-#include <utility>          // for forward, move
 #include "Input/Input.hpp"  // for CursorMode (ptr only), ToGlfwType
 #include "glad/glad.h"      // for GLADloadproc, GL_TRUE, gladLoadGLLoader
 ---
@@ -423,97 +180,57 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Glfw/Window.cp
 
 (/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Image.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Image.cpp should add these lines:
-#include <string>                    // for basic_string
-#include "Debug/Log.hpp"             // for LogErr
-#include "Math/Vector.hpp"           // for Vector2i
-#include "Memory/Buffer.hpp"         // for Buffer
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Image.cpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Image.cpp should remove these lines:
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Image.cpp:
-#include "Image.hpp"
-#include <../../vendor/stbi/stbi.h>  // for stbi_failure_reason, stbi_image_...
-#include <string>                    // for basic_string
-#include "Debug/Log.hpp"             // for LogErr
-#include "Math/Vector.hpp"           // for Vector2i
-#include "Memory/Buffer.hpp"         // for Buffer
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.cpp has correct #includes/fwd-decls)
+
+
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.cpp has correct #includes/fwd-decls)
+
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.hpp has correct #includes/fwd-decls)
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp should remove these lines:
+- #include "Texture.hpp"  // lines 7-7
+- #include "TextureArray.hpp"  // lines 8-8
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp:
+#include <optional>     // for optional
+#include "Common.hpp"   // for u32, FLK_API, i32
+#include "glad/glad.h"  // for GL_COLOR_ATTACHMENT0, GL_DEPTH_ATTACHMENT
+namespace Flock { namespace Graphics { class Texture; } }  // lines 13-13
+namespace Flock { namespace Graphics { class TextureArray; } }  // lines 14-14
 ---
 
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.hpp should add these lines:
-#include <optional>               // for optional
-#include "Common.hpp"             // for FLK_API
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.hpp:
-#include <filesystem>             // for path
-#include <optional>               // for optional
-#include "Common.hpp"             // for FLK_API
-#include "Graphics/Pipeline.hpp"  // for Pipeline
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.cpp should add these lines:
-#include <string>               // for basic_string, operator+, operator==
-#include "Graphics/Shader.hpp"  // for ShaderType, Shader
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Pipeline.cpp:
-#include "Pipeline.hpp"
-#include <sstream>              // for char_traits, basic_istream, basic_ist...
-#include <string>               // for basic_string, operator+, operator==
-#include "File.hpp"             // for ReadText
-#include "Graphics/Shader.hpp"  // for ShaderType, Shader
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.hpp should add these lines:
-#include <optional>    // for optional
-#include <string>      // for string
+(/Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.hpp should remove these lines:
+(/Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.cpp has correct #includes/fwd-decls)
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.hpp:
-#include <filesystem>  // for path
-#include <optional>    // for optional
-#include <string>      // for string
-#include "Common.hpp"  // for FLK_API
----
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.cpp should add these lines:
-#include "Debug/Log.hpp"  // for LogErr
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/File.cpp:
-#include "File.hpp"
-#include <fstream>        // for basic_ifstream, basic_ofstream, basic_istream
-#include <sstream>        // for basic_stringstream
-#include "Debug/Log.hpp"  // for LogErr
----
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.cpp has correct #includes/fwd-decls)
 
 
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.hpp should add these lines:
-#include <functional>                 // for reference_wrapper
-#include <optional>                   // for nullopt, nullopt_t, optional
-#include <vector>                     // for vector
-#include "Common.hpp"                 // for OptionalRef, f32, Ref, i32, u32
-#include "Graphics/TextureArray.hpp"  // for TextureArray
-#include "Math/Color.hpp"             // for Color4u8, Color4
-#include "Math/Matrix.hpp"            // for Matrix4f
-#include "Math/Vector.hpp"            // for Vector3f, Vector2u
-namespace Flock { namespace Graphics { class CubeMap; } }
-namespace Flock { namespace Graphics { class Framebuffer; } }
-namespace Flock { namespace Graphics { class Mesh; } }
-namespace Flock { namespace Graphics { class Pipeline; } }
-namespace Flock { namespace Graphics { class Texture; } }
 
 /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.hpp should remove these lines:
-- #include "Asset/AssetLoader.hpp"  // lines 6-6
-- #include "Framebuffer.hpp"  // lines 4-4
-- #include "Mesh.hpp"  // lines 5-5
+- #include "Asset/AssetLoader.hpp"  // lines 10-10
+- #include "Framebuffer.hpp"  // lines 8-8
+- #include "Mesh.hpp"  // lines 9-9
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.hpp:
 #include <functional>                 // for reference_wrapper
@@ -528,172 +245,67 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Rende
 #include "Math/Rect.hpp"              // for Rect2u
 #include "Math/Transform.hpp"         // for Transform
 #include "Math/Vector.hpp"            // for Vector3f, Vector2u
-namespace Flock { namespace Graphics { class CubeMap; } }
-namespace Flock { namespace Graphics { class Framebuffer; } }
-namespace Flock { namespace Graphics { class Mesh; } }
-namespace Flock { namespace Graphics { class Pipeline; } }
-namespace Flock { namespace Graphics { class Texture; } }
+namespace Flock { namespace Graphics { class CubeMap; } }  // lines 23-23
+namespace Flock { namespace Graphics { class Framebuffer; } }  // lines 24-24
+namespace Flock { namespace Graphics { class Mesh; } }  // lines 25-25
+namespace Flock { namespace Graphics { class Pipeline; } }  // lines 26-26
+namespace Flock { namespace Graphics { class Texture; } }  // lines 27-27
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.cpp should add these lines:
-#include <algorithm>                 // for sort
-#include <string>                    // for basic_string, operator+, char_tr...
-#include "Debug/Log.hpp"             // for LogErr
-#include "Graphics/Camera.hpp"       // for Camera
-#include "Graphics/Framebuffer.hpp"  // for Framebuffer, Attachment
-#include "Graphics/Gl.hpp"           // for FLK_GL_CALL
-#include "Graphics/Light.hpp"        // for Light, AmbientLight
-#include "Graphics/Mesh.hpp"         // for Mesh
-#include "Graphics/Pipeline.hpp"     // for Pipeline
-#include "Graphics/Shader.hpp"       // for Shader, ShaderType
-#include "Graphics/Texture.hpp"      // for TextureFormat
-#include "Math/Quaternion.hpp"       // for Quaternion
-#include "Math/RigidTransform.hpp"   // for RigidTransform
-#include "glad/glad.h"               // for glDisable, GL_DEPTH_TEST, glEnable
-namespace Flock { namespace Graphics { class CubeMap; } }
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.cpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.cpp should remove these lines:
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Renderer.cpp:
-#include "Renderer.hpp"
-#include <algorithm>                 // for sort
-#include <string>                    // for basic_string, operator+, char_tr...
-#include "Debug/Log.hpp"             // for LogErr
-#include "Graphics/Camera.hpp"       // for Camera
-#include "Graphics/Framebuffer.hpp"  // for Framebuffer, Attachment
-#include "Graphics/Gl.hpp"           // for FLK_GL_CALL
-#include "Graphics/Light.hpp"        // for Light, AmbientLight
-#include "Graphics/Mesh.hpp"         // for Mesh
-#include "Graphics/Pipeline.hpp"     // for Pipeline
-#include "Graphics/Shader.hpp"       // for Shader, ShaderType
-#include "Graphics/Texture.hpp"      // for TextureFormat
-#include "Math/Quaternion.hpp"       // for Quaternion
-#include "Math/RigidTransform.hpp"   // for RigidTransform
-#include "glad/glad.h"               // for glDisable, GL_DEPTH_TEST, glEnable
-namespace Flock { namespace Graphics { class CubeMap; } }
+/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp should remove these lines:
+- #include "Event/EventHandler.hpp"  // lines 5-5
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp:
+#include "Input.hpp"  // for InputState
+namespace Flock { namespace Event { class EventHandler; } }  // lines 9-9
+---
+
+/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp should remove these lines:
+- #include <memory>  // lines 3-3
+- #include <utility>  // lines 5-5
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp:
+#include "InputHandler.hpp"
+#include <set>                     // for set
+#include "Event/EventHandler.hpp"  // for EventHandler
+#include "Glfw/Window.hpp"         // for CursorPositionEvent, KeyEvent, Mou...
+#include "Input/Input.hpp"         // for InputState, Action, ActionFromGlfw...
+#include "Math/Vector.hpp"         // for Vector2, Vector2d, Vector2f
 ---
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.hpp should add these lines:
-#include <vector>                 // for vector
-#include "Common.hpp"             // for FLK_API, usize
-#include "Graphics/Vertex.hpp"    // for Vertex
+/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp should add these lines:
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.hpp should remove these lines:
+/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp should remove these lines:
+- #include "AudioClip.hpp"  // lines 8-8
+- #include "AudioListener.hpp"  // lines 9-9
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.hpp:
-#include <filesystem>             // for path
-#include <vector>                 // for vector
-#include "Common.hpp"             // for FLK_API, usize
-#include "Graphics/Material.hpp"  // for Material
-#include "Graphics/Mesh.hpp"      // for MeshData
-#include "Graphics/Vertex.hpp"    // for Vertex
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp:
+#include <soloud.h>         // for Soloud
+#include <memory>           // for unique_ptr
+#include <optional>         // for optional
+#include "Common.hpp"       // for f32, FLK_API
+#include "Math/Vector.hpp"  // for Vector3f
+namespace Flock { namespace Audio { struct AudioClip; } }  // lines 14-14
+namespace Flock { namespace Audio { struct AudioListener; } }  // lines 15-15
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.cpp should add these lines:
-#include <string>                // for basic_string, operator+, string, ope...
-#include "Debug/Log.hpp"         // for LogErr
-#include "assimp/color4.h"       // for aiColor4D
-#include "assimp/material.h"     // for aiMaterial, aiTextureType, AI_MATKEY...
-#include "assimp/material.inl"   // for aiMaterial::Get, aiMaterial::GetTexture
-#include "assimp/mesh.h"         // for aiMesh, aiFace
-#include "assimp/types.h"        // for aiString, AI_SUCCESS
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Model.cpp:
-#include "Model.hpp"
-#include <assimp/postprocess.h>  // for aiPostProcessSteps
-#include <assimp/scene.h>        // for aiScene
-#include <assimp/Importer.hpp>   // for Importer
-#include <string>                // for basic_string, operator+, string, ope...
-#include "Debug/Log.hpp"         // for LogErr
-#include "Math/Color.hpp"        // for Color4u8
-#include "assimp/color4.h"       // for aiColor4D
-#include "assimp/material.h"     // for aiMaterial, aiTextureType, AI_MATKEY...
-#include "assimp/material.inl"   // for aiMaterial::Get, aiMaterial::GetTexture
-#include "assimp/mesh.h"         // for aiMesh, aiFace
-#include "assimp/types.h"        // for aiString, AI_SUCCESS
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp should add these lines:
-#include <optional>     // for optional
-#include "glad/glad.h"  // for GL_COLOR_ATTACHMENT0, GL_DEPTH_ATTACHMENT
-namespace Flock { namespace Graphics { class Texture; } }
-namespace Flock { namespace Graphics { class TextureArray; } }
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp should remove these lines:
-- #include "Texture.hpp"  // lines 5-5
-- #include "TextureArray.hpp"  // lines 6-6
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.hpp:
-#include <optional>     // for optional
-#include "Common.hpp"   // for u32, FLK_API, i32
-#include "glad/glad.h"  // for GL_COLOR_ATTACHMENT0, GL_DEPTH_ATTACHMENT
-namespace Flock { namespace Graphics { class Texture; } }
-namespace Flock { namespace Graphics { class TextureArray; } }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.cpp should add these lines:
-#include "Graphics/Gl.hpp"            // for FLK_GL_CALL
-#include "Graphics/Texture.hpp"       // for Texture
-#include "Graphics/TextureArray.hpp"  // for TextureArray
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/Framebuffer.cpp:
-#include "Framebuffer.hpp"
-#include "Graphics/Gl.hpp"            // for FLK_GL_CALL
-#include "Graphics/Texture.hpp"       // for Texture
-#include "Graphics/TextureArray.hpp"  // for TextureArray
----
-
-
-(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.hpp has correct #includes/fwd-decls)
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.cpp should add these lines:
-#include <optional>              // for optional
-#include "Graphics/Gl.hpp"       // for FLK_GL_CALL
-#include "Graphics/Texture.hpp"  // for TextureConfig, ConfigureTexture, Tex...
-#include "glad/glad.h"           // for GL_TEXTURE_2D_ARRAY, glBindTexture
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureArray.cpp:
-#include "TextureArray.hpp"
-#include <optional>              // for optional
-#include "Graphics/Gl.hpp"       // for FLK_GL_CALL
-#include "Graphics/Texture.hpp"  // for TextureConfig, ConfigureTexture, Tex...
-#include "glad/glad.h"           // for GL_TEXTURE_2D_ARRAY, glBindTexture
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.hpp should add these lines:
-#include <functional>  // for function
-#include <memory>      // for unique_ptr, make_unique
-#include <optional>    // for nullopt, optional
-#include <queue>       // for queue
-#include <utility>     // for forward, move
-#include <vector>      // for vector
-
-/Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.hpp:
-#include <functional>  // for function
-#include <memory>      // for unique_ptr, make_unique
-#include <optional>    // for nullopt, optional
-#include <queue>       // for queue
-#include <utility>     // for forward, move
-#include <vector>      // for vector
-#include "Common.hpp"  // for usize, FLK_API, OptionalRef
----
-
-(/Users/hasan/Projects/FrenJam2/Core/src/Event/EventHandler.cpp has correct #includes/fwd-decls)
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.cpp has correct #includes/fwd-decls)
 
 
 /Users/hasan/Projects/FrenJam2/Core/src/App.hpp should add these lines:
-#include <optional>                   // for optional
 #include <vector>                     // for vector
 
 /Users/hasan/Projects/FrenJam2/Core/src/App.hpp should remove these lines:
@@ -715,42 +327,16 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/App.hpp:
 ---
 
 /Users/hasan/Projects/FrenJam2/Core/src/App.cpp should add these lines:
-#include <filesystem>                   // for path
-#include <functional>                   // for reference_wrapper
-#include <initializer_list>             // for initializer_list
-#include <memory>                       // for make_shared, static_pointer_cast
-#include <string>                       // for basic_string, operator==
-#include <utility>                      // for move
-#include "Audio/AudioClip.hpp"          // for AudioClip
-#include "Audio/AudioListener.hpp"      // for AudioListener
-#include "Debug/Log.hpp"                // for LogErr, LogWrn
-#include "Ecs/Registry.hpp"             // for Registry
-#include "Graphics/Camera.hpp"          // for Camera, Projection
-#include "Graphics/CubeMap.hpp"         // for CubeMap
-#include "Graphics/Light.hpp"           // for Light, AmbientLight, Directio...
-#include "Graphics/Material.hpp"        // for Material
-#include "Graphics/Mesh.hpp"            // for Mesh
-#include "Graphics/Model.hpp"           // for RenderObject, Model
-#include "Graphics/Pipeline.hpp"        // for Pipeline
-#include "Graphics/Texture.hpp"         // for Texture
-#include "Gui/Font.hpp"                 // for Font
-#include "Gui/RectTransform.hpp"        // for RectTransform
-#include "Math/Color.hpp"               // for Color4u8
-#include "Math/Rect.hpp"                // for Rect2u
-#include "Math/Vector.hpp"              // for Vector2
-#include "Physics/Collider.hpp"         // for BoxCollider, SphereCollider
-#include "Physics/RigidBody.hpp"        // for RigidBody
-#include "TypeId.hpp"                   // for GetTypeId
 
 /Users/hasan/Projects/FrenJam2/Core/src/App.cpp should remove these lines:
-- #include "Serial/JsonArchive.hpp"  // lines 15-15
+- #include <memory>  // lines 6-6
+- #include "TypeId.hpp"  // lines 42-42
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/App.cpp:
 #include "App.hpp"
 #include <filesystem>                   // for path
 #include <functional>                   // for reference_wrapper
 #include <initializer_list>             // for initializer_list
-#include <memory>                       // for make_shared, static_pointer_cast
 #include <string>                       // for basic_string, operator==
 #include <utility>                      // for move
 #include "Asset/Assets.hpp"             // for Assets
@@ -785,49 +371,95 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/App.cpp:
 #include "Physics/Collider.hpp"         // for BoxCollider, SphereCollider
 #include "Physics/RigidBody.hpp"        // for RigidBody
 #include "Time/Time.hpp"                // for TimeState, Time
-#include "TypeId.hpp"                   // for GetTypeId
 ---
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp should add these lines:
-namespace Flock { namespace Event { class EventHandler; } }
+(/Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp should remove these lines:
-- #include "Event/EventHandler.hpp"  // lines 5-5
+(/Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.cpp has correct #includes/fwd-decls)
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.hpp:
-#include "Input.hpp"  // for InputState
-namespace Flock { namespace Event { class EventHandler; } }
+
+/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp should remove these lines:
+- #include "Collider.hpp"  // lines 8-8
+- #include "Math/Transform.hpp"  // lines 11-11
+- #include "RigidBody.hpp"  // lines 10-10
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp:
+#include <reactphysics3d/engine/PhysicsCommon.h>  // for PhysicsCommon
+#include <memory>                                 // for unique_ptr
+#include <vector>                                 // for vector
+#include "Common.hpp"                             // for FLK_API, f32
+namespace Flock { namespace Physics { struct Collider; } }  // lines 15-15
+namespace Flock { namespace Physics { struct RigidBody; } }  // lines 16-16
+namespace Flock { struct Transform; }  // lines 18-18
+namespace reactphysics3d { class PhysicsWorld; }  // lines 21-21
+namespace reactphysics3d { class RigidBody; }  // lines 22-22
 ---
 
-/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp should add these lines:
-#include <memory>                  // for make_unique
-#include <set>                     // for set
-#include <utility>                 // for forward, move
-#include "Event/EventHandler.hpp"  // for EventHandler
-#include "Input/Input.hpp"         // for InputState, Action, ActionFromGlfw...
-#include "Math/Vector.hpp"         // for Vector2, Vector2d, Vector2f
+(/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.cpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp should remove these lines:
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Input/InputHandler.cpp:
-#include "InputHandler.hpp"
-#include <memory>                  // for make_unique
-#include <set>                     // for set
-#include <utility>                 // for forward, move
-#include "Event/EventHandler.hpp"  // for EventHandler
-#include "Glfw/Window.hpp"         // for CursorPositionEvent, KeyEvent, Mou...
-#include "Input/Input.hpp"         // for InputState, Action, ActionFromGlfw...
-#include "Math/Vector.hpp"         // for Vector2, Vector2d, Vector2f
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp should add these lines:
+#include "Math/Color.hpp"  // for Color4u8
+
+/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp should remove these lines:
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp:
+#include <optional>        // for optional
+#include "Common.hpp"      // for FLK_API, u32, u8
+#include "Math/Color.hpp"  // for Color4u8
+#include "Texture.hpp"     // for TextureConfig
+namespace Flock { namespace Graphics { struct Image; } }  // lines 10-10
 ---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp should remove these lines:
+- #include "Font.hpp"  // lines 8-8
+- #include "Graphics/Image.hpp"  // lines 11-11
+- #include "Graphics/Texture.hpp"  // lines 12-12
+- #include "RectTransform.hpp"  // lines 9-9
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp:
+#include <optional>         // for nullopt, nullopt_t
+#include <string>           // for string
+#include "Common.hpp"       // for u32, FLK_API, OptionalRef
+#include "Math/Color.hpp"   // for Color4u8
+#include "Math/Vector.hpp"  // for Vector2u
+#include "Text.hpp"         // for AlignmentH, AlignmentV
+namespace Flock { namespace Graphics { class Texture; } }  // lines 19-19
+namespace Flock { namespace Gui { struct Font; } }  // lines 22-22
+namespace Flock { namespace Gui { struct RectTransform; } }  // lines 23-23
+struct NVGcontext;  // lines 16-16
+---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.cpp has correct #includes/fwd-decls)
+
+
+/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp should add these lines:
+
+/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp should remove these lines:
+- #include "Common.hpp"  // lines 9-9
+
+The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp:
+#include <nlohmann/json.hpp>      // for basic_json
+#include <optional>               // for optional, nullopt
+#include <string>                 // for string, basic_string
+#include <string_view>            // for basic_string_view, string_view
+#include "Debug/Log.hpp"          // for LogErr
+#include "nlohmann/json_fwd.hpp"  // for ordered_json
+---
+
+(/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.cpp has correct #includes/fwd-decls)
 
 
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.hpp should add these lines:
-#include <functional>          // for function
-#include <unordered_map>       // for unordered_map
-#include <utility>             // for forward
-#include "Serial/Archive.hpp"  // for IArchive (ptr only), Serializable
-#include "TypeId.hpp"          // for GetTypeId, TypeId
+#include "Ecs/Storage.hpp"     // for NameOf
 
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.hpp should remove these lines:
 
@@ -838,41 +470,32 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.hpp:
 #include <unordered_map>       // for unordered_map
 #include <utility>             // for forward
 #include "Common.hpp"          // for FLK_API, FLK_EXPECT
+#include "Ecs/Storage.hpp"     // for NameOf
 #include "Registry.hpp"        // for Registry
 #include "Serial/Archive.hpp"  // for IArchive (ptr only), Serializable
 #include "TypeId.hpp"          // for GetTypeId, TypeId
 ---
 
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.cpp should add these lines:
-#include <memory>                       // for make_shared
-#include <optional>                     // for optional
-#include <string>                       // for basic_string, string
-#include <string_view>                  // for basic_string_view
-#include "Ecs/Registry.hpp"             // for Registry
-#include "Gui/RectTransform.hpp"        // for RectTransform
-#include "Math/RigidTransform.hpp"      // for RigidTransform
-#include "Serial/Json.hpp"              // for Json
 
 /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.cpp should remove these lines:
-- #include "Asset/Assets.hpp"  // lines 5-5
-- #include "FileIo/World.hpp"  // lines 2-2
+- #include <memory>  // lines 3-3
 
 The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.cpp:
 #include "World.hpp"
-#include <memory>                       // for make_shared
 #include <optional>                     // for optional
 #include <string>                       // for basic_string, string
 #include <string_view>                  // for basic_string_view
 #include "App.hpp"                      // for Application
-#include "Audio/AudioListener.hpp"      // for AudioListener, NameOf
+#include "Audio/AudioListener.hpp"      // for AudioListener
 #include "Audio/AudioSource.hpp"        // for AudioSource
 #include "Ecs/Registry.hpp"             // for Registry
 #include "Event/EventRegistry.hpp"      // for EventRegistry
 #include "FileIo/File.hpp"              // for ReadText, WriteText
-#include "Graphics/Camera.hpp"          // for Camera, NameOf
-#include "Graphics/Light.hpp"           // for AmbientLight, NameOf
+#include "Graphics/Camera.hpp"          // for Camera
+#include "Graphics/Light.hpp"           // for AmbientLight
 #include "Graphics/ModelRenderer.hpp"   // for ModelRenderer
-#include "Graphics/Skybox.hpp"          // for Skybox, NameOf
+#include "Graphics/Skybox.hpp"          // for Skybox
 #include "Graphics/SpriteRenderer.hpp"  // for SpriteRenderer
 #include "Gui/Box.hpp"                  // for Box
 #include "Gui/Button.hpp"               // for Button
@@ -890,432 +513,27 @@ The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Ecs/World.cpp:
 ---
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp should add these lines:
-#include <memory>           // for unique_ptr
-#include <optional>         // for optional
-namespace Flock { namespace Audio { struct AudioClip; } }
-namespace Flock { namespace Audio { struct AudioListener; } }
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp should remove these lines:
-- #include "AudioClip.hpp"  // lines 6-6
-- #include "AudioListener.hpp"  // lines 7-7
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.hpp:
-#include <soloud.h>         // for Soloud
-#include <memory>           // for unique_ptr
-#include <optional>         // for optional
-#include "Common.hpp"       // for f32, FLK_API
-#include "Math/Vector.hpp"  // for Vector3f
-namespace Flock { namespace Audio { struct AudioClip; } }
-namespace Flock { namespace Audio { struct AudioListener; } }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.cpp should add these lines:
-#include "Audio/AudioClip.hpp"      // for AudioClip
-#include "Audio/AudioListener.hpp"  // for AudioListener
-#include "soloud.h"                 // for Soloud
-#include "soloud_error.h"           // for SOLOUD_ERRORS
-#include "soloud_wav.h"             // for Wav
-
-/Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Audio/AudioPlayer.cpp:
-#include "AudioPlayer.hpp"
-#include "Audio/AudioClip.hpp"      // for AudioClip
-#include "Audio/AudioListener.hpp"  // for AudioListener
-#include "soloud.h"                 // for Soloud
-#include "soloud_error.h"           // for SOLOUD_ERRORS
-#include "soloud_wav.h"             // for Wav
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.hpp should add these lines:
-#include <optional>             // for optional
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.hpp:
-#include <filesystem>           // for path
-#include <optional>             // for optional
-#include "Audio/AudioClip.hpp"  // for AudioClip
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.cpp should add these lines:
-#include <memory>          // for unique_ptr, make_unique
-#include <string>          // for basic_string
-#include "soloud_error.h"  // for SOLOUD_ERRORS
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.cpp should remove these lines:
-- #include <soloud.h>  // lines 3-3
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Audio.cpp:
-#include "Audio.hpp"
-#include <soloud_wav.h>    // for Wav
-#include <memory>          // for unique_ptr, make_unique
-#include <string>          // for basic_string
-#include "soloud_error.h"  // for SOLOUD_ERRORS
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.hpp should add these lines:
-#include <concepts>                   // for same_as
-#include <filesystem>                 // for path
-#include <memory>                     // for allocator, make_shared, shared_ptr
-#include <optional>                   // for optional, nullopt, nullopt_t
-#include <string>                     // for basic_string, hash, char_traits
-#include <unordered_map>              // for unordered_map
-#include <utility>                    // for move
-#include <vector>                     // for vector
-#include "Graphics/CubeMap.hpp"       // for CubeMap
-#include "Graphics/Mesh.hpp"          // for Mesh
-
-/Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.hpp:
-#include <concepts>                   // for same_as
-#include <filesystem>                 // for path
-#include <memory>                     // for allocator, make_shared, shared_ptr
-#include <optional>                   // for optional, nullopt, nullopt_t
-#include <string>                     // for basic_string, hash, char_traits
-#include <unordered_map>              // for unordered_map
-#include <utility>                    // for move
-#include <vector>                     // for vector
-#include "Audio/AudioClip.hpp"        // for AudioClip
-#include "Common.hpp"                 // for FLK_API, OptionalRef, u32, u8
-#include "FileIo/Audio.hpp"           // for ReadAudioClip
-#include "FileIo/File.hpp"            // for ReadText
-#include "FileIo/Font.hpp"            // for ReadFont
-#include "FileIo/Image.hpp"           // for ReadImage
-#include "FileIo/Model.hpp"           // for MeshData, ReadModelMaterials
-#include "FileIo/Pipeline.hpp"        // for ReadPipeline
-#include "Graphics/CubeMap.hpp"       // for CubeMap
-#include "Graphics/Material.hpp"      // for Material
-#include "Graphics/Mesh.hpp"          // for Mesh
-#include "Graphics/Model.hpp"         // for RenderObject, Model
-#include "Graphics/Pipeline.hpp"      // for Pipeline
-#include "Graphics/Texture.hpp"       // for Texture
-#include "Graphics/TextureAtlas.hpp"  // for TextureAtlas
-#include "Gui/Font.hpp"               // for Font
-#include "Handle.hpp"                 // for AssetId, Handle
-#include "TypeId.hpp"                 // for GetTypeId, TypeId
-namespace Flock { namespace Asset { template <typename T> struct Loader; } }  // lines 22-23
----
-
-(/Users/hasan/Projects/FrenJam2/Core/src/Asset/AssetLoader.cpp has correct #includes/fwd-decls)
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp should add these lines:
-#include <optional>               // for optional, nullopt
-#include <string>                 // for string, basic_string
-#include <string_view>            // for basic_string_view, string_view
-#include "Debug/Log.hpp"          // for LogErr
-#include "nlohmann/json_fwd.hpp"  // for ordered_json
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp should remove these lines:
-- #include "Common.hpp"  // lines 6-6
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.hpp:
-#include <nlohmann/json.hpp>      // for basic_json
-#include <optional>               // for optional, nullopt
-#include <string>                 // for string, basic_string
-#include <string_view>            // for basic_string_view, string_view
-#include "Debug/Log.hpp"          // for LogErr
-#include "nlohmann/json_fwd.hpp"  // for ordered_json
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.cpp should add these lines:
-#include "Common.hpp"         // for u32
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Serial/Json.cpp:
-#include "Json.hpp"
-#include <nlohmann/json.hpp>  // for basic_json
-#include "Common.hpp"         // for u32
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.hpp should add these lines:
-#include <string>                 // for string
-#include <string_view>            // for string_view
-#include <vector>                 // for vector
-#include "nlohmann/json.hpp"      // for basic_json
-#include "nlohmann/json_fwd.hpp"  // for ordered_json
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.hpp:
-#include <string>                 // for string
-#include <string_view>            // for string_view
-#include <vector>                 // for vector
-#include "Archive.hpp"            // for Color3u8, Color4u8, IArchive, Vector2f
-#include "Common.hpp"             // for usize, FLK_API, f32, f64, i32, i64
-#include "Json.hpp"               // for Json
-#include "nlohmann/json.hpp"      // for basic_json
-#include "nlohmann/json_fwd.hpp"  // for ordered_json
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.cpp should add these lines:
-#include "Debug/Log.hpp"        // for LogErr
-#include "Math/Color.hpp"       // for Color3u8, Color4u8
-#include "Math/Quaternion.hpp"  // for Quaternion
-#include "Math/Vector.hpp"      // for Vector2f, Vector2i, Vector3f, Vector3i
-#include "Serial/Json.hpp"      // for Json
-
-/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.cpp should remove these lines:
-- #include "Math/Math.hpp"  // lines 3-3
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.cpp:
-#include "JsonArchive.hpp"
-#include "Debug/Log.hpp"        // for LogErr
-#include "Math/Color.hpp"       // for Color3u8, Color4u8
-#include "Math/Quaternion.hpp"  // for Quaternion
-#include "Math/Vector.hpp"      // for Vector2f, Vector2i, Vector3f, Vector3i
-#include "Serial/Json.hpp"      // for Json
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp should add these lines:
-#include <memory>                                 // for unique_ptr
-#include <vector>                                 // for vector
-namespace Flock { namespace Physics { struct Collider; } }
-namespace Flock { namespace Physics { struct RigidBody; } }
-namespace Flock { struct Transform; }
-namespace reactphysics3d { class PhysicsWorld; }
-namespace reactphysics3d { class RigidBody; }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp should remove these lines:
-- #include "Collider.hpp"  // lines 6-6
-- #include "Math/Transform.hpp"  // lines 9-9
-- #include "RigidBody.hpp"  // lines 8-8
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.hpp:
-#include <reactphysics3d/engine/PhysicsCommon.h>  // for PhysicsCommon
-#include <memory>                                 // for unique_ptr
-#include <vector>                                 // for vector
-#include "Common.hpp"                             // for FLK_API, f32
-namespace Flock { namespace Physics { struct Collider; } }
-namespace Flock { namespace Physics { struct RigidBody; } }
-namespace Flock { struct Transform; }
-namespace reactphysics3d { class PhysicsWorld; }
-namespace reactphysics3d { class RigidBody; }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.cpp should add these lines:
-#include <utility>                                  // for move
-#include "Math/Quaternion.hpp"                      // for Quaternion
-#include "Math/RigidTransform.hpp"                  // for RigidTransform
-#include "Math/Transform.hpp"                       // for Transform
-#include "Math/Vector.hpp"                          // for Vector3f, Vector3
-#include "Physics/Collider.hpp"                     // for Collider
-#include "Physics/RigidBody.hpp"                    // for RigidBody, ToRp3d...
-#include "reactphysics3d/body/RigidBody.h"          // for RigidBody
-#include "reactphysics3d/engine/PhysicsCommon.h"    // for PhysicsCommon
-#include "reactphysics3d/engine/PhysicsWorld.h"     // for PhysicsWorld
-#include "reactphysics3d/mathematics/Quaternion.h"  // for Quaternion
-#include "reactphysics3d/mathematics/Transform.h"   // for Transform
-#include "reactphysics3d/mathematics/Vector3.h"     // for Vector3
-
-/Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Physics/PhysicsEngine.cpp:
-#include "PhysicsEngine.hpp"
-#include <utility>                                  // for move
-#include "Math/Quaternion.hpp"                      // for Quaternion
-#include "Math/RigidTransform.hpp"                  // for RigidTransform
-#include "Math/Transform.hpp"                       // for Transform
-#include "Math/Vector.hpp"                          // for Vector3f, Vector3
-#include "Physics/Collider.hpp"                     // for Collider
-#include "Physics/RigidBody.hpp"                    // for RigidBody, ToRp3d...
-#include "reactphysics3d/body/RigidBody.h"          // for RigidBody
-#include "reactphysics3d/engine/PhysicsCommon.h"    // for PhysicsCommon
-#include "reactphysics3d/engine/PhysicsWorld.h"     // for PhysicsWorld
-#include "reactphysics3d/mathematics/Quaternion.h"  // for Quaternion
-#include "reactphysics3d/mathematics/Transform.h"   // for Transform
-#include "reactphysics3d/mathematics/Vector3.h"     // for Vector3
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp should add these lines:
-#include <optional>        // for optional
-#include "Math/Color.hpp"  // for Color4u8
-namespace Flock { namespace Graphics { struct Image; } }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.hpp:
-#include <optional>        // for optional
-#include "Common.hpp"      // for FLK_API, u32, u8
-#include "Math/Color.hpp"  // for Color4u8
-#include "Texture.hpp"     // for TextureConfig
-namespace Flock { namespace Graphics { struct Image; } }
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.cpp should add these lines:
-#include <vector>                // for vector
-#include "Graphics/Gl.hpp"       // for FLK_GL_CALL
-#include "Graphics/Image.hpp"    // for Image, ToGlType
-#include "Graphics/Texture.hpp"  // for TextureConfig, ConfigureTexture, ToG...
-#include "Memory/Buffer.hpp"     // for Buffer
-#include "glad/glad.h"           // for GL_TEXTURE_CUBE_MAP, glBindTexture
-
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/CubeMap.cpp:
-#include "CubeMap.hpp"
-#include <vector>                // for vector
-#include "Graphics/Gl.hpp"       // for FLK_GL_CALL
-#include "Graphics/Image.hpp"    // for Image, ToGlType
-#include "Graphics/Texture.hpp"  // for TextureConfig, ConfigureTexture, ToG...
-#include "Memory/Buffer.hpp"     // for Buffer
-#include "glad/glad.h"           // for GL_TEXTURE_CUBE_MAP, glBindTexture
----
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.cpp has correct #includes/fwd-decls)
 
 
 (/Users/hasan/Projects/FrenJam2/Core/src/FileIo/World.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/World.cpp should add these lines:
-#include <string>                  // for basic_string, string
-#include "Serial/Json.hpp"         // for Json
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/World.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/World.cpp:
-#include "World.hpp"
-#include <string>                  // for basic_string, string
-#include "File.hpp"                // for ReadText, WriteText
-#include "Serial/Json.hpp"         // for Json
-#include "Serial/JsonArchive.hpp"  // for JsonWriter, JsonReader
----
+(/Users/hasan/Projects/FrenJam2/Core/src/FileIo/World.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp should add these lines:
-#include <optional>         // for nullopt, nullopt_t
-#include <string>           // for string
-#include "Math/Vector.hpp"  // for Vector2u
-namespace Flock { namespace Graphics { class Texture; } }
-namespace Flock { namespace Gui { struct Font; } }
-namespace Flock { namespace Gui { struct RectTransform; } }
-
-/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp should remove these lines:
-- #include "Font.hpp"  // lines 5-5
-- #include "Graphics/Image.hpp"  // lines 8-8
-- #include "Graphics/Texture.hpp"  // lines 9-9
-- #include "RectTransform.hpp"  // lines 6-6
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.hpp:
-#include <optional>         // for nullopt, nullopt_t
-#include <string>           // for string
-#include "Common.hpp"       // for u32, FLK_API, OptionalRef
-#include "Math/Color.hpp"   // for Color4u8
-#include "Math/Vector.hpp"  // for Vector2u
-#include "Text.hpp"         // for AlignmentH, AlignmentV
-namespace Flock { namespace Graphics { class Texture; } }
-namespace Flock { namespace Gui { struct Font; } }
-namespace Flock { namespace Gui { struct RectTransform; } }
-struct NVGcontext;  // lines 12-12
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.cpp should add these lines:
-#include <functional>             // for reference_wrapper
-#include "Debug/Log.hpp"          // for LogErr
-#include "Gui/Font.hpp"           // for Font
-#include "Gui/RectTransform.hpp"  // for RectTransform
-#include "Gui/Text.hpp"           // for AlignmentH, AlignmentV
-#include "Memory/Buffer.hpp"      // for Buffer
-#include "nanovg.h"               // for NVGalign, nvgBeginPath, nvgFill
-
-/Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Gui/GuiRenderer.cpp:
-#include "GuiRenderer.hpp"
-#include <functional>             // for reference_wrapper
-#include "Debug/Log.hpp"          // for LogErr
-#include "Graphics/Texture.hpp"   // for Texture
-#include "Gui/Font.hpp"           // for Font
-#include "Gui/RectTransform.hpp"  // for RectTransform
-#include "Gui/Text.hpp"           // for AlignmentH, AlignmentV
-#include "Memory/Buffer.hpp"      // for Buffer
-#include "Nvg.hpp"                // for NVGcreateFlags, nvgCreateGL3, nvgDe...
-#include "nanovg.h"               // for NVGalign, nvgBeginPath, nvgFill
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.hpp should add these lines:
-#include <optional>      // for optional
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.hpp:
-#include <filesystem>    // for path
-#include <optional>      // for optional
-#include "Gui/Font.hpp"  // for Font
----
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.cpp should add these lines:
-#include <string>             // for basic_string
-#include "Memory/Buffer.hpp"  // for Buffer
-
-/Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/FileIo/Font.cpp:
-#include "Font.hpp"
-#include <string>             // for basic_string
-#include "File.hpp"           // for ReadText
-#include "Memory/Buffer.hpp"  // for Buffer
----
-
-
-/Users/hasan/Projects/FrenJam2/Core/src/Event/EventRegistry.hpp should add these lines:
-#include <functional>     // for function
-#include <string>         // for basic_string, string, hash
-#include <unordered_map>  // for unordered_map
-
-/Users/hasan/Projects/FrenJam2/Core/src/Event/EventRegistry.hpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Event/EventRegistry.hpp:
-#include <functional>     // for function
-#include <string>         // for basic_string, string, hash
-#include <unordered_map>  // for unordered_map
-#include "Common.hpp"     // for FLK_API
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Event/EventRegistry.hpp has correct #includes/fwd-decls)
 
 (/Users/hasan/Projects/FrenJam2/Core/src/Event/EventRegistry.cpp has correct #includes/fwd-decls)
 
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.hpp should add these lines:
-#include <vector>           // for vector
-#include "Common.hpp"       // for OptionalRef, u32, FLK_API
-#include "Math/Vector.hpp"  // for Vector2u
-namespace Flock { namespace Graphics { struct Image; } }
+(/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.hpp should remove these lines:
+(/Users/hasan/Projects/FrenJam2/Core/src/Serial/JsonArchive.cpp has correct #includes/fwd-decls)
 
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.hpp:
-#include <vector>           // for vector
-#include "Common.hpp"       // for OptionalRef, u32, FLK_API
-#include "Math/Vector.hpp"  // for Vector2u
-#include "Texture.hpp"      // for Texture, TextureConfig
-namespace Flock { namespace Graphics { struct Image; } }
----
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.cpp should add these lines:
-#include <functional>            // for reference_wrapper
-#include <optional>              // for nullopt, nullopt_t, optional
-#include <utility>               // for move
-#include "Graphics/Image.hpp"    // for Image
-#include "Graphics/Texture.hpp"  // for Texture, TextureConfig
-#include "Math/Rect.hpp"         // for Rect2u
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.hpp has correct #includes/fwd-decls)
 
-/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.cpp should remove these lines:
-
-The full include-list for /Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.cpp:
-#include "TextureAtlas.hpp"
-#include <functional>            // for reference_wrapper
-#include <optional>              // for nullopt, nullopt_t, optional
-#include <utility>               // for move
-#include "Graphics/Image.hpp"    // for Image
-#include "Graphics/Texture.hpp"  // for Texture, TextureConfig
-#include "Math/Rect.hpp"         // for Rect2u
----
+(/Users/hasan/Projects/FrenJam2/Core/src/Graphics/TextureAtlas.cpp has correct #includes/fwd-decls)
 

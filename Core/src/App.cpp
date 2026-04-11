@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <functional>
 #include <initializer_list>
-#include <memory>
 #include <string>
 #include <utility>
 
@@ -39,7 +38,6 @@
 #include "Math/Vector.hpp"
 #include "Physics/Collider.hpp"
 #include "Physics/RigidBody.hpp"
-#include "TypeId.hpp"
 
 namespace Flock {
     std::optional<App> App::Create(const AppConfig &config) {

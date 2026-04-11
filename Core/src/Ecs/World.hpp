@@ -11,6 +11,7 @@
 #include "Registry.hpp"
 #include "Serial/Archive.hpp"
 #include "TypeId.hpp"
+#include "Ecs/Storage.hpp"
 
 namespace Flock::Ecs {
     class FLK_API World {

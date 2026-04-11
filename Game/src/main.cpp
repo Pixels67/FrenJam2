@@ -1,5 +1,6 @@
 #include "DialogueUi.hpp"
 #include "Flock.hpp"
+#include "Fren.hpp"
 #include "Item.hpp"
 #include "ItemUi.hpp"
 #include "Map.hpp"
@@ -87,6 +88,8 @@ void Init(World &world) {
         DialogueText{}
     );
 
+    world.Registry().Create(Transform{.scale = {0.62F, 1.0F, 1.0F}}, SpriteRenderer{.spritePath = "assets/fren.png"}, Fren{});
+
     world.Save("../../../assets/world.json");
 }
 
@@ -99,6 +102,6 @@ i32 main() {
     }).value();
 
     app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, Init)
-       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateDialogueUi, UpdateItemUi)
+       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi)
        .Run();
 }

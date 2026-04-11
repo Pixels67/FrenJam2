@@ -14,6 +14,7 @@
 #include "Math/Vector.hpp"
 
 struct NVGcontext;
+
 namespace Flock {
 namespace Graphics {
 class Texture;

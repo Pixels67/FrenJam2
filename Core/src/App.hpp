@@ -2,6 +2,7 @@
 #define FLK_APP_HPP
 
 #include <optional>
+#include <vector>
 
 #include "Common.hpp"
 #include "Asset/AssetLoader.hpp"

@@ -232,9 +232,9 @@ inline void LoadMap(World &world) {
             tile.occupant = player;
         }
 
-        if (c == 'f') {
-            CreateFren(world, tile);
-        }
+        //if (c == 'f') {
+        //    CreateFren(world, tile);
+        //}
 
         if (c == 'M') {
             CreateMike(world, tile);
