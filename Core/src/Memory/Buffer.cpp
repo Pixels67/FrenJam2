@@ -1,5 +1,9 @@
 #include "Buffer.hpp"
 
+#include <stdlib.h>
+#include <string.h>
+#include <algorithm>
+
 namespace Flock::Memory {
     Buffer::Buffer(const size_t size)
         : m_Data(size > 0 ? malloc(size) : nullptr), m_Size(size) {

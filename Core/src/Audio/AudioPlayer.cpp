@@ -1,5 +1,11 @@
 #include "AudioPlayer.hpp"
 
+#include "Audio/AudioClip.hpp"
+#include "Audio/AudioListener.hpp"
+#include "soloud.h"
+#include "soloud_error.h"
+#include "soloud_wav.h"
+
 namespace Flock::Audio {
     std::optional<AudioPlayer> AudioPlayer::Create() {
         AudioPlayer player;

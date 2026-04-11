@@ -1,5 +1,11 @@
 #include "Mesh.hpp"
 
+#include <stdint.h>
+
+#include "Graphics/Vertex.hpp"
+#include "Graphics/VertexArray.hpp"
+#include "Memory/Buffer.hpp"
+
 namespace Flock::Graphics {
     std::optional<Mesh> Mesh::Create(const MeshData &data) {
         Mesh mesh{};

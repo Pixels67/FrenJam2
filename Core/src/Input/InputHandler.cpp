@@ -1,6 +1,13 @@
 #include "InputHandler.hpp"
 
+#include <memory>
+#include <set>
+#include <utility>
+
 #include "Glfw/Window.hpp"
+#include "Event/EventHandler.hpp"
+#include "Input/Input.hpp"
+#include "Math/Vector.hpp"
 
 namespace Flock::Input {
     void InputHandler::HookEvents(Event::EventHandler &eventHandler) {

@@ -1,6 +1,8 @@
 #ifndef FLK_ARCHIVE_HPP
 #define FLK_ARCHIVE_HPP
 
+#include <map>
+
 #include "Common.hpp"
 
 namespace Flock {

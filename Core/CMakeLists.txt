@@ -78,7 +78,6 @@ target_include_directories(soloud PUBLIC vendor/soloud/include vendor/soloud/src
 target_compile_definitions(soloud PUBLIC WITH_MINIAUDIO)
 
 set(PROJECT_SOURCES
-        Pch.hpp
         include/Flock.hpp
         src/Ecs/Storage.hpp
         src/Common.hpp
@@ -196,7 +195,6 @@ set(PROJECT_SOURCES
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SOURCES})
 
-target_precompile_headers(${PROJECT_NAME} PUBLIC Pch.hpp)
 target_include_directories(${PROJECT_NAME} PUBLIC include src PRIVATE vendor/stbi vendor/nanovg/src)
 target_compile_definitions(${PROJECT_NAME} PRIVATE FLK_DYLIB_BUILD)
 

@@ -1,6 +1,13 @@
 #ifndef FLK_EVENTHANDLER_HPP
 #define FLK_EVENTHANDLER_HPP
 
+#include <functional>
+#include <memory>
+#include <optional>
+#include <queue>
+#include <utility>
+#include <vector>
+
 #include "Common.hpp"
 
 namespace Flock::Event {

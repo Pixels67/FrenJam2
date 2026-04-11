@@ -1,6 +1,11 @@
 #include "Image.hpp"
 
 #include <../../vendor/stbi/stbi.h>
+#include <string>
+
+#include "Debug/Log.hpp"
+#include "Math/Vector.hpp"
+#include "Memory/Buffer.hpp"
 
 namespace Flock::FileIo {
     Graphics::Image ReadImage(const std::filesystem::path &filePath) {

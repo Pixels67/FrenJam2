@@ -1,6 +1,15 @@
 #ifndef FLK_ASSETLOADER_HPP
 #define FLK_ASSETLOADER_HPP
 
+#include <concepts>
+#include <filesystem>
+#include <memory>
+#include <optional>
+#include <string>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
 #include "Handle.hpp"
 #include "Common.hpp"
 #include "TypeId.hpp"
@@ -17,6 +26,8 @@
 #include "Graphics/Model.hpp"
 #include "Graphics/TextureAtlas.hpp"
 #include "Gui/Font.hpp"
+#include "Graphics/CubeMap.hpp"
+#include "Graphics/Mesh.hpp"
 
 namespace Flock::Asset {
     template<typename T>

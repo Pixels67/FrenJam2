@@ -1,11 +1,22 @@
 #ifndef FLK_WINDOW_HPP
 #define FLK_WINDOW_HPP
 
+#include <optional>
+#include <string>
+
 #include "Graphics/Gl.hpp"
 #include "Common.hpp"
 #include "Event/EventHandler.hpp"
 #include "Input/Input.hpp"
 #include "Math/Math.hpp"
+#include "GLFW/glfw3.h"
+#include "Math/Vector.hpp"
+
+namespace Flock {
+namespace Input {
+enum class CursorMode;
+}  // namespace Input
+}  // namespace Flock
 
 namespace Flock::Glfw {
     void FLK_API PollEvents();

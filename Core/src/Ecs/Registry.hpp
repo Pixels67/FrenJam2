@@ -1,10 +1,29 @@
 #ifndef FLK_REGISTRY_HPP
 #define FLK_REGISTRY_HPP
 
+#include <concepts>
+#include <functional>
+#include <memory>
+#include <optional>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
 #include "Common.hpp"
 #include "Entity.hpp"
 #include "Storage.hpp"
 #include "TypeId.hpp"
+#include "Debug/Log.hpp"
+#include "Serial/Archive.hpp"
+
+namespace Flock {
+namespace Ecs {
+class IStorage;
+template <typename T> class Storage;
+}  // namespace Ecs
+}  // namespace Flock
 
 namespace Flock::Ecs {
     struct EntityData {

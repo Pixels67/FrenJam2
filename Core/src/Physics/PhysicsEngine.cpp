@@ -1,5 +1,20 @@
 #include "PhysicsEngine.hpp"
 
+#include <utility>
+
+#include "Math/Quaternion.hpp"
+#include "Math/RigidTransform.hpp"
+#include "Math/Transform.hpp"
+#include "Math/Vector.hpp"
+#include "Physics/Collider.hpp"
+#include "Physics/RigidBody.hpp"
+#include "reactphysics3d/body/RigidBody.h"
+#include "reactphysics3d/engine/PhysicsCommon.h"
+#include "reactphysics3d/engine/PhysicsWorld.h"
+#include "reactphysics3d/mathematics/Quaternion.h"
+#include "reactphysics3d/mathematics/Transform.h"
+#include "reactphysics3d/mathematics/Vector3.h"
+
 namespace Flock::Physics {
     rp::Vector3 ToRp3dType(const Vector3f vec) {
         return rp::Vector3(vec.x, vec.y, vec.z);

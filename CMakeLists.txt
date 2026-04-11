@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0...4.0)
+cmake_minimum_required(VERSION 4.0)
 project(Flock)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -12,9 +12,9 @@ if (MSVC)
             /DNOMINMAX
             /DWIN32_LEAN_AND_MEAN
     )
-endif ()
-
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND NOT CMAKE_CXX_COMPILER_ID MATCHES "AppleClang")
+    add_link_options(-fuse-ld=lld)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options(-Wno-changes-meaning)
 endif ()
 
@@ -47,6 +47,8 @@ if (CMAKE_BUILD_TYPE STREQUAL "Release")
         )
     endif ()
 endif ()
+
+set_directory_properties(PROPERTIES UNITY_BUILD ON)
 
 include(cmake/CPM.cmake)
 set(FETCHCONTENT_QUIET OFF)

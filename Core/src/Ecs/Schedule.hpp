@@ -1,6 +1,10 @@
 #ifndef FLK_SCHEDULE_HPP
 #define FLK_SCHEDULE_HPP
 
+#include <functional>
+#include <unordered_map>
+#include <vector>
+
 #include "Common.hpp"
 #include "World.hpp"
 

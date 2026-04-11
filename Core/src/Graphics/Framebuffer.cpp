@@ -1,5 +1,9 @@
 #include "Framebuffer.hpp"
 
+#include "Graphics/Gl.hpp"
+#include "Graphics/Texture.hpp"
+#include "Graphics/TextureArray.hpp"
+
 namespace Flock::Graphics {
     std::optional<Framebuffer> Framebuffer::Create() {
         Framebuffer frameBuf;

@@ -1,6 +1,8 @@
 #include "Buffer.hpp"
 
 #include "Gl.hpp"
+#include "Memory/Buffer.hpp"
+#include "glad/glad.h"
 
 namespace Flock::Graphics {
     u32 ToGlType(const BufferType type) {

@@ -1,6 +1,10 @@
 #ifndef FLK_RENDERER_HPP
 #define FLK_RENDERER_HPP
 
+#include <functional>
+#include <optional>
+#include <vector>
+
 #include "Framebuffer.hpp"
 #include "Mesh.hpp"
 #include "Asset/AssetLoader.hpp"
@@ -8,6 +12,21 @@
 #include "Math/Transform.hpp"
 #include "Camera.hpp"
 #include "Light.hpp"
+#include "Common.hpp"
+#include "Graphics/TextureArray.hpp"
+#include "Math/Color.hpp"
+#include "Math/Matrix.hpp"
+#include "Math/Vector.hpp"
+
+namespace Flock {
+namespace Graphics {
+class CubeMap;
+class Framebuffer;
+class Mesh;
+class Pipeline;
+class Texture;
+}  // namespace Graphics
+}  // namespace Flock
 
 namespace Flock::Graphics {
     enum class DepthFunc {

@@ -1,9 +1,14 @@
 #ifndef FLK_MESH_HPP
 #define FLK_MESH_HPP
 
+#include <optional>
+#include <vector>
+
 #include "Common.hpp"
 #include "Vertex.hpp"
 #include "VertexArray.hpp"
+#include "Graphics/Buffer.hpp"
+#include "Math/Vector.hpp"
 
 namespace Flock::Graphics {
     /**

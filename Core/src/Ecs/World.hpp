@@ -1,8 +1,16 @@
 #ifndef FLK_WORLD_HPP
 #define FLK_WORLD_HPP
 
+#include <any>
+#include <filesystem>
+#include <functional>
+#include <unordered_map>
+#include <utility>
+
 #include "Common.hpp"
 #include "Registry.hpp"
+#include "Serial/Archive.hpp"
+#include "TypeId.hpp"
 
 namespace Flock::Ecs {
     class FLK_API World {

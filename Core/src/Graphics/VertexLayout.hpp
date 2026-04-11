@@ -1,6 +1,8 @@
 #ifndef FLK_VERTEXLAYOUT_HPP
 #define FLK_VERTEXLAYOUT_HPP
 
+#include <vector>
+
 #include "Common.hpp"
 
 namespace Flock::Graphics {

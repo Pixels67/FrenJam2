@@ -8,11 +8,13 @@
 # CMake scheiße
 cmake-build-debug/
 cmake-build-release/
+cmake-build-iwyu/
 Testing/
 **/Testing/
 
 # Output directory
 **/out/
 
+# VS Code crap
 .cache
 /.vs

@@ -1,6 +1,9 @@
 #ifndef FLK_SHADER_HPP
 #define FLK_SHADER_HPP
 
+#include <optional>
+#include <string>
+
 #include "Common.hpp"
 
 namespace Flock::Graphics {

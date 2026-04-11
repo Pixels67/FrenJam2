@@ -1,9 +1,15 @@
 #ifndef FLK_JSONARCHIVE_HPP
 #define FLK_JSONARCHIVE_HPP
 
+#include <string>
+#include <string_view>
+#include <vector>
+
 #include "Archive.hpp"
 #include "Common.hpp"
 #include "Json.hpp"
+#include "nlohmann/json.hpp"
+#include "nlohmann/json_fwd.hpp"
 
 namespace Flock::Serial {
     class FLK_API JsonWriter : public IArchive {

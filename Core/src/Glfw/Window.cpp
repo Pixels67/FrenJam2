@@ -1,5 +1,11 @@
 #include "Window.hpp"
 
+#include <memory>
+#include <utility>
+
+#include "Input/Input.hpp"
+#include "glad/glad.h"
+
 namespace Flock::Glfw {
     static constexpr i32 s_OpenGlVersionMajor = 3;
     static constexpr i32 s_OpenGlVersionMinor = 3;
@@ -27,6 +33,7 @@ namespace Flock::Glfw {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, s_OpenGlVersionMinor);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_SAMPLES, static_cast<i32>(config.samplesPerPixel));
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
 #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);

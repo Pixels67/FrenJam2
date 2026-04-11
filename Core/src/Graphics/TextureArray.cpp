@@ -1,5 +1,11 @@
 #include "TextureArray.hpp"
 
+#include <optional>
+
+#include "Graphics/Gl.hpp"
+#include "Graphics/Texture.hpp"
+#include "glad/glad.h"
+
 namespace Flock::Graphics {
     TextureArray TextureArray::Create(const usize layers, const Vector2u size, const TextureConfig config) {
         TextureArray texArr;

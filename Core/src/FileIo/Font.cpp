@@ -1,6 +1,9 @@
 #include "Font.hpp"
 
+#include <string>
+
 #include "File.hpp"
+#include "Memory/Buffer.hpp"
 
 namespace Flock::FileIo {
     std::optional<Gui::Font> ReadFont(const std::filesystem::path &filePath) {

@@ -1,6 +1,9 @@
 #ifndef FLK_GUIRENDERER_HPP
 #define FLK_GUIRENDERER_HPP
 
+#include <optional>
+#include <string>
+
 #include "Common.hpp"
 #include "Font.hpp"
 #include "RectTransform.hpp"
@@ -8,8 +11,18 @@
 #include "Graphics/Image.hpp"
 #include "Graphics/Texture.hpp"
 #include "Math/Color.hpp"
+#include "Math/Vector.hpp"
 
 struct NVGcontext;
+namespace Flock {
+namespace Graphics {
+class Texture;
+}  // namespace Graphics
+namespace Gui {
+struct Font;
+struct RectTransform;
+}  // namespace Gui
+}  // namespace Flock
 
 namespace Flock::Gui {
     class FLK_API GuiRenderer {

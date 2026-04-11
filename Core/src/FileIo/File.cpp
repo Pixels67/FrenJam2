@@ -3,6 +3,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "Debug/Log.hpp"
+
 namespace Flock::FileIo {
     std::optional<std::string> ReadText(const std::filesystem::path &filePath) {
         std::ifstream file(filePath);

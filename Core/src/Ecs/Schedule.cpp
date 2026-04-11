@@ -1,5 +1,11 @@
 #include "Schedule.hpp"
 
+namespace Flock {
+namespace Ecs {
+class World;
+}  // namespace Ecs
+}  // namespace Flock
+
 namespace Flock::Ecs {
     void Schedule::Execute(const Stage stage, World &world) {
         for (auto &system: m_Systems[stage]) {

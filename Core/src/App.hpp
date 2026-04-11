@@ -1,6 +1,8 @@
 #ifndef FLK_APP_HPP
 #define FLK_APP_HPP
 
+#include <optional>
+
 #include "Common.hpp"
 #include "Asset/AssetLoader.hpp"
 #include "Audio/AudioPlayer.hpp"

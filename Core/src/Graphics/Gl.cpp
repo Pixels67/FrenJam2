@@ -1,5 +1,7 @@
 #include "Gl.hpp"
 
+#include "glad/glad.h"
+
 namespace Flock::Graphics {
     const char *GlErrorString(const GLenum err) {
         switch (err) {

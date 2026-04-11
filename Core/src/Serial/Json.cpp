@@ -2,6 +2,8 @@
 
 #include <nlohmann/json.hpp>
 
+#include "Common.hpp"
+
 namespace Flock::Serial {
     static constexpr u32 s_IndentLevel = 2;
 

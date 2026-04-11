@@ -1,6 +1,8 @@
 #include "Texture.hpp"
 
 #include "Gl.hpp"
+#include "Graphics/Image.hpp"
+#include "Memory/Buffer.hpp"
 
 namespace Flock::Graphics {
     u32 TextureConfig::GlWrap() const {

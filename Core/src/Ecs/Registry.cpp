@@ -1,5 +1,10 @@
 #include "Registry.hpp"
 
+#include <string_view>
+
+#include "Ecs/Entity.hpp"
+#include "Ecs/Storage.hpp"
+
 namespace Flock::Ecs {
     void Registry::Clear() {
         for (auto &[_, storage]: m_Storages) {

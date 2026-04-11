@@ -10,10 +10,9 @@ namespace Flock {
 
     template<typename T>
     struct Vector2 {
-        T x, y;
+        T x, y = 0;
 
-        constexpr Vector2() : x(0), y(0) {
-        }
+        constexpr Vector2() = default;
 
         constexpr Vector2(T x, T y) : x(x), y(y) {
         }
@@ -74,10 +73,9 @@ namespace Flock {
 
     template<typename T>
     struct Vector3 {
-        T x, y, z;
+        T x, y, z = 0;
 
-        Vector3() : x(0), y(0), z(0) {
-        }
+        Vector3() = default;
 
         Vector3(T x, T y, T z) : x(x), y(y), z(z) {
         }
@@ -157,10 +155,9 @@ namespace Flock {
 
     template<typename T>
     struct Vector4 {
-        T x, y, z, w;
+        T x, y, z, w = 0;
 
-        Vector4() : x(0), y(0), z(0), w(0) {
-        }
+        Vector4() = default;
 
         Vector4(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {
         }

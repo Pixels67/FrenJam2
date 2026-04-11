@@ -1,6 +1,10 @@
 #include "JsonArchive.hpp"
 
-#include "Math/Math.hpp"
+#include "Debug/Log.hpp"
+#include "Math/Color.hpp"
+#include "Math/Quaternion.hpp"
+#include "Math/Vector.hpp"
+#include "Serial/Json.hpp"
 
 namespace Flock::Serial {
     JsonWriter::JsonWriter() {

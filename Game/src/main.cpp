@@ -2,6 +2,7 @@
 #include "Flock.hpp"
 #include "Item.hpp"
 #include "ItemUi.hpp"
+#include "Map.hpp"
 #include "Player.hpp"
 #include "Tile.hpp"
 #include "Using.hpp"
@@ -42,51 +43,25 @@ void Init(World &world) {
 
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
-    const Entity character = world.Registry().Create(
-        Transform{.position = {2.0F, 2.0F, -1.0F}},
-        SpriteRenderer{.spritePath = "assets/Circle.png"},
-        Interactable{
-            .dialogue = {
-                .messages = {
-                    Message{
-                        .title = "Greeting",
-                        .text  = "Hello!",
-                    },
-                    Message{
-                        .title = "Farewell",
-                        .text  = "Bye!",
-                    }
-                }
-            },
-        }
-    );
-
-    const Entity player = world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/Circle.png"}, Player{});
-
-    for (i32 i = -5; i <= 5; i++) {
-        for (i32 j = -5; j <= 5; j++) {
-            if (i == 2 && j == 2) {
-                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .occupant = character});
-                continue;
-            }
-
-            if (i == 0 && j == 0) {
-                world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}, .occupant = player});
-                continue;
-            }
-
-            world.Registry().Create(Transform{}, SpriteRenderer{}, Tile{.position = {i, j}});
-        }
-    }
+    LoadMap(world);
 
     world.Registry().Create(
         RectTransform{
             {{0, 520}, {1280, 200}}
         },
         Box{
-            .color = {0, 0, 0, 100}
+            .color = Color4u8::Black()
         },
         DialogueBox{}
+    );
+
+    world.Registry().Create(
+        RectTransform{
+            {{0, 0}, {1280, 100}}
+        },
+        Box{
+            .color = Color4u8::Black()
+        }
     );
 
     world.Registry().Create(

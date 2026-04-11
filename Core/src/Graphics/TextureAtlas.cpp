@@ -1,5 +1,13 @@
 #include "TextureAtlas.hpp"
 
+#include <functional>
+#include <optional>
+#include <utility>
+
+#include "Graphics/Image.hpp"
+#include "Graphics/Texture.hpp"
+#include "Math/Rect.hpp"
+
 namespace Flock::Graphics {
     TextureAtlas TextureAtlas::FromImage(const Image &image, const Vector2u subtextures, const TextureConfig config) {
         const Vector2u subTexSize = image.size / subtextures;

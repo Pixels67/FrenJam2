@@ -1,8 +1,16 @@
 #ifndef FLK_TEXTURE2D_HPP
 #define FLK_TEXTURE2D_HPP
 
+#include <optional>
+
 #include "Common.hpp"
 #include "Graphics/Image.hpp"
+#include "Math/Vector.hpp"
+#include "glad/glad.h"
+
+namespace Flock::Graphics {
+    struct Image;
+}
 
 namespace Flock::Graphics {
     /**
@@ -58,7 +66,7 @@ namespace Flock::Graphics {
      * @brief Texture configuration.
      */
     struct FLK_API TextureConfig {
-        FilterMode                   filterMode       = Linear;
+        FilterMode                   filterMode       = Nearest;
         FilterMode                   mipmapFilterMode = Linear;
         WrapMode                     wrapMode         = Clamp;
         std::optional<TextureFormat> format           = TextureFormat::Rgba;

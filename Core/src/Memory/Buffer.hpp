@@ -1,6 +1,9 @@
 #ifndef FLK_BUFFER_HPP
 #define FLK_BUFFER_HPP
 
+#include <stddef.h>
+#include <vector>
+
 #include "Common.hpp"
 
 namespace Flock::Memory {

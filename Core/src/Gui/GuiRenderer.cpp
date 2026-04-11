@@ -1,7 +1,15 @@
 #include "GuiRenderer.hpp"
 
+#include <functional>
+
 #include "Nvg.hpp"
 #include "Graphics/Texture.hpp"
+#include "Debug/Log.hpp"
+#include "Gui/Font.hpp"
+#include "Gui/RectTransform.hpp"
+#include "Gui/Text.hpp"
+#include "Memory/Buffer.hpp"
+#include "nanovg.h"
 
 namespace Flock::Gui {
     GuiRenderer GuiRenderer::Create() {

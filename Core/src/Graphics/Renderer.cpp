@@ -1,5 +1,27 @@
 #include "Renderer.hpp"
 
+#include <algorithm>
+#include <string>
+
+#include "Debug/Log.hpp"
+#include "Graphics/Camera.hpp"
+#include "Graphics/Framebuffer.hpp"
+#include "Graphics/Gl.hpp"
+#include "Graphics/Light.hpp"
+#include "Graphics/Mesh.hpp"
+#include "Graphics/Pipeline.hpp"
+#include "Graphics/Shader.hpp"
+#include "Graphics/Texture.hpp"
+#include "Math/Quaternion.hpp"
+#include "Math/RigidTransform.hpp"
+#include "glad/glad.h"
+
+namespace Flock {
+namespace Graphics {
+class CubeMap;
+}  // namespace Graphics
+}  // namespace Flock
+
 namespace Flock::Graphics {
     static constexpr usize s_MaxLightsPerObject = 16;
 

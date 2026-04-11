@@ -1,6 +1,9 @@
 #include "VertexArray.hpp"
 
 #include "Gl.hpp"
+#include "Graphics/Buffer.hpp"
+#include "Graphics/VertexLayout.hpp"
+#include "glad/glad.h"
 
 namespace Flock::Graphics {
     VertexArray VertexArray::Create() {

@@ -1,6 +1,9 @@
 #include "VertexLayout.hpp"
 
+#include <algorithm>
+
 #include "Gl.hpp"
+#include "glad/glad.h"
 
 namespace Flock::Graphics {
     usize Size(const AttribType type) {

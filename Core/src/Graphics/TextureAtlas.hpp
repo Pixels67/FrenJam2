@@ -1,7 +1,17 @@
 #ifndef TEXTUREATLAS_HPP
 #define TEXTUREATLAS_HPP
 
+#include <vector>
+
 #include "Texture.hpp"
+#include "Common.hpp"
+#include "Math/Vector.hpp"
+
+namespace Flock {
+namespace Graphics {
+struct Image;
+}  // namespace Graphics
+}  // namespace Flock
 
 namespace Flock::Graphics {
     class FLK_API TextureAtlas {

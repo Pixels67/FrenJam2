@@ -1,6 +1,10 @@
 #ifndef FLK_FILE_HPP
 #define FLK_FILE_HPP
 
+#include <filesystem>
+#include <optional>
+#include <string>
+
 #include "Common.hpp"
 
 namespace Flock::FileIo {

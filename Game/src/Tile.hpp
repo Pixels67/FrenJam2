@@ -7,12 +7,20 @@
 
 enum TileType {
     Ground,
+    Trail,
+    Sand,
+    Trash,
+    Water,
     Wall,
 };
 
 inline bool IsPassable(const TileType type) {
     switch (type) {
         case Ground: return true;
+        case Trail: return true;
+        case Sand: return true;
+        case Trash: return false;
+        case Water: return false;
         case Wall: return false;
     }
 
@@ -21,8 +29,12 @@ inline bool IsPassable(const TileType type) {
 
 inline std::string GetTileSprite(const TileType type) {
     switch (type) {
-        case Ground: return "assets/Checkerboard.png";
-        case Wall: return "";
+        case Ground: return "assets/ground.png";
+        case Trail: return "assets/trail.png";
+        case Sand: return "assets/sand.png";
+        case Trash: return "assets/trash.png";
+        case Water: return "assets/water.png";
+        case Wall: return "assets/wall.png";
     }
 
     FLK_ASSERT(false);
@@ -53,6 +65,10 @@ inline void UpdateTiles(World &world) {
         if (tile.HasOccupant() && reg.Has<Transform>(tile.occupant) && !reg.Has<Player>(tile.occupant)) {
             reg.Get<Transform>(tile.occupant)->get()            = trans;
             reg.Get<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
+
+            if (reg.Has<Interactable>(tile.occupant)) {
+                reg.Get<Transform>(tile.occupant)->get().scale.x = 0.62F;
+            }
         }
     });
 }
