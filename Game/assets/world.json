@@ -60401,6 +60401,7 @@
       "itemsLocked": {
         "toothbrush": true,
         "maxwell": true,
+        "card": true,
         "cd": true,
         "coin": true,
         "grill": true,

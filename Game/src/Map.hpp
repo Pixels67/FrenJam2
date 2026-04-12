@@ -971,7 +971,12 @@ inline void CreateJack(World &world, Tile &tile) {
                     Message{
                         .title  = "Jack Black™",
                         .text   = "Everyone's a critic nowadays.",
-                        .events = {"b_jack", "a_jack"}
+                        .events = {"b_jack"}
+                    },
+                    Message{
+                        .title  = "Bible Verse",
+                        .text   = "Jack Black™ dropped something. you picked up 'Bible Verse', It's a highlighted verse, Leviticus 13:40.",
+                        .events = {"a_verse", "a_jack"}
                     },
                 }
             },
@@ -999,24 +1004,176 @@ inline void CreateJack(World &world, Tile &tile) {
     );
 }
 
-inline void CreateJackV2(World &world, Tile &tile) {
+inline void CreateVinny(World &world, Tile &tile) {
     CreateCharacter(
         world,
         tile,
-        "jack2",
+        "vinny",
         "",
         {
-            {},
             {
                 .messages = {
                     Message{
-                        .title  = "Jack Black™",
-                        .text   = "Go up, you baldhead!",
-                        .events = {"a_verse", "a_jack2"}
+                        .title = "Joel",
+                        .text  = "Oh, hey, Vin!"
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "SpEeEeEeEeEeEeEeEe—"
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Hey, Vinny, can you please stop spinning for a sec?"
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—EeEeEeEeEeEeEeEe—"
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Vinny..."
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—EeEeEeEeEeEeEeEeEeEeEeEe—"
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "VINNAMON TOAST CRUNCH!"
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—EeEeEeEeEeEeEeNnNn!!!!"
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "...You good, man?"
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Oh. Yeah. Well, except for the fact that my Internet's been down for over a week."
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Is that why you were SPEENing?"
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "NO."
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "..."
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Okay, maybe."
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Well, that stinks."
+                    },
+                    Message{
+                        .title  = "Vinny",
+                        .text   = "Unless you can somehow make my Vinerizon network magically start working again, then not really.",
+                        .events = {"u_card"}
                     },
                 }
             },
-            {}
+            {
+                .messages = {
+                    Message{
+                        .title  = "Joel",
+                        .text   = "Hey, Vinny, I think I found the prob—",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—eEeEeEeEeEeEeEeEeEeEeEe—",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Not again...",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—EeEeEeEeEeEeEeEeEeEeEe—",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Vinny. Viiiiiinnyyyyyy.",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—eEeEeEeEeEeEeEeEeEeEe—",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "*Chucks Vinerizon card at Vinny*",
+                        .events = {"r_card"}
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "—EeEeEeEeeeeehuh?",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "FINALLY. Now, is your Internet fixed, man?",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Actually, yeah.",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "YEEEEAAAAAAH! Finally fixed some AGGA on my own for once!",
+                        .events = {"b_vinny", "a_vinny"},
+                    },
+                }
+            },
+            {
+                .messages = {
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Uhhhh... what's going on here?",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Not sure how to put this gently, but... you're bald now.",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Bald?!!",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Yeah...",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "WHADDYA MEAN I'M BALD???",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "L-look, man! I don't know! All I know is that you're hairless now!",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "...",
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "Well, at least my Internet's back."
+                    },
+                    Message{
+                        .title = "Vinny",
+                        .text  = "4hed now liek vineRizon. híhí.",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "FREN. SHUT UP.",
+                    },
+                }
+            }
         }
     );
 }
@@ -1133,6 +1290,18 @@ inline void CreateToothbrush(World &world, Tile &tile) {
                            .title  = "Electric Toothbrush",
                            .text   = "You obtained 'Electric Toothbrush'. Great for removing plaque and stimulating hair follicles.",
                            .events = {"a_toothbrush"},
+                       },
+                   }
+               });
+}
+
+inline void CreateCard(World &world, Tile &tile) {
+    CreateItem(world, tile, "card", "", {
+                   .messages = {
+                       Message{
+                           .title  = "Vinerizon Card",
+                           .text   = "You obtained 'Vinerizon Card'. DO NOT PRESUME.",
+                           .events = {"a_card"},
                        },
                    }
                });
@@ -1263,12 +1432,12 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             CreateMaggie(world, tile);
         }
 
-        if (c == 'J') {
-            CreateJack(world, tile);
+        if (c == 'V') {
+            CreateVinny(world, tile);
         }
 
         if (c == 'j') {
-            CreateJackV2(world, tile);
+            CreateJack(world, tile);
         }
 
         if (c == 'g') {
@@ -1302,6 +1471,10 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         if (c == 'E') {
             CreateToothbrush(world, tile);
+        }
+
+        if (c == 'v') {
+            CreateCard(world, tile);
         }
 
         if (c == '0') {

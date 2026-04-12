@@ -121,6 +121,7 @@ void UpdatePlayer(World &world) {
                 world.Resource<Dialogue>().currentMessage = 0;
 
                 if (interactable.get().destroyOnInteract) {
+                    world.Resource<GameState>().items[interactable.get().name] = false;
                     reg.Destroy(entity);
                 }
             }

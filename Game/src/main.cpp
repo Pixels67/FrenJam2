@@ -45,6 +45,17 @@ void Init(World &world) {
             {"cd", true},
             {"maxwell", true},
             {"toothbrush", true},
+            {"card", true},
+        },
+        .items = {
+            {"pillow", true},
+            {"statuette", true},
+            {"coin", true},
+            {"grill", true},
+            {"cd", true},
+            {"maxwell", true},
+            {"toothbrush", true},
+            {"card", true},
         }
     });
 

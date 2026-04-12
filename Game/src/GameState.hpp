@@ -7,6 +7,7 @@
 struct GameState {
     std::unordered_map<std::string, u32>  characterIndices;
     std::unordered_map<std::string, bool> itemsLocked;
+    std::unordered_map<std::string, bool> items;
 };
 
 FLK_ARCHIVE(GameState, characterIndices, itemsLocked)
@@ -20,12 +21,15 @@ inline void ApplyGameState(World &world, GameState &state) {
         interactable.currentDialogue = state.characterIndices[interactable.name];
     });
 
-    world.Registry().ForEach<Interactable>([&](Interactable &interactable) {
+    world.Registry().ForEach<Entity, Interactable>([&](Entity e, Interactable &interactable) {
         if (!interactable.destroyOnInteract) {
             return;
         }
 
         interactable.locked = state.itemsLocked[interactable.name];
+        if (!state.items[interactable.name]) {
+            world.Registry().Destroy(e);
+        }
     });
 }
 

@@ -79,6 +79,9 @@ inline void SetEvents(World &world) {
     ereg.Add("u_toothbrush", [&] {
         UnlockItem(world, "toothbrush");
     });
+    ereg.Add("u_card", [&] {
+        UnlockItem(world, "card");
+    });
 
     ereg.Add("a_maxwell", [&] {
         AddItem(world, "Maxwell", "");
@@ -112,6 +115,10 @@ inline void SetEvents(World &world) {
         AddItem(world, "Electric Toothbrush", "");
         ereg.Invoke("a_mike");
     });
+    ereg.Add("a_card", [&] {
+        AddItem(world, "Vinerizon Card", "");
+        ereg.Invoke("a_vinny");
+    });
 
     ereg.Add("r_maxwell", [&] {
         RemoveItem(world, "Maxwell");
@@ -138,6 +145,9 @@ inline void SetEvents(World &world) {
     ereg.Add("r_toothbrush", [&] {
         RemoveItem(world, "Electric Toothbrush");
     });
+    ereg.Add("r_card", [&] {
+        RemoveItem(world, "Vinerizon Card");
+    });
 
 
     // Characters
@@ -159,8 +169,8 @@ inline void SetEvents(World &world) {
     ereg.Add("a_jack", [&] {
         AdvanceCharacter(world, "jack");
     });
-    ereg.Add("a_jack2", [&] {
-        AdvanceCharacter(world, "jack2");
+    ereg.Add("a_vinny", [&] {
+        AdvanceCharacter(world, "vinny");
     });
 }
 
