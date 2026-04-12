@@ -6,6 +6,7 @@
 #include "Map.hpp"
 #include "Player.hpp"
 #include "Tile.hpp"
+#include "Events.hpp"
 #include "Using.hpp"
 
 void RegisterComps(World &world) {
@@ -32,16 +33,20 @@ void SetPipelines(World &world) {
 
 void Init(World &world) {
     world.InsertResource(Dialogue{});
-    world.InsertResource(Inventory{
-        .items = {
-            Item{.name = "Circle", .imagePath = "assets/Circle.png"},
-            Item{.name = "Checkerboard", .imagePath = "assets/Checkerboard.png"},
-            Item{.name = "Box", .imagePath = ""}
-        }
-    });
-
+    world.InsertResource(Inventory{});
     world.InsertResource(ItemUi{});
     world.InsertResource(PlayerInfo{.overworldPos = {5, -5}, .overworldPrevPos = {4, -5}});
+    world.InsertResource(GameState{
+        .itemsLocked = {
+            {"pillow", true},
+            {"statuette", true},
+            {"coin", true},
+            {"grill", true},
+            {"cd", true},
+            {"maxwell", true},
+            {"toothbrush", true},
+        }
+    });
 
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
@@ -59,7 +64,7 @@ void Init(World &world) {
 
     world.Registry().Create(
         RectTransform{
-            {{0, 0}, {1280, 100}}
+            {{0, 0}, {1280, 90}}
         },
         Box{
             .color = Color4u8::Black()
@@ -100,7 +105,7 @@ i32 main() {
         },
     }).value();
 
-    app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, Init)
+    app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, SetEvents, Init)
        .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi)
        .Run();
 }

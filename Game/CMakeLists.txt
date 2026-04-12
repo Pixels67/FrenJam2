@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
         src/Map.hpp
         src/Fren.hpp
         src/Door.hpp
+        src/Events.hpp
+        src/GameState.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

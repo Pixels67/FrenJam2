@@ -6,10 +6,13 @@
 #include "Using.hpp"
 
 struct Interactable {
-    Dialogue dialogue;
-    bool     destroyOnInteract = false;
+    std::string           name;
+    std::vector<Dialogue> dialogue;
+    u32                   currentDialogue   = 0;
+    bool                  destroyOnInteract = false;
+    bool                  locked            = true;
 };
 
-FLK_ARCHIVE(Interactable, dialogue, destroyOnInteract)
+FLK_ARCHIVE(Interactable, name, dialogue, destroyOnInteract)
 
 #endif //INTERACTABLE_HPP

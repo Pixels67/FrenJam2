@@ -112,15 +112,17 @@ void UpdatePlayer(World &world) {
             return;
         }
 
-        const auto maybeInteractable = GetNearbyInteractable(world, trans);
+        auto maybeInteractable = GetNearbyInteractable(world, trans);
         if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeInteractable) {
             auto &[entity, interactable] = maybeInteractable.value();
 
-            world.Resource<Dialogue>().messages       = interactable.get().dialogue.messages;
-            world.Resource<Dialogue>().currentMessage = 0;
+            if (!interactable.get().locked) {
+                world.Resource<Dialogue>().messages       = interactable.get().dialogue[interactable.get().currentDialogue].messages;
+                world.Resource<Dialogue>().currentMessage = 0;
 
-            if (interactable.get().destroyOnInteract) {
-                reg.Destroy(entity);
+                if (interactable.get().destroyOnInteract) {
+                    reg.Destroy(entity);
+                }
             }
         }
 
@@ -167,7 +169,7 @@ void UpdatePlayer(World &world) {
         } else {
             player.isMoving  = false;
             trans.position   = Vector3f{playerPos};
-            trans.position.z = -1.0F;
+            trans.position.z = -2.0F;
         }
 
         if (player.isMoving) {

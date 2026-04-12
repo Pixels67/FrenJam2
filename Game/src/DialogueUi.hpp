@@ -60,6 +60,10 @@ inline void UpdateDialogueUi(World &world) {
 
     const auto input = world.Resource<InputState>();
     if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size()) {
+        for (const auto& event: messages[currentMessage].events) {
+            world.Resource<Event::EventRegistry>().Invoke(event);
+        }
+
         currentMessage++;
     }
 
