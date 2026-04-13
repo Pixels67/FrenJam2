@@ -8,11 +8,12 @@
 struct Interactable {
     std::string           name;
     std::vector<Dialogue> dialogue;
-    u32                   currentDialogue   = 0;
-    bool                  destroyOnInteract = false;
-    bool                  locked            = true;
+    u32                   currentDialogue = 0;
+    bool                  isItem          = false;
+    bool                  locked          = true;
+    bool                  completed       = false;
 };
 
-FLK_ARCHIVE(Interactable, name, dialogue, destroyOnInteract)
+FLK_ARCHIVE(Interactable, name, dialogue, isItem)
 
 #endif //INTERACTABLE_HPP

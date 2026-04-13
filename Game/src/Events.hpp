@@ -13,7 +13,7 @@ inline void UnlockItem(World &world, const std::string &itemName) {
 
     world.Resource<GameState>().itemsLocked[itemName] = false;
     world.Registry().ForEach<Interactable>([&](Interactable &interactable) {
-        if (!interactable.destroyOnInteract || interactable.name != itemName) {
+        if (!interactable.isItem || interactable.name != itemName) {
             return;
         }
 
@@ -45,11 +45,33 @@ inline void AdvanceCharacter(World &world, const std::string &name) {
     world.Resource<GameState>().characterIndices[name]++;
 
     world.Registry().ForEach<Interactable>([&](Interactable &interactable) {
-        if (interactable.destroyOnInteract || interactable.name != name) {
+        if (interactable.isItem || interactable.name != name) {
             return;
         }
 
         interactable.currentDialogue++;
+    });
+}
+
+inline void BaldifyCharacter(World &world, const std::string &name) {
+    if (name.empty()) {
+        return;
+    }
+
+    world.Registry().ForEach<Interactable, SpriteRenderer>([&](Interactable &interactable, SpriteRenderer &renderer) {
+        if (interactable.isItem || interactable.name != name) {
+            return;
+        }
+
+        std::string imageName                                 = renderer.spritePath;
+        imageName                                             = imageName.substr(0, imageName.size() - 4);
+        imageName                                             += "_b";
+        imageName                                             += ".png";
+        renderer.spritePath                                   = imageName;
+        world.Resource<GameState>().characterImagePaths[name] = renderer.spritePath;
+
+        interactable.completed                                = true;
+        world.Resource<GameState>().completedCharacters[name] = true;
     });
 }
 
@@ -171,6 +193,28 @@ inline void SetEvents(World &world) {
     });
     ereg.Add("a_vinny", [&] {
         AdvanceCharacter(world, "vinny");
+    });
+
+    ereg.Add("b_mike", [&] {
+        BaldifyCharacter(world, "mike");
+    });
+    ereg.Add("b_samson", [&] {
+        BaldifyCharacter(world, "samson");
+    });
+    ereg.Add("b_chris", [&] {
+        BaldifyCharacter(world, "chris");
+    });
+    ereg.Add("b_dilto", [&] {
+        BaldifyCharacter(world, "dilto");
+    });
+    ereg.Add("b_maggie", [&] {
+        BaldifyCharacter(world, "maggie");
+    });
+    ereg.Add("b_jack", [&] {
+        BaldifyCharacter(world, "jack");
+    });
+    ereg.Add("b_vinny", [&] {
+        BaldifyCharacter(world, "vinny");
     });
 }
 

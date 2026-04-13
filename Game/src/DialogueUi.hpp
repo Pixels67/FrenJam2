@@ -7,6 +7,9 @@
 #include "Using.hpp"
 
 struct DialogueText {
+    std::string content;
+    f32         currentChar = 0.0F;
+    bool        changedChar = false;
 };
 
 struct DialogueTitle {
@@ -18,7 +21,7 @@ struct DialogueImage {
 struct DialogueBox {
 };
 
-FLK_ARCHIVE_TAG(DialogueText)
+FLK_ARCHIVE(DialogueText, content)
 FLK_ARCHIVE_TAG(DialogueTitle)
 FLK_ARCHIVE_TAG(DialogueImage)
 FLK_ARCHIVE_TAG(DialogueBox)
@@ -60,7 +63,7 @@ inline void UpdateDialogueUi(World &world) {
 
     const auto input = world.Resource<InputState>();
     if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size()) {
-        for (const auto& event: messages[currentMessage].events) {
+        for (const auto &event: messages[currentMessage].events) {
             world.Resource<Event::EventRegistry>().Invoke(event);
         }
 
@@ -78,8 +81,40 @@ inline void UpdateDialogueUi(World &world) {
         HideDialogue(world);
     }
 
-    world.Registry().All<DialogueText>().ForEach<Text>([&](Text &text) {
-        text.content = content;
+    world.Registry().ForEach<Text, DialogueText>([&](Text &text, DialogueText &dText) {
+        if (content.size() > 2 && content.substr(0, 2) == "/s") {
+            if (content.substr(3) != dText.content) {
+                dText.content     = content.substr(3);
+                dText.currentChar = 0.0F;
+                text.fontSize     = 10;
+            }
+        } else {
+            if (content != dText.content) {
+                dText.content     = content;
+                dText.currentChar = 0.0F;
+                text.fontSize     = 20;
+            }
+        }
+    });
+
+    world.Registry().ForEach<Text, DialogueText>([&](Text &text, DialogueText &dText) {
+        if (dText.currentChar == 0.0F) {
+            text.content = "";
+            dText.changedChar = true;
+        }
+
+        if (static_cast<u32>(dText.currentChar) < dText.content.size() && dText.changedChar) {
+            text.content += dText.content[static_cast<u32>(dText.currentChar)];
+        }
+
+        u32 oldIdx = static_cast<u32>(dText.currentChar);
+        dText.currentChar += world.Resource<Time::TimeState>().deltaTime * 50.0F;
+
+        if (static_cast<u32>(dText.currentChar) != oldIdx) {
+            dText.changedChar = true;
+        } else {
+            dText.changedChar = false;
+        }
     });
 
     world.Registry().All<DialogueTitle>().ForEach<Text>([&](Text &text) {

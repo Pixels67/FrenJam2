@@ -5,7 +5,7 @@
 #include "Player.hpp"
 #include "Using.hpp"
 
-static constexpr f32 s_FrenSpeed = 10.0F;
+static constexpr f32 s_FrenSpeed = 5.0F;
 
 struct Fren {
 };

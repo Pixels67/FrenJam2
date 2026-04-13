@@ -4504,7 +4504,7 @@
                 }
               }
             ],
-            "destroyOnInteract": true
+            "isItem": true
           },
           "config": {
             "enabled": true
@@ -4539,7 +4539,7 @@
                     {
                       "value": {
                         "title": "Joel",
-                        "text": "/sAnother dude who's all tangled up with his hair.../n",
+                        "text": "/sAnother dude who's all tangled up with his hair...",
                         "imagePath": "",
                         "choices": [],
                         "events": []
@@ -4801,6 +4801,9 @@
                         "choices": [],
                         "events": [
                           {
+                            "value": "b_samson"
+                          },
+                          {
                             "value": "a_samson"
                           }
                         ]
@@ -4825,7 +4828,7 @@
                 }
               }
             ],
-            "destroyOnInteract": false
+            "isItem": false
           },
           "config": {
             "enabled": true
@@ -4856,7 +4859,7 @@
                 }
               }
             ],
-            "destroyOnInteract": true
+            "isItem": true
           },
           "config": {
             "enabled": true
@@ -5045,7 +5048,7 @@
                     {
                       "value": {
                         "title": "Mike",
-                        "text": "Did you find it ? !!",
+                        "text": "Did you find it?",
                         "imagePath": "",
                         "choices": [],
                         "events": [
@@ -5495,7 +5498,7 @@
                 }
               }
             ],
-            "destroyOnInteract": false
+            "isItem": false
           },
           "config": {
             "enabled": true
@@ -5526,7 +5529,7 @@
                 }
               }
             ],
-            "destroyOnInteract": true
+            "isItem": true
           },
           "config": {
             "enabled": true
@@ -5633,7 +5636,7 @@
                     {
                       "value": {
                         "title": "Fren",
-                        "text": "butt yu vent tu him frist, ???",
+                        "text": "butt yu vent tu him frist???",
                         "imagePath": "",
                         "choices": [],
                         "events": []
@@ -5760,7 +5763,7 @@
                 }
               }
             ],
-            "destroyOnInteract": false
+            "isItem": false
           },
           "config": {
             "enabled": true
@@ -5791,7 +5794,7 @@
                 }
               }
             ],
-            "destroyOnInteract": true
+            "isItem": true
           },
           "config": {
             "enabled": true
@@ -6080,7 +6083,7 @@
                 }
               }
             ],
-            "destroyOnInteract": false
+            "isItem": false
           },
           "config": {
             "enabled": true
@@ -6109,7 +6112,9 @@
       "DialogueText": [
         {
           "id": 894,
-          "data": null,
+          "data": {
+            "content": ""
+          },
           "config": {
             "enabled": true
           }
@@ -21007,7 +21012,7 @@
         {
           "id": 87,
           "data": {
-            "mapPath": "assets/5.txt"
+            "mapPath": "assets/3.txt"
           },
           "config": {
             "enabled": true
@@ -21016,7 +21021,7 @@
         {
           "id": 89,
           "data": {
-            "mapPath": "assets/5.txt"
+            "mapPath": "assets/3.txt"
           },
           "config": {
             "enabled": true
@@ -21025,7 +21030,7 @@
         {
           "id": 91,
           "data": {
-            "mapPath": "assets/5.txt"
+            "mapPath": "assets/3.txt"
           },
           "config": {
             "enabled": true
@@ -21070,7 +21075,7 @@
         {
           "id": 518,
           "data": {
-            "mapPath": "assets/3.txt"
+            "mapPath": "assets/4.txt"
           },
           "config": {
             "enabled": true
@@ -21079,7 +21084,7 @@
         {
           "id": 520,
           "data": {
-            "mapPath": "assets/3.txt"
+            "mapPath": "assets/4.txt"
           },
           "config": {
             "enabled": true
@@ -21088,7 +21093,7 @@
         {
           "id": 588,
           "data": {
-            "mapPath": "assets/4.txt"
+            "mapPath": "assets/5.txt"
           },
           "config": {
             "enabled": true
@@ -21097,7 +21102,7 @@
         {
           "id": 619,
           "data": {
-            "mapPath": "assets/4.txt"
+            "mapPath": "assets/5.txt"
           },
           "config": {
             "enabled": true
@@ -23329,7 +23334,7 @@
         {
           "id": 148,
           "data": {
-            "spritePath": "",
+            "spritePath": "assets/samson.png",
             "color": {
               "r": 255,
               "g": 255,
@@ -24949,7 +24954,7 @@
         {
           "id": 256,
           "data": {
-            "spritePath": "",
+            "spritePath": "assets/mike.png",
             "color": {
               "r": 255,
               "g": 255,
@@ -27694,7 +27699,7 @@
         {
           "id": 439,
           "data": {
-            "spritePath": "",
+            "spritePath": "assets/dilto.png",
             "color": {
               "r": 255,
               "g": 255,
@@ -32974,7 +32979,7 @@
         {
           "id": 791,
           "data": {
-            "spritePath": "",
+            "spritePath": "assets/chris.png",
             "color": {
               "r": 255,
               "g": 255,
@@ -39232,7 +39237,7 @@
               "w": 1.0
             },
             "scale": {
-              "x": 0.6200000047683716,
+              "x": 1.0,
               "y": 1.0,
               "z": 1.0
             },
@@ -39290,7 +39295,7 @@
               "w": 1.0
             },
             "scale": {
-              "x": 0.6200000047683716,
+              "x": 1.0,
               "y": 1.0,
               "z": 1.0
             },
@@ -60398,7 +60403,32 @@
         "mike": 0,
         "samson": 0
       },
+      "characterImagePaths": {
+        "vinny": "assets/vinny.png",
+        "dilto": "assets/dilto.png",
+        "jack": "assets/jack.png",
+        "chris": "assets/chris.png",
+        "maggie": "assets/maggie.png",
+        "samson": "assets/samson.png",
+        "mike": "assets/mike.png"
+      },
+      "completedCharacters": {
+        "chris": false,
+        "dilto": false,
+        "mike": false,
+        "samson": false
+      },
       "itemsLocked": {
+        "toothbrush": true,
+        "maxwell": true,
+        "card": true,
+        "cd": true,
+        "coin": true,
+        "grill": true,
+        "statuette": true,
+        "pillow": true
+      },
+      "items": {
         "toothbrush": true,
         "maxwell": true,
         "card": true,

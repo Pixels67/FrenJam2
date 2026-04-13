@@ -7,31 +7,30 @@
 #include "Tile.hpp"
 #include "Using.hpp"
 
-inline void CreateCharacter(World &                      world, Tile &tile, const std::string &name, const std::string &spritePath,
-                            const std::vector<Dialogue> &dialogue) {
+inline void CreateCharacter(World &world, Tile &tile, const std::string &name, const std::vector<Dialogue> &dialogue) {
     const Entity character = world.Registry().Create(
         Transform{},
-        SpriteRenderer{.spritePath = spritePath},
+        SpriteRenderer{.spritePath = "assets/" + name + ".png"},
         Interactable{
-            .name              = name,
-            .dialogue          = dialogue,
-            .destroyOnInteract = false,
-            .locked            = false,
+            .name     = name,
+            .dialogue = dialogue,
+            .isItem   = false,
+            .locked   = false,
         }
     );
 
     tile.occupant = character;
 }
 
-inline void CreateItem(World &world, Tile &tile, const std::string &name, const std::string &spritePath, const Dialogue &dialogue) {
+inline void CreateItem(World &world, Tile &tile, const std::string &name, const Dialogue &dialogue) {
     const Entity character = world.Registry().Create(
         Transform{},
-        SpriteRenderer{.spritePath = spritePath},
+        SpriteRenderer{.spritePath = ""},
         Interactable{
-            .name              = name,
-            .dialogue          = {dialogue},
-            .destroyOnInteract = true,
-            .locked            = true,
+            .name     = name,
+            .dialogue = {dialogue},
+            .isItem   = true,
+            .locked   = true,
         }
     );
 
@@ -43,7 +42,7 @@ inline void CreateMike(World &world, Tile &tile) {
         world,
         tile,
         "mike",
-        "",
+
         {
             // Initial
             {
@@ -130,7 +129,7 @@ inline void CreateMike(World &world, Tile &tile) {
                 .messages = {
                     Message{
                         .title  = "Mike",
-                        .text   = "Did you find it ? !!",
+                        .text   = "Did you find it?",
                         .events = {"r_pillow"},
                     },
                     Message{
@@ -339,7 +338,7 @@ inline void CreateChris(World &world, Tile &tile) {
         world,
         tile,
         "chris",
-        "",
+
         {
             {
                 .messages = {
@@ -475,7 +474,7 @@ inline void CreateSamson(World &world, Tile &tile) {
         world,
         tile,
         "samson",
-        "",
+
         {
             {
                 .messages = {
@@ -491,7 +490,7 @@ inline void CreateSamson(World &world, Tile &tile) {
                     },
                     Message{
                         .title = "Joel",
-                        .text  = "/sAnother dude who's all tangled up with his hair.../n",
+                        .text  = "/sAnother dude who's all tangled up with his hair...",
                     },
                     Message{
                         .title = "Samson",
@@ -606,7 +605,7 @@ inline void CreateSamson(World &world, Tile &tile) {
                     Message{
                         .title  = "Samson",
                         .text   = "I will not tolerate this ridicule anymore! I curse you in the name of the Lord!",
-                        .events = {"a_samson"}
+                        .events = {"b_samson", "a_samson"}
                     },
                 }
             },
@@ -627,7 +626,7 @@ inline void CreateDilto(World &world, Tile &tile) {
         world,
         tile,
         "dilto",
-        "",
+
         {
             {
                 .messages = {
@@ -673,7 +672,7 @@ inline void CreateDilto(World &world, Tile &tile) {
                     },
                     Message{
                         .title = "Fren",
-                        .text  = "butt yu vent tu him frist, ???",
+                        .text  = "butt yu vent tu him frist???",
                     },
                     Message{
                         .title  = "Joel",
@@ -737,7 +736,7 @@ inline void CreateMaggie(World &world, Tile &tile) {
         world,
         tile,
         "maggie",
-        "",
+
         {
             {
                 .messages = {
@@ -813,12 +812,13 @@ inline void CreateMaggie(World &world, Tile &tile) {
                     Message{
                         .title = "Joel",
                         .text  =
-                        "Heyyyyyy, I saw this little boingy boof in my house, and I had no need for him, annnnd he kinda looked like you, so I just want to give him to you as thanks for the pie."
+                        "Heyyyyyy, I saw this little boingy boof in my house, and I had no need for him, annnnd he kinda looked like you, so I just want to give him to you as thanks for the pie.",
+                        .events = {"r_maxwell"}
                     },
                     Message{
                         .title  = "Maggie Pie",
                         .text   = "Awwww, how sweet of you, baby! He reminds me of my baby Jess before she crossed the Rainbow Ro-",
-                        .events = {"b_maggie"}
+                        .events = {"b_maggie", "a_maggie"}
                     },
                 }
             },
@@ -847,7 +847,11 @@ inline void CreateMaggie(World &world, Tile &tile) {
                     },
                     Message{
                         .title = "Joel",
-                        .text  = "He-hey! Don't— don't worry! I'm trying to fix it!/sEven though I keep screwing up.../n",
+                        .text  = "He-hey! Don't— don't worry! I'm trying to fix it!",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "/sEven though I keep screwing up...",
                     },
                     Message{
                         .title = "Joel",
@@ -880,7 +884,7 @@ inline void CreateJack(World &world, Tile &tile) {
         world,
         tile,
         "jack",
-        "",
+
         {
             {
                 .messages = {
@@ -896,10 +900,6 @@ inline void CreateJack(World &world, Tile &tile) {
                         .title = "Jack Black™",
                         .text  =
                         "Don't care, but check this out. I got this super duper awesomesauce CD stashed here somewhere. could you get it for me? Pretty, pretty please?",
-                    },
-                    Message{
-                        .title = "Jack Black™",
-                        .text  = "Could you get it for me? Pretty, pretty, pretty, pretty please?",
                     },
                     Message{
                         .title = "Joel",
@@ -1009,7 +1009,7 @@ inline void CreateVinny(World &world, Tile &tile) {
         world,
         tile,
         "vinny",
-        "",
+
         {
             {
                 .messages = {
@@ -1083,8 +1083,8 @@ inline void CreateVinny(World &world, Tile &tile) {
             {
                 .messages = {
                     Message{
-                        .title  = "Joel",
-                        .text   = "Hey, Vinny, I think I found the prob—",
+                        .title = "Joel",
+                        .text  = "Hey, Vinny, I think I found the prob—",
                     },
                     Message{
                         .title = "Vinny",
@@ -1107,8 +1107,8 @@ inline void CreateVinny(World &world, Tile &tile) {
                         .text  = "—eEeEeEeEeEeEeEeEeEeEe—",
                     },
                     Message{
-                        .title = "Joel",
-                        .text  = "*Chucks Vinerizon card at Vinny*",
+                        .title  = "Joel",
+                        .text   = "*Chucks Vinerizon card at Vinny*",
                         .events = {"r_card"}
                     },
                     Message{
@@ -1124,8 +1124,8 @@ inline void CreateVinny(World &world, Tile &tile) {
                         .text  = "Actually, yeah.",
                     },
                     Message{
-                        .title = "Vinny",
-                        .text  = "YEEEEAAAAAAH! Finally fixed some AGGA on my own for once!",
+                        .title  = "Vinny",
+                        .text   = "YEEEEAAAAAAH! Finally fixed some AGGA on my own for once!",
                         .events = {"b_vinny", "a_vinny"},
                     },
                 }
@@ -1183,7 +1183,7 @@ inline void CreateRadio(World &world, Tile &tile) {
         world,
         tile,
         "radio",
-        "",
+
         {
             {
                 .messages = {
@@ -1198,7 +1198,7 @@ inline void CreateRadio(World &world, Tile &tile) {
 }
 
 inline void CreateGrill(World &world, Tile &tile) {
-    CreateItem(world, tile, "grill", "", {
+    CreateItem(world, tile, "grill", {
                    .messages = {
                        Message{
                            .title  = "Grill",
@@ -1210,7 +1210,7 @@ inline void CreateGrill(World &world, Tile &tile) {
 }
 
 inline void CreateStatuette(World &world, Tile &tile) {
-    CreateItem(world, tile, "statuette", "", {
+    CreateItem(world, tile, "statuette", {
                    .messages = {
                        Message{
                            .title  = "Statuette",
@@ -1222,7 +1222,7 @@ inline void CreateStatuette(World &world, Tile &tile) {
 }
 
 inline void CreateVerse(World &world, Tile &tile) {
-    CreateItem(world, tile, "verse", "", {
+    CreateItem(world, tile, "verse", {
                    .messages = {
                        Message{
                            .title  = "Bible Verse",
@@ -1234,7 +1234,7 @@ inline void CreateVerse(World &world, Tile &tile) {
 }
 
 inline void CreateMaxwell(World &world, Tile &tile) {
-    CreateItem(world, tile, "maxwell", "", {
+    CreateItem(world, tile, "maxwell", {
                    .messages = {
                        Message{
                            .title  = "Maxwell",
@@ -1246,7 +1246,7 @@ inline void CreateMaxwell(World &world, Tile &tile) {
 }
 
 inline void CreateCd(World &world, Tile &tile) {
-    CreateItem(world, tile, "cd", "", {
+    CreateItem(world, tile, "cd", {
                    .messages = {
                        Message{
                            .title = "CD",
@@ -1259,7 +1259,7 @@ inline void CreateCd(World &world, Tile &tile) {
 }
 
 inline void CreateBodyPillow(World &world, Tile &tile) {
-    CreateItem(world, tile, "pillow", "", {
+    CreateItem(world, tile, "pillow", {
                    .messages = {
                        Message{
                            .title = "Saitama Body Pillow",
@@ -1272,7 +1272,7 @@ inline void CreateBodyPillow(World &world, Tile &tile) {
 }
 
 inline void CreateCoin(World &world, Tile &tile) {
-    CreateItem(world, tile, "coin", "", {
+    CreateItem(world, tile, "coin", {
                    .messages = {
                        Message{
                            .title  = "Bald Eagle Coin",
@@ -1284,7 +1284,7 @@ inline void CreateCoin(World &world, Tile &tile) {
 }
 
 inline void CreateToothbrush(World &world, Tile &tile) {
-    CreateItem(world, tile, "toothbrush", "", {
+    CreateItem(world, tile, "toothbrush", {
                    .messages = {
                        Message{
                            .title  = "Electric Toothbrush",
@@ -1296,7 +1296,7 @@ inline void CreateToothbrush(World &world, Tile &tile) {
 }
 
 inline void CreateCard(World &world, Tile &tile) {
-    CreateItem(world, tile, "card", "", {
+    CreateItem(world, tile, "card", {
                    .messages = {
                        Message{
                            .title  = "Vinerizon Card",
@@ -1314,8 +1314,6 @@ inline void CreateDoor(World &world, Tile &tile, const std::string &mapPath) {
 
 inline void LoadMap(World &world, const std::string &mapPath, const bool overworld = false) {
     const auto txt = FileIo::ReadText(mapPath).value();
-
-    Debug::LogInf("Loading '{}', Overworld: {}", mapPath, overworld);
 
     world.Registry().ForEach<Entity, Tile>([&](const Entity e, const Tile &tile) {
         if (tile.HasOccupant()) {
@@ -1367,7 +1365,7 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         if (c == 'P' && !overworld) {
             const Entity player = world.Registry().Create(
-                Transform{.position = Vector3f{tile.position}, .scale = {0.62F, 1.0F, 1.0F}},
+                Transform{.position = Vector3f{tile.position}},
                 SpriteRenderer{.spritePath = "assets/joel.png"},
                 Player{
                     .inOverworld = false
@@ -1379,7 +1377,7 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         if (tile.position == pos && overworld) {
             const Entity player = world.Registry().Create(
-                Transform{.position = Vector3f{tile.position}, .scale = {0.62F, 1.0F, 1.0F}},
+                Transform{.position = Vector3f{tile.position}},
                 SpriteRenderer{.spritePath = "assets/joel.png"},
                 Player{
                     .inOverworld = true
@@ -1393,7 +1391,6 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             world.Registry().Create(
                 Transform{
                     .position = Vector3f{tile.position},
-                    .scale    = {0.62F, 1.0F, 1.0F}
                 },
                 SpriteRenderer{.spritePath = "assets/fren.png"},
                 Fren{}
@@ -1404,7 +1401,6 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             world.Registry().Create(
                 Transform{
                     .position = Vector3f{tile.position},
-                    .scale    = {0.62F, 1.0F, 1.0F}
                 },
                 SpriteRenderer{.spritePath = "assets/fren.png"},
                 Fren{}

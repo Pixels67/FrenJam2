@@ -4,7 +4,7 @@
 #include "Map.hpp"
 #include "Tile.hpp"
 
-static constexpr f32 s_PlayerSpeed = 10.0F;
+static constexpr f32 s_PlayerSpeed = 5.0F;
 
 std::optional<std::tuple<Entity, Ref<Interactable> > > GetNearbyInteractable(World &world, const Transform &transform) {
     const Vector2i pos = Vector2f{transform.position.x, transform.position.y};
@@ -100,6 +100,14 @@ void UpdatePlayer(World &world) {
     Registry &reg  = world.Registry();
     auto      time = world.Resource<Time::TimeState>();
 
+    bool endgame = true;
+
+    reg.ForEach<Interactable>([&](const Interactable &interactable) {
+        if (!interactable.completed) {
+            endgame = false;
+        }
+    });
+
     reg.ForEach<Entity, Transform, Player>([&](Entity e, Transform &trans, Player &player) {
         Vector2i movement = {};
         auto &   input    = world.Resource<InputState>();
@@ -108,8 +116,14 @@ void UpdatePlayer(World &world) {
         if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeDoor) {
             auto &[mapPath] = maybeDoor.value().get();
             input.pressedKeys.erase(Key::E);
-            LoadMap(world, mapPath, mapPath == "assets/map.txt");
-            return;
+            if (mapPath != "assets/5.txt") {
+                LoadMap(world, mapPath, mapPath == "assets/map.txt");
+                return;
+            }
+            if (endgame) {
+                LoadMap(world, mapPath, false);
+                return;
+            }
         }
 
         auto maybeInteractable = GetNearbyInteractable(world, trans);
@@ -120,29 +134,29 @@ void UpdatePlayer(World &world) {
                 world.Resource<Dialogue>().messages       = interactable.get().dialogue[interactable.get().currentDialogue].messages;
                 world.Resource<Dialogue>().currentMessage = 0;
 
-                if (interactable.get().destroyOnInteract) {
+                if (interactable.get().isItem) {
                     world.Resource<GameState>().items[interactable.get().name] = false;
                     reg.Destroy(entity);
                 }
             }
         }
 
-        if (input.IsKeyPressed(Key::D)) {
+        if (input.IsKeyDown(Key::D) || input.IsKeyDown(Key::Right)) {
             movement.x = 1;
             movement.y = 0;
         }
 
-        if (input.IsKeyPressed(Key::A)) {
+        if (input.IsKeyDown(Key::A) || input.IsKeyDown(Key::Left)) {
             movement.x = -1;
             movement.y = 0;
         }
 
-        if (input.IsKeyPressed(Key::W)) {
+        if (input.IsKeyDown(Key::W) || input.IsKeyDown(Key::Up)) {
             movement.y = 1;
             movement.x = 0;
         }
 
-        if (input.IsKeyPressed(Key::S)) {
+        if (input.IsKeyDown(Key::S) || input.IsKeyDown(Key::Down)) {
             movement.y = -1;
             movement.x = 0;
         }

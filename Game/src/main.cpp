@@ -37,6 +37,15 @@ void Init(World &world) {
     world.InsertResource(ItemUi{});
     world.InsertResource(PlayerInfo{.overworldPos = {5, -5}, .overworldPrevPos = {4, -5}});
     world.InsertResource(GameState{
+        .characterImagePaths = {
+            {"mike", "assets/mike.png"},
+            {"samson", "assets/samson.png"},
+            {"maggie", "assets/maggie.png"},
+            {"jack", "assets/jack.png"},
+            {"chris", "assets/chris.png"},
+            {"dilto", "assets/dilto.png"},
+            {"vinny", "assets/vinny.png"},
+        },
         .itemsLocked = {
             {"pillow", true},
             {"statuette", true},

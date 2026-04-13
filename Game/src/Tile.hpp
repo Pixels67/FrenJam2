@@ -66,10 +66,6 @@ inline void UpdateTiles(World &world) {
         if (tile.HasOccupant() && reg.Has<Transform>(tile.occupant) && !reg.Has<Player>(tile.occupant) && !reg.Has<Fren>(tile.occupant)) {
             reg.Get<Transform>(tile.occupant)->get()            = trans;
             reg.Get<Transform>(tile.occupant)->get().position.z = trans.position.z - 1;
-
-            if (reg.Has<Interactable>(tile.occupant)) {
-                reg.Get<Transform>(tile.occupant)->get().scale.x = 0.62F;
-            }
         }
     });
 }

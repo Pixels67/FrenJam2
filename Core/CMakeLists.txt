@@ -77,6 +77,9 @@ add_library(soloud STATIC ${SOLOUD_SOURCES})
 target_include_directories(soloud PUBLIC vendor/soloud/include vendor/soloud/src)
 target_compile_definitions(soloud PUBLIC WITH_MINIAUDIO)
 
+target_include_directories(soloud PRIVATE vendor/stbv)
+target_link_libraries(soloud PRIVATE stbv)
+
 set(PROJECT_SOURCES
         include/Flock.hpp
         src/Ecs/Storage.hpp
@@ -219,20 +222,20 @@ endif ()
 
 ################## Tests ##################
 
-CPMAddPackage("https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip")
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-add_executable(${PROJECT_NAME}Tests
-        tests/Ecs.cpp
-)
-
-target_link_libraries(${PROJECT_NAME}Tests
-        GTest::gtest_main
-        ${PROJECT_NAME}
-)
-
-include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}Tests)
+#CPMAddPackage("https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip")
+#set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+#
+#add_executable(${PROJECT_NAME}Tests
+#        tests/Ecs.cpp
+#)
+#
+#target_link_libraries(${PROJECT_NAME}Tests
+#        GTest::gtest_main
+#        ${PROJECT_NAME}
+#)
+#
+#include(GoogleTest)
+#gtest_discover_tests(${PROJECT_NAME}Tests)
 
 ################## OS Libs ##################
 

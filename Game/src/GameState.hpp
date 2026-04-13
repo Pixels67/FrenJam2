@@ -5,24 +5,28 @@
 #include "Using.hpp"
 
 struct GameState {
-    std::unordered_map<std::string, u32>  characterIndices;
-    std::unordered_map<std::string, bool> itemsLocked;
-    std::unordered_map<std::string, bool> items;
+    std::unordered_map<std::string, u32>         characterIndices;
+    std::unordered_map<std::string, std::string> characterImagePaths;
+    std::unordered_map<std::string, bool>        completedCharacters;
+    std::unordered_map<std::string, bool>        itemsLocked;
+    std::unordered_map<std::string, bool>        items;
 };
 
-FLK_ARCHIVE(GameState, characterIndices, itemsLocked)
+FLK_ARCHIVE(GameState, characterIndices, characterImagePaths, completedCharacters, itemsLocked, items)
 
 inline void ApplyGameState(World &world, GameState &state) {
-    world.Registry().ForEach<Interactable>([&](Interactable &interactable) {
-        if (interactable.destroyOnInteract || interactable.name == "") {
+    world.Registry().ForEach<SpriteRenderer, Interactable>([&](SpriteRenderer &renderer, Interactable &interactable) {
+        if (interactable.isItem || interactable.name.empty()) {
             return;
         }
 
+        renderer.spritePath          = state.characterImagePaths[interactable.name];
         interactable.currentDialogue = state.characterIndices[interactable.name];
+        interactable.completed       = state.completedCharacters[interactable.name];
     });
 
     world.Registry().ForEach<Entity, Interactable>([&](Entity e, Interactable &interactable) {
-        if (!interactable.destroyOnInteract) {
+        if (!interactable.isItem) {
             return;
         }
 
