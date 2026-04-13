@@ -23,6 +23,10 @@ inline void ApplyGameState(World &world, GameState &state) {
         renderer.spritePath          = state.characterImagePaths[interactable.name];
         interactable.currentDialogue = state.characterIndices[interactable.name];
         interactable.completed       = state.completedCharacters[interactable.name];
+
+        if (interactable.name == "jack") {
+            interactable.locked = state.itemsLocked["jack"];
+        }
     });
 
     world.Registry().ForEach<Entity, Interactable>([&](Entity e, Interactable &interactable) {

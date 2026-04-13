@@ -4475,9 +4475,28 @@
         "id": 894,
         "alive": true,
         "version": 0
+      },
+      {
+        "id": 895,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 896,
+        "alive": true,
+        "version": 0
       }
     ],
     "components": {
+      "DialogueNoButton": [
+        {
+          "id": 896,
+          "data": null,
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
       "Interactable": [
         {
           "id": 65,
@@ -4641,7 +4660,11 @@
                         "text": "Thank you very much. Godspeed on your quest, young men! Shalom!",
                         "imagePath": "",
                         "choices": [],
-                        "events": []
+                        "events": [
+                          {
+                            "value": "u_jack"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -20954,7 +20977,66 @@
         }
       ],
       "Image": [],
-      "Button": [],
+      "Button": [
+        {
+          "id": 895,
+          "data": {
+            "imagePath": "",
+            "defaultColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 255
+            },
+            "hoverTint": {
+              "r": 20,
+              "g": 40,
+              "b": 255,
+              "a": 40
+            },
+            "pressTint": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 20
+            },
+            "onPressEvent": "",
+            "onReleaseEvent": "yes"
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 896,
+          "data": {
+            "imagePath": "",
+            "defaultColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 255
+            },
+            "hoverTint": {
+              "r": 255,
+              "g": 40,
+              "b": 20,
+              "a": 40
+            },
+            "pressTint": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 20
+            },
+            "onPressEvent": "",
+            "onReleaseEvent": "no"
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
       "Text": [
         {
           "id": 893,
@@ -20993,10 +21075,57 @@
           "config": {
             "enabled": true
           }
+        },
+        {
+          "id": 895,
+          "data": {
+            "content": "Yes",
+            "fontSize": 40,
+            "fontPath": "assets/font.ttf",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            },
+            "horizontalAlignment": 1,
+            "verticalAlignment": 1
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 896,
+          "data": {
+            "content": "No",
+            "fontSize": 40,
+            "fontPath": "assets/font.ttf",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            },
+            "horizontalAlignment": 1,
+            "verticalAlignment": 1
+          },
+          "config": {
+            "enabled": true
+          }
         }
       ],
       "AudioSource": [],
       "RigidBody": [],
+      "DialogueYesButton": [
+        {
+          "id": 895,
+          "data": null,
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
       "SphereCollider": [],
       "Fren": [
         {
@@ -34543,6 +34672,42 @@
               "aspect": {
                 "x": 1270,
                 "y": 190
+              }
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 895,
+          "data": {
+            "rect": {
+              "origin": {
+                "x": 660,
+                "y": 330
+              },
+              "aspect": {
+                "x": 180,
+                "y": 60
+              }
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 896,
+          "data": {
+            "rect": {
+              "origin": {
+                "x": 440,
+                "y": 330
+              },
+              "aspect": {
+                "x": 180,
+                "y": 60
               }
             }
           },
@@ -60404,6 +60569,7 @@
         "samson": 0
       },
       "characterImagePaths": {
+        "girlfren": "assets/girlfren.png",
         "vinny": "assets/vinny.png",
         "dilto": "assets/dilto.png",
         "jack": "assets/jack.png",
@@ -60419,6 +60585,7 @@
         "samson": false
       },
       "itemsLocked": {
+        "jack": true,
         "toothbrush": true,
         "maxwell": true,
         "card": true,

@@ -45,6 +45,7 @@ void Init(World &world) {
             {"chris", "assets/chris.png"},
             {"dilto", "assets/dilto.png"},
             {"vinny", "assets/vinny.png"},
+            {"girlfren", "assets/girlfren.png"},
         },
         .itemsLocked = {
             {"pillow", true},
@@ -55,6 +56,7 @@ void Init(World &world) {
             {"maxwell", true},
             {"toothbrush", true},
             {"card", true},
+            {"jack", true},
         },
         .items = {
             {"pillow", true},
@@ -112,6 +114,42 @@ void Init(World &world) {
             .fontPath = "assets/font.ttf"
         },
         DialogueText{}
+    );
+
+    world.Registry().Create(
+        RectTransform{
+            {{660, 330}, {180, 60}}
+        },
+        Button{
+            .hoverTint      = {20, 40, 255, 40},
+            .onReleaseEvent = "yes",
+        },
+        Text{
+            .content             = "Yes",
+            .fontSize            = 40,
+            .fontPath            = "assets/font.ttf",
+            .horizontalAlignment = Center,
+            .verticalAlignment   = Middle,
+        },
+        DialogueYesButton{}
+    );
+
+    world.Registry().Create(
+        RectTransform{
+            {{440, 330}, {180, 60}}
+        },
+        Button{
+            .hoverTint      = {255, 40, 20, 40},
+            .onReleaseEvent = "no",
+        },
+        Text{
+            .content             = "No",
+            .fontSize            = 40,
+            .fontPath            = "assets/font.ttf",
+            .horizontalAlignment = Center,
+            .verticalAlignment   = Middle,
+        },
+        DialogueNoButton{}
     );
 
     world.Save("../../../assets/world.json");

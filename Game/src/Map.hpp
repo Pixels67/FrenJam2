@@ -42,7 +42,6 @@ inline void CreateMike(World &world, Tile &tile) {
         world,
         tile,
         "mike",
-
         {
             // Initial
             {
@@ -474,7 +473,6 @@ inline void CreateSamson(World &world, Tile &tile) {
         world,
         tile,
         "samson",
-
         {
             {
                 .messages = {
@@ -535,6 +533,7 @@ inline void CreateSamson(World &world, Tile &tile) {
                     Message{
                         .title = "Samson",
                         .text  = "Thank you very much. Godspeed on your quest, young men! Shalom!",
+                        .events = {"u_jack"}
                     },
                 }
             },
@@ -1009,7 +1008,6 @@ inline void CreateVinny(World &world, Tile &tile) {
         world,
         tile,
         "vinny",
-
         {
             {
                 .messages = {
@@ -1178,6 +1176,326 @@ inline void CreateVinny(World &world, Tile &tile) {
     );
 }
 
+inline void CreateGirlfren(World &world, Tile &tile) {
+    CreateCharacter(
+        world,
+        tile,
+        "girlfren",
+        {
+            {
+                .messages = {
+                    Message{
+                        .title = "???",
+                        .text  = "Hahaha, I've been expecting you... JOEL!!!",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "Who are you?!! And how the FUCK do you know my name?!!"
+                    },
+                    Message{
+                        .title = "???",
+                        .text  = "Isn't this already obvious to you by now?",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "...No? How was I supposed to know, there weren't many clues, you know?",
+                    },
+                    Message{
+                        .title  = "???",
+                        .text   = "Ah, okay, makes sense. Let me make this very clear to you then.",
+                        .events = {"reveal"}
+                    },
+                    Message{
+                        .title = "Fren",
+                        .text  = "VAT??? IT VAS YU ALL ALONG???",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "Yes, Fren. It was me.",
+                    },
+                    Message{
+                        .title = "Fren",
+                        .text  = "BUTT VAI??? VAI YU DO DIS???",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "Because I am tired of this. Tired of everyone having lucious hair while I don't!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  =
+                        "Don't people realise that by being bald, they're opening up their souls with their shiny heads to Him?",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "I do not understand ANYTHING you just said. Who is 'Him' anyways?",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  =
+                        "When we finally summon Him, we will turn every human, every animal, every living organism into having the no of hair!!!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "And with you already being here, I can start the first phase!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "THEN EVERYONE WILL BOW BEFORE US AND GIVE UP THEIR EXISTENCE TO HIM!!!",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "That is NOT cool of you to do that, so please stop this right away, okay thanks.",
+                    },
+                    Message{
+                        .title = "Fren",
+                        .text  = "yeee, vat he sed >:)",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "I got everything ready, there's no way of stopping me now...",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "RELEASE HIM...",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "RELEASE...",
+                    },
+                    Message{
+                        .title  = "Girlfren",
+                        .text   = "THE ULTIMATE BALDY!!!",
+                        .events = {"steve"}
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "STONE COLD!",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "What?",
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "STONE COLD!!",
+                    },
+                    Message{
+                        .title = "Fren",
+                        .text  = "vat?",
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "STONE COLD!!!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "What?",
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "THAT'S ME ALRIGHT!",
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "AND I'M READY TO WHOOP SOME ASS TONIGHT!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "Now, we only need you, Joel...",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "What are you on about?",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "Have you thought about as to why you made innocent people here bald before you got here?",
+                    },
+                    Message{
+                        .title = "Fren",
+                        .text  = "uhhh idk?",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "You, Joel, have the power of 'bald bringing'.",
+                    },
+                    Message{
+                        .title = "Joel",
+                        .text  = "The WHAT?",
+                    },
+                    Message{
+                        .title = "STEVE AUSTIN",
+                        .text  = "THAT'S RIGHT! WITH YOUR POWERS, WE WILL RULE THE WORLD!",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "This is why I summoned Him, your bald bringing is too weak on its own.",
+                    },
+                    Message{
+                        .title = "Girlfren",
+                        .text  = "If you combine with Him, you'll have the ultimate power!",
+                    },
+                    Message{
+                        .title   = "Joel",
+                        .text    = "But is this what I really want? To make everyone have no hair whatsoever?",
+                        .choices = {
+                            {
+                                .messages = {
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "Fuck that!!!",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "AND FUCK BOTH OF YOU!!!",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "Wrong answer.",
+                                    },
+                                    Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "YOU LUCKY I DON'T HAVE MY SEMENT TRUCK.",
+                                    },
+                                    Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "BECAUSE YOU'D END UP BURIED.",
+                                    },
+                                    Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "BUT THE FIRST THING I'M GONNA DO IS TO GET YOU OUT OF THIS PLACE.",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "We'll see about that!",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "What are you gonna do? You're weak compared to Him anyways.",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "OH YEAH?!!",
+                                    },
+                                    Message{
+                                        .title = "Fren",
+                                        .text  = "nooooo doo nat doodoo it!!!",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "PREPARE...",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "...FOR MY BIG BALD BRINGING BEAM!!!",
+                                    },
+                                    Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "NOOOO. WHAT ARE YOU DOING?!!",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  =
+                                        "Since you're already bald, you're gonna turn to dust from the paradox I'm gonna create!",
+                                    },
+                                    Message{
+                                        .title  = "STEVE AUSTIN",
+                                        .text   = "AAAAGGGHHHHHH!!! IT BUURRNNSS!!!",
+                                        .events = {"goodend"}
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "Wha... What happened?",
+                                    },
+                                    Message{
+                                        .title = "Fren",
+                                        .text  = "looki looki, she got hairÃ©!!!",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "Really? Wow... It looks great!",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "But you, Joel...",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "What?",
+                                    },
+                                    Message{
+                                        .title = "Fren",
+                                        .text  = "HAHA YU BALD GAGAGA!!!",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "Well, the bald bringing beam took my hair with it, I guess...",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "But it was worth it.",
+                                    },
+                                    Message{
+                                        .title = "Fren",
+                                        .text  = "yeeeee :)))",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "So, what now? That plan of yours didn't really work out, huh?",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "I'm now realizing what it's like to have hair. And it's really comforting for me.",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "So no more summoning?",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "Yeah, I'm done with this. Let's go home.",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "Finally, I got so tired of running around town. I wanna go beddybyes now...",
+                                        .events = {"quit"},
+                                    },
+                                }
+                            },
+                            {
+                                .messages = {
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "Fuck it, why not?",
+                                    },
+                                    Message{
+                                        .title = "Girlfren",
+                                        .text  = "That is what we like to hear.",
+                                    },
+                                    Message{
+                                        .title = "Fren",
+                                        .text  = "noo yoey vat yu doin???",
+                                    },
+                                    Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "YEAH, NOW WE'RE TALKIN'!",
+                                    },
+                                    Message{
+                                        .title = "Joel",
+                                        .text  = "haha funni.",
+                                        .events = {"quit"},
+                                    },
+                                }
+                            }
+                        }
+                    },
+                },
+            }
+        }
+    );
+}
+
 inline void CreateRadio(World &world, Tile &tile) {
     CreateCharacter(
         world,
@@ -1287,8 +1605,9 @@ inline void CreateToothbrush(World &world, Tile &tile) {
     CreateItem(world, tile, "toothbrush", {
                    .messages = {
                        Message{
-                           .title  = "Electric Toothbrush",
-                           .text   = "You obtained 'Electric Toothbrush'. Great for removing plaque and stimulating hair follicles.",
+                           .title = "Electric Toothbrush",
+                           .text  =
+                           "You obtained 'Electric Toothbrush'. Great for removing plaque and stimulating hair follicles.",
                            .events = {"a_toothbrush"},
                        },
                    }
@@ -1434,6 +1753,10 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         if (c == 'j') {
             CreateJack(world, tile);
+        }
+
+        if (c == 'G') {
+            CreateGirlfren(world, tile);
         }
 
         if (c == 'g') {

@@ -75,6 +75,16 @@ inline void BaldifyCharacter(World &world, const std::string &name) {
     });
 }
 
+inline void BaldifyPlayer(World &world) {
+    world.Registry().All<Player>().ForEach<SpriteRenderer>([&](SpriteRenderer &renderer) {
+        std::string imageName = renderer.spritePath;
+        imageName             = imageName.substr(0, imageName.size() - 4);
+        imageName             += "_b";
+        imageName             += ".png";
+        renderer.spritePath   = imageName;
+    });
+}
+
 inline void SetEvents(World &world) {
     auto &ereg = world.Resource<Event::EventRegistry>();
     auto &reg  = world.Registry();
@@ -215,6 +225,60 @@ inline void SetEvents(World &world) {
     });
     ereg.Add("b_vinny", [&] {
         BaldifyCharacter(world, "vinny");
+    });
+
+    ereg.Add("u_jack", [&] {
+        world.Resource<GameState>().itemsLocked["jack"] = false;
+        world.Registry().ForEach<Interactable>([&](Interactable &interactable) {
+            if (interactable.name != "jack") {
+                return;
+            }
+
+            interactable.locked = false;
+        });
+    });
+
+    ereg.Add("yes", [&] {
+        auto &dialogue = world.Resource<Dialogue>();
+        dialogue       = dialogue.messages[dialogue.currentMessage].choices[1];
+    });
+
+    ereg.Add("no", [&] {
+        auto &dialogue = world.Resource<Dialogue>();
+        dialogue       = dialogue.messages[dialogue.currentMessage].choices[0];
+    });
+
+    ereg.Add("steve", [&] {
+        reg.ForEach<Entity, Box>([&](Entity e, Box &box) {
+            if (reg.Has<DialogueBox>(e)) {
+                return;
+            }
+
+            reg.Destroy(e);
+        });
+        reg.Create(
+            Transform{
+                .position = {3.0F, -3.0F, -0.5F},
+                .scale    = Vector3f::One() * 3.0F,
+            },
+            SpriteRenderer{
+                .spritePath = "assets/steve.png"
+            }
+        );
+    });
+
+    ereg.Add("goodend", [&] {
+        BaldifyCharacter(world, "girlfren");
+        BaldifyPlayer(world);
+        reg.ForEach<SpriteRenderer, Entity>([&](const SpriteRenderer &renderer, const Entity e) {
+            if (renderer.spritePath == "assets/steve.png") {
+                world.Registry().Destroy(e);
+            }
+        });
+    });
+
+    ereg.Add("quit", [&] {
+        world.Resource<Application>().Close();
     });
 }
 

@@ -4,11 +4,13 @@
 #include "Flock.hpp"
 #include "Using.hpp"
 
+struct Dialogue;
+
 struct Message {
     std::string              title = "Title";
     std::string              text  = "Text";
     std::string              imagePath;
-    std::vector<Message>     choices;
+    std::vector<Dialogue>    choices;
     std::vector<std::string> events;
 };
 

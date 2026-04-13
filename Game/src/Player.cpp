@@ -100,13 +100,8 @@ void UpdatePlayer(World &world) {
     Registry &reg  = world.Registry();
     auto      time = world.Resource<Time::TimeState>();
 
-    bool endgame = true;
-
-    reg.ForEach<Interactable>([&](const Interactable &interactable) {
-        if (!interactable.completed) {
-            endgame = false;
-        }
-    });
+    auto       chars   = world.Resource<GameState>().completedCharacters;
+    const bool endgame = chars["mike"] && chars["dilto"] && chars["samson"] && chars["jack"] && chars["chris"] && chars["maggie"];
 
     reg.ForEach<Entity, Transform, Player>([&](Entity e, Transform &trans, Player &player) {
         Vector2i movement = {};
@@ -138,6 +133,9 @@ void UpdatePlayer(World &world) {
                     world.Resource<GameState>().items[interactable.get().name] = false;
                     reg.Destroy(entity);
                 }
+            } else {
+                world.Resource<Dialogue>().messages       = {Message{.title = "Locked.", .text = ""}};
+                world.Resource<Dialogue>().currentMessage = 0;
             }
         }
 
@@ -192,6 +190,15 @@ void UpdatePlayer(World &world) {
             trans.position     += dir * s_PlayerSpeed * time.deltaTime;
         }
 
-        world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
+        bool offset = false;
+        reg.All<Box>().ForEach<Entity>([&](Entity e) {
+            offset = !offset;
+        });
+
+        if (offset) {
+            world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y + 1.0F, -10);
+        } else {
+            world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
+        }
     });
 }

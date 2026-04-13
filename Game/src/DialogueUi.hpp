@@ -21,24 +21,56 @@ struct DialogueImage {
 struct DialogueBox {
 };
 
+struct DialogueYesButton {
+};
+
+struct DialogueNoButton {
+};
+
 FLK_ARCHIVE(DialogueText, content)
 FLK_ARCHIVE_TAG(DialogueTitle)
 FLK_ARCHIVE_TAG(DialogueImage)
 FLK_ARCHIVE_TAG(DialogueBox)
+FLK_ARCHIVE_TAG(DialogueYesButton)
+FLK_ARCHIVE_TAG(DialogueNoButton)
 
 inline void ShowDialogue(World &world) {
     world.Registry().ForEach<Player>([&](Player &player) { player.canMove = false; });
 
     world.Registry().All<DialogueText>().ForEach<Entity>([&](const Entity e) {
-        world.Registry().SetEnabled<Text>(e, true);
+        world.Registry().Enable<Text>(e);
     });
 
     world.Registry().All<DialogueTitle>().ForEach<Entity>([&](const Entity e) {
-        world.Registry().SetEnabled<Text>(e, true);
+        world.Registry().Enable<Text>(e);
     });
 
     world.Registry().All<DialogueBox>().ForEach<Entity>([&](const Entity e) {
-        world.Registry().SetEnabled<Box>(e, true);
+        world.Registry().Enable<Box>(e);
+    });
+}
+
+inline void ShowButtons(World &world) {
+    world.Registry().All<DialogueYesButton, Text>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Enable<Button>(e);
+        world.Registry().Enable<Text>(e);
+    });
+
+    world.Registry().All<DialogueNoButton, Text>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Enable<Button>(e);
+        world.Registry().Enable<Text>(e);
+    });
+}
+
+inline void HideButtons(World &world) {
+    world.Registry().All<DialogueYesButton, Text>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Disable<Button>(e);
+        world.Registry().Disable<Text>(e);
+    });
+
+    world.Registry().All<DialogueNoButton, Text>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Disable<Button>(e);
+        world.Registry().Disable<Text>(e);
     });
 }
 
@@ -62,7 +94,7 @@ inline void UpdateDialogueUi(World &world) {
     auto &[messages, currentMessage] = world.Resource<Dialogue>();
 
     const auto input = world.Resource<InputState>();
-    if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size()) {
+    if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size() && messages[currentMessage].choices.empty()) {
         for (const auto &event: messages[currentMessage].events) {
             world.Resource<Event::EventRegistry>().Invoke(event);
         }
@@ -76,9 +108,16 @@ inline void UpdateDialogueUi(World &world) {
         content = messages[currentMessage].text;
         title   = messages[currentMessage].title;
 
+        if (!messages[currentMessage].choices.empty()) {
+            ShowButtons(world);
+        } else {
+            HideButtons(world);
+        }
+
         ShowDialogue(world);
     } else {
         HideDialogue(world);
+        HideButtons(world);
     }
 
     world.Registry().ForEach<Text, DialogueText>([&](Text &text, DialogueText &dText) {

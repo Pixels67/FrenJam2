@@ -9,6 +9,7 @@
 cmake-build-debug/
 cmake-build-release/
 cmake-build-iwyu/
+cmake-build-windows/
 Testing/
 **/Testing/
 
