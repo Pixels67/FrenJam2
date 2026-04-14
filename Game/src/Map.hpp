@@ -11,7 +11,7 @@
 inline void CreateCharacter(World &world, Tile &tile, const std::string &name, const std::vector<Dialogue> &dialogue) {
     const Entity character = world.Registry().Create(
         Transform{},
-        SpriteRenderer{.spritePath = "assets/" + name + ".png"},
+        SpriteRenderer{.spritePath = "assets/sprites/" + name + ".png"},
         Interactable{
             .name     = name,
             .dialogue = dialogue,
@@ -26,7 +26,7 @@ inline void CreateCharacter(World &world, Tile &tile, const std::string &name, c
 inline void CreateItem(World &world, Tile &tile, const std::string &name, const Dialogue &dialogue) {
     const Entity character = world.Registry().Create(
         Transform{},
-        SpriteRenderer{.spritePath = ""},
+        SpriteRenderer{.spritePath = "assets/sprites/" + name + ".png"},
         Interactable{
             .name     = name,
             .dialogue = {dialogue},
@@ -423,7 +423,7 @@ inline void CreateChris(World &world, Tile &tile) {
                     Message{
                         .title = "",
                         .text  =
-                        "Please imagine that Chris gets balded from a bald eagle flying by, also snatching the dollar from his hand.",
+                        "Please imagine that Chris gets balded by a bald eagle flying by, also snatching the dollar from his hand.",
                         .events = {"b_chris"}
                     },
                     Message{
@@ -884,7 +884,6 @@ inline void CreateJack(World &world, Tile &tile) {
         world,
         tile,
         "jack",
-
         {
             {
                 .messages = {
@@ -941,8 +940,9 @@ inline void CreateJack(World &world, Tile &tile) {
                         .events = {"r_cd"}
                     },
                     Message{
-                        .title = "Jack Black™",
-                        .text  = "Now, behold, the masterpiece that you’re about to have the privilege of hearing",
+                        .title  = "Jack Black™",
+                        .text   = "Now, behold, the masterpiece that you’re about to have the privilege of hearing",
+                        .events = {"dookie"}
                     },
                     Message{
                         .title = "Joel",
@@ -1407,7 +1407,7 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                     Message{
                                         .title  = "STEVE AUSTIN",
                                         .text   = "AAAAGGGHHHHHH!!! IT BUURRNNSS!!!",
-                                        .events = {"goodend"}
+                                        .events = {"goodend", "beam"}
                                     },
                                     Message{
                                         .title = "Girlfren",
@@ -1506,13 +1506,13 @@ inline void CreateRadio(World &world, Tile &tile) {
         world,
         tile,
         "radio",
-
         {
             {
                 .messages = {
                     Message{
-                        .title = "Radio",
-                        .text  = "It's a radio.",
+                        .title  = "Radio",
+                        .text   = "It's a radio.",
+                        .events = {"radio"}
                     },
                 }
             }
@@ -1648,6 +1648,10 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
         world.Registry().Destroy(e);
     });
 
+    world.Registry().All<SpriteRenderer>().ForEach<Entity>([&](const Entity e) {
+        world.Registry().Destroy(e);
+    });
+
     world.Registry().All<Fren>().ForEach<Entity>([&](const Entity e) {
         world.Registry().Destroy(e);
     });
@@ -1665,6 +1669,14 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         tile.type = Ground;
 
+        if (!overworld && str != "assets/6.txt") {
+            tile.type = Interior;
+        }
+
+        if (!overworld && (str == "assets/3.txt" || str == "assets/5.txt" || str == "assets/6.txt")) {
+            tile.type = Stone;
+        }
+
         if (c == ',') {
             tile.type = Trail;
         }
@@ -1677,6 +1689,14 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             tile.type = Wall;
         }
 
+        if (c == '$') {
+            tile.type = Tree;
+        }
+
+        if (c == '#' && str == "assets/6.txt") {
+            tile.type = Mountain;
+        }
+
         if (c == 't') {
             tile.type = Trash;
         }
@@ -1685,13 +1705,25 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             tile.type = Water;
         }
 
+        if (c == 'x') {
+            tile.type = Hidden;
+        }
+
+        if (c == '-') {
+            tile.type = Bones;
+        }
+
+        if (c == '=') {
+            tile.type = Guy;
+        }
+
         Vector2i pos     = {world.Resource<PlayerInfo>().overworldPos.x, world.Resource<PlayerInfo>().overworldPos.y};
         Vector2i prevPos = {world.Resource<PlayerInfo>().overworldPrevPos.x, world.Resource<PlayerInfo>().overworldPrevPos.y};
 
         if (c == 'P' && !overworld) {
             const Entity player = world.Registry().Create(
                 Transform{.position = Vector3f{tile.position}},
-                SpriteRenderer{.spritePath = "assets/joel.png"},
+                SpriteRenderer{.spritePath = "assets/sprites/joel.png"},
                 Player{
                     .inOverworld = false
                 }
@@ -1700,10 +1732,14 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
             tile.occupant = player;
         }
 
+        if (c == 'P' && overworld) {
+            tile.type = Trail;
+        }
+
         if (tile.position == pos && overworld) {
             const Entity player = world.Registry().Create(
                 Transform{.position = Vector3f{tile.position}},
-                SpriteRenderer{.spritePath = "assets/joel.png"},
+                SpriteRenderer{.spritePath = "assets/sprites/joel.png"},
                 Player{
                     .inOverworld = true
                 }
@@ -1717,7 +1753,7 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
                 Transform{
                     .position = Vector3f{tile.position},
                 },
-                SpriteRenderer{.spritePath = "assets/fren.png"},
+                SpriteRenderer{.spritePath = "assets/sprites/fren.png"},
                 Fren{}
             );
         }
@@ -1727,7 +1763,7 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
                 Transform{
                     .position = Vector3f{tile.position},
                 },
-                SpriteRenderer{.spritePath = "assets/fren.png"},
+                SpriteRenderer{.spritePath = "assets/sprites/fren.png"},
                 Fren{}
             );
         }
@@ -1816,6 +1852,48 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
         x++;
     }
 
+    if (overworld) {
+        world.Registry().Create(
+            Transform{
+                .position = {4.5F, -3.0f, -4.0F},
+                .scale    = {2.8F, 1.4F, 1.0F}
+            },
+            SpriteRenderer{
+                .spritePath = "assets/sprites/dumpster.png"
+            }
+        );
+
+        world.Registry().Create(
+            Transform{
+                .position = {11.5F, -7.0F, -4.0F},
+                .scale    = {5.0F, 5.0F, 1.0F}
+            },
+            SpriteRenderer{
+                .spritePath = "assets/sprites/maggie_house.png"
+            }
+        );
+
+        world.Registry().Create(
+            Transform{
+                .position = {21.5F, -15.5F, -9.5F},
+                .scale    = {4.0F, 2.0F, 1.0F}
+            },
+            SpriteRenderer{
+                .spritePath = "assets/sprites/club.png"
+            }
+        );
+
+        world.Registry().Create(
+            Transform{
+                .position = {20.0F, -8.0F, -4.0F},
+                .scale    = {1.0F, 1.0F, 1.0F}
+            },
+            SpriteRenderer{
+                .spritePath = "assets/sprites/pile.png"
+            }
+        );
+    }
+
     ApplyGameState(world, world.Resource<GameState>());
 
     if (str == "assets/5.txt") {
@@ -1829,10 +1907,14 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
         });
     }
 
-    str = str.substr(7);
-    str = str.substr(0, str.size() - 4);
-    str = "assets/music/" + str + ".oga";
-    world.Resource<AudioHandler>().PlayMusic(str);
+    if (str == "assets/1.txt" || str == "assets/2.txt") {
+        world.Resource<AudioHandler>().PlayMusic("assets/music/house.oga");
+    } else {
+        str = str.substr(7);
+        str = str.substr(0, str.size() - 4);
+        str = "assets/music/" + str + ".oga";
+        world.Resource<AudioHandler>().PlayMusic(str);
+    }
 }
 
 #endif //MAP_HPP

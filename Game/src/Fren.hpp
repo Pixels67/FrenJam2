@@ -38,9 +38,10 @@ inline void UpdateFren(World &world) {
             const Vector3f dir      = dist.Normalized();
             const Vector3f movement = dir * s_FrenSpeed * deltaTime;
             trans.position          += movement;
+            trans.position.z        = -7.0F;
         } else {
             trans.position   = Vector3f{frenPos};
-            trans.position.z = -1.0F;
+            trans.position.z = -7.0F;
         }
     });
 }

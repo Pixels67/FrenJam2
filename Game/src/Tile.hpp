@@ -13,6 +13,13 @@ enum TileType {
     Trash,
     Water,
     Wall,
+    Hidden,
+    Interior,
+    Bones,
+    Guy,
+    Stone,
+    Tree,
+    Mountain,
 };
 
 inline bool IsPassable(const TileType type) {
@@ -23,6 +30,13 @@ inline bool IsPassable(const TileType type) {
         case Trash: return false;
         case Water: return false;
         case Wall: return false;
+        case Hidden: return false;
+        case Interior: return true;
+        case Bones: return false;
+        case Guy: return false;
+        case Stone: return true;
+        case Tree: return false;
+        case Mountain: return false;
     }
 
     FLK_ASSERT(false);
@@ -30,12 +44,19 @@ inline bool IsPassable(const TileType type) {
 
 inline std::string GetTileSprite(const TileType type) {
     switch (type) {
-        case Ground: return "assets/ground.png";
-        case Trail: return "assets/trail.png";
-        case Sand: return "assets/sand.png";
-        case Trash: return "assets/trash.png";
-        case Water: return "assets/water.png";
-        case Wall: return "assets/wall.png";
+        case Ground: return "assets/sprites/ground.png";
+        case Trail: return "assets/sprites/trail.png";
+        case Sand: return "assets/sprites/sand.png";
+        case Trash: return "assets/sprites/trash.png";
+        case Water: return "assets/sprites/water.png";
+        case Wall: return "assets/sprites/wall.png";
+        case Hidden: return "assets/sprites/ground.png";
+        case Interior: return "assets/sprites/interior.png";
+        case Bones: return "assets/sprites/bones.png";
+        case Guy: return "assets/sprites/guy.png";
+        case Stone: return "assets/sprites/stone.png";
+        case Tree: return "assets/sprites/tree.png";
+        case Mountain: return "assets/sprites/mountain.png";
     }
 
     FLK_ASSERT(false);

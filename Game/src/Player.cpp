@@ -111,14 +111,20 @@ void UpdatePlayer(World &world) {
         if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeDoor) {
             auto &[mapPath] = maybeDoor.value().get();
             input.pressedKeys.erase(Key::E);
-            //if (mapPath != "assets/5.txt") {
-            LoadMap(world, mapPath, mapPath == "assets/map.txt");
-            return;
-            //}
-            //if (endgame) {
-            //    LoadMap(world, mapPath, false);
-            //    return;
-            //}
+            if (mapPath != "assets/5.txt") {
+                LoadMap(world, mapPath, mapPath == "assets/map.txt");
+                return;
+            }
+            if (endgame) {
+                LoadMap(world, mapPath, false);
+                return;
+            }
+
+            if (!endgame) {
+                world.Resource<Dialogue>().messages       = {Message{.title = "Locked.", .text = "Return after completing all quests."}};
+                world.Resource<Dialogue>().currentMessage = 0;
+                return;
+            }
         }
 
         auto maybeInteractable = GetNearbyInteractable(world, trans);
@@ -184,7 +190,7 @@ void UpdatePlayer(World &world) {
         } else {
             player.isMoving  = false;
             trans.position   = Vector3f{playerPos};
-            trans.position.z = -2.0F;
+            trans.position.z = -8.0F;
         }
 
         if (player.isMoving) {

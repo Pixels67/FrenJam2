@@ -19,6 +19,7 @@ FLK_ARCHIVE(Message, title, text, imagePath, choices, events)
 struct Dialogue {
     std::vector<Message> messages;
     u32                  currentMessage = 0;
+    f32                  lockTime       = 0.0F;
 
     [[nodiscard]] bool IsFinished() const {
         return currentMessage >= messages.size();

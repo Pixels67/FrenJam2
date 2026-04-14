@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
         src/Events.hpp
         src/GameState.hpp
         src/AudioHandler.hpp
+        src/Fade.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})

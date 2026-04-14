@@ -94,7 +94,12 @@ inline void HideDialogue(World &world) {
 }
 
 inline void UpdateDialogueUi(World &world) {
-    auto &[messages, currentMessage] = world.Resource<Dialogue>();
+    auto &[messages, currentMessage, lockTime] = world.Resource<Dialogue>();
+    if (lockTime > 0.0F) {
+        lockTime -= world.Resource<Time::TimeState>().deltaTime;
+        HideDialogue(world);
+        return;
+    }
 
     const auto input = world.Resource<InputState>();
     if (input.IsKeyPressed(Key::Space) && currentMessage < messages.size() && messages[currentMessage].choices.empty()) {

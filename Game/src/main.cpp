@@ -8,6 +8,7 @@
 #include "Player.hpp"
 #include "Tile.hpp"
 #include "Events.hpp"
+#include "Fade.hpp"
 #include "Using.hpp"
 
 void RegisterComps(World &world) {
@@ -43,14 +44,15 @@ void Init(World &world) {
     world.InsertResource(AudioHandler{});
     world.InsertResource(GameState{
         .characterImagePaths = {
-            {"mike", "assets/mike.png"},
-            {"samson", "assets/samson.png"},
-            {"maggie", "assets/maggie.png"},
-            {"jack", "assets/jack.png"},
-            {"chris", "assets/chris.png"},
-            {"dilto", "assets/dilto.png"},
-            {"vinny", "assets/vinny.png"},
-            {"girlfren", "assets/girlfren.png"},
+            {"mike", "assets/sprites/mike.png"},
+            {"samson", "assets/sprites/samson.png"},
+            {"maggie", "assets/sprites/maggie.png"},
+            {"jack", "assets/sprites/jack.png"},
+            {"chris", "assets/sprites/chris.png"},
+            {"dilto", "assets/sprites/dilto.png"},
+            {"vinny", "assets/sprites/vinny.png"},
+            {"girlfren", "assets/sprites/girlfren.png"},
+            {"radio", "assets/sprites/radio.png"},
         },
         .itemsLocked = {
             {"pillow", true},
@@ -75,7 +77,7 @@ void Init(World &world) {
         }
     });
 
-    world.Resource<AmbientLight>().color = {20, 20, 20};
+    world.Resource<AmbientLight>().color = {0, 0, 0};
 
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "walk", "assets/sfx/walk.wav", 0.25F);
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "steve", "assets/music/scsa-reveal.oga");
@@ -86,7 +88,7 @@ void Init(World &world) {
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Girlfren", "assets/sfx/d_girlfren.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "STEVE AUSTIN", "assets/sfx/d_scsa.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "D*lto", "assets/sfx/d_dilto.wav");
-    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Chris", "assets/sfx/d_dilto.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Chris", "assets/sfx/d_chris.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Samson", "assets/sfx/d_samson.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Maggie Pie", "assets/sfx/d_maggie.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Vinny", "assets/sfx/d_vinny.wav");
@@ -101,8 +103,15 @@ void Init(World &world) {
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Maxwell", "assets/sfx/d_default.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "CD", "assets/sfx/d_default.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Vinerizon Card", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Bald Eagle Coin", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Locked.", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "", "assets/sfx/d_default.wav");
 
-    world.Resource<AudioHandler>().PlayMusic("assets/music/title.oga");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "bald", "assets/sfx/ohnohebaldo.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "select", "assets/sfx/select.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "item", "assets/sfx/itemget.wav");
+
+    world.Resource<AudioHandler>().PlayMusic("assets/music/title.oga", false);
     world.Registry().Create(RectTransform{{{0, 0}, {1280, 720}}}, Gui::Image{.imagePath = "assets/bg.png"});
     world.Registry().Create(
         RectTransform{{{540, 450}, {200, 50}}},
@@ -120,12 +129,12 @@ void Init(World &world) {
 i32 main() {
     App app = App::Create({
         .windowConfig = {
-            .title = "FrenJam2",
+            .title = "JoelPG",
             .size  = {1280, 720}
         },
     }).value();
 
     app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, SetEvents, Init)
-       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi, UpdateAudio)
+       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi, UpdateAudio, UpdateFades)
        .Run();
 }

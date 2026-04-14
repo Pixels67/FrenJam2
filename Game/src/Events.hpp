@@ -1,6 +1,7 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 
+#include "Fade.hpp"
 #include "Flock.hpp"
 #include "GameState.hpp"
 #include "Item.hpp"
@@ -22,6 +23,7 @@ inline void UnlockItem(World &world, const std::string &itemName) {
 }
 
 inline void AddItem(World &world, const std::string &itemName, const std::string &imagePath) {
+    world.Resource<AudioHandler>().PlaySfx(world.Registry(), "item");
     world.Resource<Inventory>().items.push_back(Item{.name = itemName, .imagePath = imagePath});
 }
 
@@ -58,6 +60,10 @@ inline void BaldifyCharacter(World &world, const std::string &name) {
         return;
     }
 
+    if (name != "girlfren" && name != "joel") {
+        world.Resource<AudioHandler>().PlaySfx(world.Registry(), "bald");
+    }
+
     world.Registry().ForEach<Interactable, SpriteRenderer>([&](Interactable &interactable, SpriteRenderer &renderer) {
         if (interactable.isItem || interactable.name != name) {
             return;
@@ -91,6 +97,7 @@ inline void SetEvents(World &world) {
 
     ereg.Add("start", [&] {
         world.Resource<AudioHandler>().StopMusic(reg);
+        world.Resource<AudioHandler>().PlaySfx(world.Registry(), "select");
 
         world.Registry().All<Gui::Image>().ForEach<Entity>([&](Entity e) {
             world.Registry().Disable<Gui::Image>(e);
@@ -104,7 +111,7 @@ inline void SetEvents(World &world) {
             world.Registry().Disable<Text>(e);
         });
 
-        world.Registry().Create(
+        Entity box = world.Registry().Create(
             RectTransform{
                 {{0, 520}, {1280, 200}}
             },
@@ -123,7 +130,7 @@ inline void SetEvents(World &world) {
             }
         );
 
-        world.Registry().Create(
+        Entity title = world.Registry().Create(
             RectTransform{
                 {{10, 530}, {1270, 190}}
             },
@@ -135,7 +142,7 @@ inline void SetEvents(World &world) {
             DialogueTitle{}
         );
 
-        world.Registry().Create(
+        Entity text = world.Registry().Create(
             RectTransform{
                 {{10, 560}, {1270, 190}}
             },
@@ -146,7 +153,7 @@ inline void SetEvents(World &world) {
             DialogueText{}
         );
 
-        world.Registry().Create(
+        Entity yesButton = world.Registry().Create(
             RectTransform{
                 {{660, 330}, {180, 60}}
             },
@@ -164,7 +171,7 @@ inline void SetEvents(World &world) {
             DialogueYesButton{}
         );
 
-        world.Registry().Create(
+        Entity noButton = world.Registry().Create(
             RectTransform{
                 {{440, 330}, {180, 60}}
             },
@@ -182,7 +189,15 @@ inline void SetEvents(World &world) {
             DialogueNoButton{}
         );
 
-        LoadMap(world, "assets/map.txt");
+        world.Registry().Disable<Button>(noButton);
+        world.Registry().Disable<Button>(yesButton);
+        world.Registry().Disable<Text>(noButton);
+        world.Registry().Disable<Text>(yesButton);
+        world.Registry().Disable<Text>(text);
+        world.Registry().Disable<Text>(title);
+        world.Registry().Disable<Box>(box);
+
+        LoadMap(world, "assets/map.txt", true);
     });
 
     // Items
@@ -212,39 +227,39 @@ inline void SetEvents(World &world) {
     });
 
     ereg.Add("a_maxwell", [&] {
-        AddItem(world, "Maxwell", "");
+        AddItem(world, "Maxwell", "assets/sprites/maxwell.png");
         ereg.Invoke("a_maggie");
     });
     ereg.Add("a_grill", [&] {
-        AddItem(world, "Grill", "");
+        AddItem(world, "Grill", "assets/sprites/grill.png");
         ereg.Invoke("a_dilto");
     });
     ereg.Add("a_statuette", [&] {
-        AddItem(world, "Statuette", "");
+        AddItem(world, "Statuette", "assets/sprite/statuette.png");
         ereg.Invoke("a_mike");
     });
     ereg.Add("a_verse", [&] {
-        AddItem(world, "Bible Verse", "");
+        AddItem(world, "Bible Verse", "assets/sprites/verse.png");
         ereg.Invoke("a_samson");
     });
     ereg.Add("a_cd", [&] {
-        AddItem(world, "CD", "");
+        AddItem(world, "CD", "assets/sprites/cd.png");
         ereg.Invoke("a_jack");
     });
     ereg.Add("a_pillow", [&] {
-        AddItem(world, "Saitama Body Pillow", "");
+        AddItem(world, "Saitama Body Pillow", "assets/sprites/pillow.png");
         ereg.Invoke("a_mike");
     });
     ereg.Add("a_coin", [&] {
-        AddItem(world, "Bald Eagle Coin", "");
+        AddItem(world, "Bald Eagle Coin", "assets/sprites/coin.png");
         ereg.Invoke("a_chris");
     });
     ereg.Add("a_toothbrush", [&] {
-        AddItem(world, "Electric Toothbrush", "");
+        AddItem(world, "Electric Toothbrush", "assets/sprites/toothbrush.png");
         ereg.Invoke("a_mike");
     });
     ereg.Add("a_card", [&] {
-        AddItem(world, "Vinerizon Card", "");
+        AddItem(world, "Vinerizon Card", "assets/sprites/card.png");
         ereg.Invoke("a_vinny");
     });
 
@@ -349,10 +364,14 @@ inline void SetEvents(World &world) {
     });
 
     ereg.Add("steve", [&] {
+        world.Resource<Dialogue>().lockTime = 12.0F;
         world.Resource<AudioHandler>().PlaySfx(reg, "steve");
+        world.Resource<AudioHandler>().StopMusic(reg);
         world.Resource<AudioHandler>().PlayMusic("assets/music/scsa-loop.oga", true, 12.0F);
+
+        world.Registry().Create(RectTransform{{{}, {1280, 720}}}, Box{.color = Color4u8::White()}, Fade{});
         reg.ForEach<Entity, Box>([&](Entity e, Box &box) {
-            if (reg.Has<DialogueBox>(e)) {
+            if (reg.Has<DialogueBox>(e) || reg.Has<Fade>(e)) {
                 return;
             }
 
@@ -364,9 +383,28 @@ inline void SetEvents(World &world) {
                 .scale    = Vector3f::One() * 3.0F,
             },
             SpriteRenderer{
-                .spritePath = "assets/steve.png"
+                .spritePath = "assets/sprites/steve.png"
             }
         );
+    });
+
+    ereg.Add("beam", [&] {
+        world.Resource<Dialogue>().lockTime = 5.0F;
+        world.Registry().Create(RectTransform{{{}, {1280, 720}}}, Box{.color = Color4u8::White()}, Fade{.time = 5.0F});
+    });
+
+    ereg.Add("radio", [&] {
+        if (world.Resource<AudioHandler>().currentMusic == "assets/music/house.oga") {
+            world.Resource<AudioHandler>().PlayMusic("assets/music/joel.oga");
+        }
+
+        if (world.Resource<AudioHandler>().currentMusic == "assets/music/3.oga") {
+            world.Resource<AudioHandler>().PlayMusic("assets/music/vargbonezone.oga");
+        }
+    });
+
+    ereg.Add("dookie", [&] {
+        world.Resource<AudioHandler>().PlayMusic("assets/music/musicthatmakesyougodookie-loop.oga");
     });
 
     ereg.Add("goodend", [&] {
@@ -374,7 +412,7 @@ inline void SetEvents(World &world) {
         BaldifyCharacter(world, "girlfren");
         BaldifyPlayer(world);
         reg.ForEach<SpriteRenderer, Entity>([&](const SpriteRenderer &renderer, const Entity e) {
-            if (renderer.spritePath == "assets/steve.png") {
+            if (renderer.spritePath == "assets/sprites/steve.png") {
                 world.Registry().Destroy(e);
             }
         });
@@ -394,34 +432,33 @@ inline void SetEvents(World &world) {
         });
 
         bool goodend = false;
-        world.Registry().All<Player>().ForEach<SpriteRenderer>([&](SpriteRenderer &renderer) {
-            goodend = renderer.spritePath == "assets/joel_b.png";
+        world.Registry().All<Player>().ForEach<SpriteRenderer>([&](const SpriteRenderer &renderer) {
+            goodend = renderer.spritePath == "assets/sprites/joel_b.png";
         });
 
         if (!goodend) {
             world.Resource<AudioHandler>().PlayMusic("assets/music/bad-end.oga");
+        } else {
+            world.Resource<AudioHandler>().PlayMusic("assets/music/credits.oga");
         }
 
         world.Registry().Create(RectTransform{{{0, 0}, {1280, 720}}}, Box{.color = Color4u8::Black()});
         world.Registry().Create(
             RectTransform{{{240, 40}, {800, 360}}},
             Text{
-                .content = R"(
+                .content             = R"(
 Game made by:
 
 
 Programming - Pixels
 
-Art - Major
+Art - Major (@MsMajor)
 
-Music & SFX - Zephix
+Music & SFX - zephiX
 
-Narrative - Major + Zephix
+Narrative - Major + zephiX
 
 Art assets from CraftPix and The Spriters Resource were used
-
-
-Major's Twitch: MsMajor
 
 
 Game made for FrenJam 2
@@ -436,7 +473,7 @@ Thank you for playing!
 
         world.Registry().Create(
             RectTransform{{{540, 600}, {200, 50}}},
-            Button{.defaultColor = Color4u8::White(), .hoverTint = {255, 255, 255, 40}, .onReleaseEvent = "quit"},
+            Button{.defaultColor = Color4u8::White(), .hoverTint = {0, 0, 0, 40}, .onReleaseEvent = "quit"},
             Text{
                 .content             = "Quit",
                 .fontSize            = 30,
@@ -449,6 +486,7 @@ Thank you for playing!
     });
 
     ereg.Add("quit", [&] {
+        world.Resource<AudioHandler>().PlaySfx(world.Registry(), "select");
         world.Resource<Application>().Close();
     });
 }
