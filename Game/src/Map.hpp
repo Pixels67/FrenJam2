@@ -1,6 +1,7 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
+#include "AudioHandler.hpp"
 #include "Door.hpp"
 #include "Flock.hpp"
 #include "GameState.hpp"
@@ -531,8 +532,8 @@ inline void CreateSamson(World &world, Tile &tile) {
                         .text  = "Alright, I'll see what I can do.",
                     },
                     Message{
-                        .title = "Samson",
-                        .text  = "Thank you very much. Godspeed on your quest, young men! Shalom!",
+                        .title  = "Samson",
+                        .text   = "Thank you very much. Godspeed on your quest, young men! Shalom!",
                         .events = {"u_jack"}
                     },
                 }
@@ -1367,6 +1368,10 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                         .text  = "BUT THE FIRST THING I'M GONNA DO IS TO GET YOU OUT OF THIS PLACE.",
                                     },
                                     Message{
+                                        .title = "STEVE AUSTIN",
+                                        .text  = "NOT JUST FROM HERE, BUT OUT OF THE FACE OF THE EARTH.",
+                                    },
+                                    Message{
                                         .title = "Joel",
                                         .text  = "We'll see about that!",
                                     },
@@ -1457,8 +1462,8 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                         .text  = "Yeah, I'm done with this. Let's go home.",
                                     },
                                     Message{
-                                        .title = "Joel",
-                                        .text  = "Finally, I got so tired of running around town. I wanna go beddybyes now...",
+                                        .title  = "Joel",
+                                        .text   = "Finally, I got so tired of running around town. I wanna go beddybyes now...",
                                         .events = {"quit"},
                                     },
                                 }
@@ -1482,8 +1487,8 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                         .text  = "YEAH, NOW WE'RE TALKIN'!",
                                     },
                                     Message{
-                                        .title = "Joel",
-                                        .text  = "haha funni.",
+                                        .title  = "Joel",
+                                        .text   = "haha funni.",
                                         .events = {"quit"},
                                     },
                                 }
@@ -1632,6 +1637,7 @@ inline void CreateDoor(World &world, Tile &tile, const std::string &mapPath) {
 }
 
 inline void LoadMap(World &world, const std::string &mapPath, const bool overworld = false) {
+    auto       str = mapPath;
     const auto txt = FileIo::ReadText(mapPath).value();
 
     world.Registry().ForEach<Entity, Tile>([&](const Entity e, const Tile &tile) {
@@ -1811,6 +1817,22 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
     }
 
     ApplyGameState(world, world.Resource<GameState>());
+
+    if (str == "assets/5.txt") {
+        world.Registry().ForEach<Interactable>([&](const Interactable &interactable) {
+            if (interactable.name != "girlfren") {
+                return;
+            }
+
+            world.Resource<Dialogue>().messages       = interactable.dialogue[interactable.currentDialogue].messages;
+            world.Resource<Dialogue>().currentMessage = 0;
+        });
+    }
+
+    str = str.substr(7);
+    str = str.substr(0, str.size() - 4);
+    str = "assets/music/" + str + ".oga";
+    world.Resource<AudioHandler>().PlayMusic(str);
 }
 
 #endif //MAP_HPP

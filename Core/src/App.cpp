@@ -133,11 +133,9 @@ namespace Flock {
 
         std::vector<Audio::AudioSource> sources;
         m_World.Registry().ForEach<Audio::AudioSource>([&](Audio::AudioSource &source) {
-            if (!source.play) {
+            if (source.audioClipPath.empty()) {
                 return;
             }
-
-            source.play = false;
 
             const auto clip = m_Services.assetLoader.Get<Audio::AudioClip>(source.audioClipPath);
             if (!clip) {
@@ -154,7 +152,14 @@ namespace Flock {
                 .spatialize = source.spatialize
             };
 
-            m_Services.audioPlayer.Play(clip.value(), config);
+            if (clip.value().get().playbackHandle != FLK_INVALID) {
+                m_Services.audioPlayer.Configure(clip->get(), config);
+            }
+
+            if (source.play) {
+                source.play = false;
+                m_Services.audioPlayer.Play(clip.value(), config);
+            }
         });
 
         std::vector<Physics::PhysicsObject> physicsObjects;
@@ -300,7 +305,7 @@ namespace Flock {
             scene,
             {
                 .viewport = viewport,
-                .clear = {.clearColor = false, .clearDepth = false}
+                .clear    = {.clearColor = false, .clearDepth = false}
             }
         );
     }

@@ -111,14 +111,14 @@ void UpdatePlayer(World &world) {
         if (input.IsKeyPressed(Key::E) && world.Resource<Dialogue>().IsFinished() && maybeDoor) {
             auto &[mapPath] = maybeDoor.value().get();
             input.pressedKeys.erase(Key::E);
-            if (mapPath != "assets/5.txt") {
-                LoadMap(world, mapPath, mapPath == "assets/map.txt");
-                return;
-            }
-            if (endgame) {
-                LoadMap(world, mapPath, false);
-                return;
-            }
+            //if (mapPath != "assets/5.txt") {
+            LoadMap(world, mapPath, mapPath == "assets/map.txt");
+            return;
+            //}
+            //if (endgame) {
+            //    LoadMap(world, mapPath, false);
+            //    return;
+            //}
         }
 
         auto maybeInteractable = GetNearbyInteractable(world, trans);
@@ -169,6 +169,8 @@ void UpdatePlayer(World &world) {
             GetPlayerTile(world).occupant                            = {FLK_INVALID, 0};
             GetTile(world, playerTilePos + movement)->get().occupant = e;
 
+            world.Resource<AudioHandler>().PlaySfx(world.Registry(), "walk");
+
             if (player.inOverworld) {
                 world.Resource<PlayerInfo>().overworldPos = GetPlayerTile(world).position;
             }
@@ -190,15 +192,6 @@ void UpdatePlayer(World &world) {
             trans.position     += dir * s_PlayerSpeed * time.deltaTime;
         }
 
-        bool offset = false;
-        reg.All<Box>().ForEach<Entity>([&](Entity e) {
-            offset = !offset;
-        });
-
-        if (offset) {
-            world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y + 1.0F, -10);
-        } else {
-            world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
-        }
+        world.Resource<Camera>().transform.position = Vector3f(trans.position.x, trans.position.y, -10);
     });
 }

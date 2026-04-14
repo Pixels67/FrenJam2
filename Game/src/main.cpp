@@ -1,3 +1,4 @@
+#include "AudioHandler.hpp"
 #include "DialogueUi.hpp"
 #include "Flock.hpp"
 #include "Fren.hpp"
@@ -36,6 +37,7 @@ void Init(World &world) {
     world.InsertResource(Inventory{});
     world.InsertResource(ItemUi{});
     world.InsertResource(PlayerInfo{.overworldPos = {5, -5}, .overworldPrevPos = {4, -5}});
+    world.InsertResource(AudioHandler{});
     world.InsertResource(GameState{
         .characterImagePaths = {
             {"mike", "assets/mike.png"},
@@ -73,6 +75,30 @@ void Init(World &world) {
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
     LoadMap(world, "assets/map.txt", true);
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "walk", "assets/sfx/walk.wav", 0.25F);
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "steve", "assets/music/scsa-reveal.oga");
+
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Joel", "assets/sfx/d_joel.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Mike", "assets/sfx/d_mike.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Fren", "assets/sfx/d_fren.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Girlfren", "assets/sfx/d_girlfren.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "STEVE AUSTIN", "assets/sfx/d_scsa.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "D*lto", "assets/sfx/d_dilto.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Chris", "assets/sfx/d_dilto.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Samson", "assets/sfx/d_samson.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Maggie Pie", "assets/sfx/d_maggie.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Vinny", "assets/sfx/d_vinny.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Jack Black™", "assets/sfx/d_jack.wav");
+
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Radio", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "???", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Electric Toothbrush", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Grill", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Statuette", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Saitama Body Pillow", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Maxwell", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "CD", "assets/sfx/d_default.wav");
+    world.Resource<AudioHandler>().AddSfx(world.Registry(), "Vinerizon Card", "assets/sfx/d_default.wav");
 
     world.Registry().Create(
         RectTransform{
@@ -164,6 +190,6 @@ i32 main() {
     }).value();
 
     app.AddSystems(Stage::Startup, RegisterComps, SetPipelines, SetEvents, Init)
-       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi)
+       .AddSystems(Stage::Update, UpdateTiles, UpdatePlayer, UpdateFren, UpdateDialogueUi, UpdateItemUi, UpdateAudio)
        .Run();
 }

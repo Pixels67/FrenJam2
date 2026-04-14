@@ -4485,12 +4485,122 @@
         "id": 896,
         "alive": true,
         "version": 0
+      },
+      {
+        "id": 897,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 898,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 899,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 900,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 901,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 902,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 903,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 904,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 905,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 906,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 907,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 908,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 909,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 910,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 911,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 912,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 913,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 914,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 915,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 916,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 917,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 918,
+        "alive": true,
+        "version": 0
       }
     ],
     "components": {
       "DialogueNoButton": [
         {
-          "id": 896,
+          "id": 918,
           "data": null,
           "config": {
             "enabled": true
@@ -6115,7 +6225,7 @@
       ],
       "DialogueBox": [
         {
-          "id": 891,
+          "id": 913,
           "data": null,
           "config": {
             "enabled": true
@@ -6125,7 +6235,7 @@
       "DialogueImage": [],
       "DialogueTitle": [
         {
-          "id": 893,
+          "id": 915,
           "data": null,
           "config": {
             "enabled": true
@@ -6134,7 +6244,7 @@
       ],
       "DialogueText": [
         {
-          "id": 894,
+          "id": 916,
           "data": {
             "content": ""
           },
@@ -20948,7 +21058,7 @@
       ],
       "Box": [
         {
-          "id": 891,
+          "id": 913,
           "data": {
             "color": {
               "r": 0,
@@ -20962,7 +21072,7 @@
           }
         },
         {
-          "id": 892,
+          "id": 914,
           "data": {
             "color": {
               "r": 0,
@@ -20979,7 +21089,7 @@
       "Image": [],
       "Button": [
         {
-          "id": 895,
+          "id": 917,
           "data": {
             "imagePath": "",
             "defaultColor": {
@@ -21008,7 +21118,7 @@
           }
         },
         {
-          "id": 896,
+          "id": 918,
           "data": {
             "imagePath": "",
             "defaultColor": {
@@ -21039,7 +21149,7 @@
       ],
       "Text": [
         {
-          "id": 893,
+          "id": 915,
           "data": {
             "content": "Title",
             "fontSize": 20,
@@ -21058,7 +21168,7 @@
           }
         },
         {
-          "id": 894,
+          "id": 916,
           "data": {
             "content": "Content\nMore content\nEven more content",
             "fontSize": 20,
@@ -21077,7 +21187,7 @@
           }
         },
         {
-          "id": 895,
+          "id": 917,
           "data": {
             "content": "Yes",
             "fontSize": 40,
@@ -21096,7 +21206,7 @@
           }
         },
         {
-          "id": 896,
+          "id": 918,
           "data": {
             "content": "No",
             "fontSize": 40,
@@ -21115,18 +21225,458 @@
           }
         }
       ],
-      "AudioSource": [],
-      "RigidBody": [],
-      "DialogueYesButton": [
+      "AudioSource": [
+        {
+          "id": 891,
+          "data": {
+            "audioClipPath": "assets/sfx/walk.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 0.25,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 892,
+          "data": {
+            "audioClipPath": "assets/music/scsa-reveal.oga",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 893,
+          "data": {
+            "audioClipPath": "assets/sfx/d_joel.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 894,
+          "data": {
+            "audioClipPath": "assets/sfx/d_mike.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
         {
           "id": 895,
+          "data": {
+            "audioClipPath": "assets/sfx/d_fren.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 896,
+          "data": {
+            "audioClipPath": "assets/sfx/d_girlfren.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 897,
+          "data": {
+            "audioClipPath": "assets/sfx/d_scsa.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 898,
+          "data": {
+            "audioClipPath": "assets/sfx/d_dilto.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 899,
+          "data": {
+            "audioClipPath": "assets/sfx/d_dilto.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 900,
+          "data": {
+            "audioClipPath": "assets/sfx/d_samson.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 901,
+          "data": {
+            "audioClipPath": "assets/sfx/d_maggie.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 902,
+          "data": {
+            "audioClipPath": "assets/sfx/d_vinny.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 903,
+          "data": {
+            "audioClipPath": "assets/sfx/d_jack.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 904,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 905,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 906,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 907,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 908,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 909,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 910,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 911,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 912,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "DialogueYesButton": [
+        {
+          "id": 917,
           "data": null,
           "config": {
             "enabled": true
           }
         }
       ],
-      "SphereCollider": [],
+      "RigidBody": [],
       "Fren": [
         {
           "id": 161,
@@ -21136,7 +21686,7 @@
           }
         }
       ],
-      "BoxCollider": [],
+      "SphereCollider": [],
       "Door": [
         {
           "id": 87,
@@ -21238,6 +21788,7 @@
           }
         }
       ],
+      "BoxCollider": [],
       "ModelRenderer": [],
       "SpriteRenderer": [
         {
@@ -34608,7 +35159,7 @@
       ],
       "RectTransform": [
         {
-          "id": 891,
+          "id": 913,
           "data": {
             "rect": {
               "origin": {
@@ -34626,7 +35177,7 @@
           }
         },
         {
-          "id": 892,
+          "id": 914,
           "data": {
             "rect": {
               "origin": {
@@ -34644,7 +35195,7 @@
           }
         },
         {
-          "id": 893,
+          "id": 915,
           "data": {
             "rect": {
               "origin": {
@@ -34662,7 +35213,7 @@
           }
         },
         {
-          "id": 894,
+          "id": 916,
           "data": {
             "rect": {
               "origin": {
@@ -34680,7 +35231,7 @@
           }
         },
         {
-          "id": 895,
+          "id": 917,
           "data": {
             "rect": {
               "origin": {
@@ -34698,7 +35249,7 @@
           }
         },
         {
-          "id": 896,
+          "id": 918,
           "data": {
             "rect": {
               "origin": {
@@ -60561,6 +61112,138 @@
     }
   },
   "resources": {
+    "AudioHandler": {
+      "musicPlayer": {
+        "id": 16777215,
+        "version": 0
+      },
+      "sfxPlayers": {
+        "Maxwell": {
+          "id": 910,
+          "version": 0
+        },
+        "Saitama Body Pillow": {
+          "id": 909,
+          "version": 0
+        },
+        "Electric Toothbrush": {
+          "id": 906,
+          "version": 0
+        },
+        "Vinerizon Card": {
+          "id": 912,
+          "version": 0
+        },
+        "CD": {
+          "id": 911,
+          "version": 0
+        },
+        "Radio": {
+          "id": 904,
+          "version": 0
+        },
+        "Jack Black™": {
+          "id": 903,
+          "version": 0
+        },
+        "???": {
+          "id": 905,
+          "version": 0
+        },
+        "Vinny": {
+          "id": 902,
+          "version": 0
+        },
+        "Samson": {
+          "id": 900,
+          "version": 0
+        },
+        "Mike": {
+          "id": 894,
+          "version": 0
+        },
+        "Chris": {
+          "id": 899,
+          "version": 0
+        },
+        "D*lto": {
+          "id": 898,
+          "version": 0
+        },
+        "STEVE AUSTIN": {
+          "id": 897,
+          "version": 0
+        },
+        "Grill": {
+          "id": 907,
+          "version": 0
+        },
+        "Maggie Pie": {
+          "id": 901,
+          "version": 0
+        },
+        "Girlfren": {
+          "id": 896,
+          "version": 0
+        },
+        "Joel": {
+          "id": 893,
+          "version": 0
+        },
+        "Fren": {
+          "id": 895,
+          "version": 0
+        },
+        "Statuette": {
+          "id": 908,
+          "version": 0
+        },
+        "steve": {
+          "id": 892,
+          "version": 0
+        },
+        "walk": {
+          "id": 891,
+          "version": 0
+        }
+      },
+      "currentMusic": "assets/music/map.oga",
+      "fadeTime": 1.0,
+      "fadeOut": true
+    },
+    "ItemUi": {
+      "items": []
+    },
+    "Inventory": {
+      "items": []
+    },
+    "Dialogue": {
+      "messages": []
+    },
+    "AudioListener": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "Skybox": {
+      "filePath": ""
+    },
+    "AmbientLight": {
+      "color": {
+        "r": 20,
+        "g": 20,
+        "b": 20
+      },
+      "intensity": 0.05000000074505806
+    },
     "GameState": {
       "characterIndices": {
         "chris": 0,
@@ -60605,39 +61288,6 @@
         "statuette": true,
         "pillow": true
       }
-    },
-    "ItemUi": {
-      "items": []
-    },
-    "Inventory": {
-      "items": []
-    },
-    "Dialogue": {
-      "messages": []
-    },
-    "AudioListener": {
-      "position": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "Skybox": {
-      "filePath": ""
-    },
-    "AmbientLight": {
-      "color": {
-        "r": 20,
-        "g": 20,
-        "b": 20
-      },
-      "intensity": 0.05000000074505806
     },
     "Camera": {
       "transform": {

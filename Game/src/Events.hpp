@@ -249,6 +249,8 @@ inline void SetEvents(World &world) {
     });
 
     ereg.Add("steve", [&] {
+        world.Resource<AudioHandler>().PlaySfx(reg, "steve");
+        world.Resource<AudioHandler>().PlayMusic("assets/music/scsa-loop.oga", true, 12.0F);
         reg.ForEach<Entity, Box>([&](Entity e, Box &box) {
             if (reg.Has<DialogueBox>(e)) {
                 return;
@@ -268,6 +270,7 @@ inline void SetEvents(World &world) {
     });
 
     ereg.Add("goodend", [&] {
+        world.Resource<AudioHandler>().PlayMusic("assets/music/goodend.oga");
         BaldifyCharacter(world, "girlfren");
         BaldifyPlayer(world);
         reg.ForEach<SpriteRenderer, Entity>([&](const SpriteRenderer &renderer, const Entity e) {

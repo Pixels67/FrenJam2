@@ -43,6 +43,7 @@ namespace Flock::Audio {
         void Clear() const;
 
         bool Play(AudioClip &clip, AudioConfig config = {}) const;
+        bool Configure(const AudioClip &clip, const AudioConfig &config = {}) const;
         bool Stop(const AudioClip &clip) const;
 
         void SetListener(const AudioListener &listener) const;

@@ -1,6 +1,8 @@
 #ifndef DIALOGUEUI_HPP
 #define DIALOGUEUI_HPP
 
+#include <thread>
+
 #include "Dialogue.hpp"
 #include "Flock.hpp"
 #include "Player.hpp"
@@ -10,6 +12,7 @@ struct DialogueText {
     std::string content;
     f32         currentChar = 0.0F;
     bool        changedChar = false;
+    i32         prevIdx     = 0;
 };
 
 struct DialogueTitle {
@@ -122,8 +125,8 @@ inline void UpdateDialogueUi(World &world) {
 
     world.Registry().ForEach<Text, DialogueText>([&](Text &text, DialogueText &dText) {
         if (content.size() > 2 && content.substr(0, 2) == "/s") {
-            if (content.substr(3) != dText.content) {
-                dText.content     = content.substr(3);
+            if (content.substr(2) != dText.content) {
+                dText.content     = content.substr(2);
                 dText.currentChar = 0.0F;
                 text.fontSize     = 10;
             }
@@ -139,21 +142,26 @@ inline void UpdateDialogueUi(World &world) {
     world.Registry().ForEach<Text, DialogueText>([&](Text &text, DialogueText &dText) {
         if (dText.currentChar == 0.0F) {
             text.content = "";
-            dText.changedChar = true;
+            text.content += dText.content[0];
         }
 
-        if (static_cast<u32>(dText.currentChar) < dText.content.size() && dText.changedChar) {
-            text.content += dText.content[static_cast<u32>(dText.currentChar)];
+        const u32 diff = static_cast<u32>(dText.currentChar) - dText.prevIdx;
+        if (diff != 0) {
+            for (i32 i = diff - 1; i >= 0; i--) {
+                if (static_cast<u32>(dText.currentChar) - i > dText.content.size()) {
+                    continue;
+                }
+
+                if (static_cast<u32>(dText.currentChar) % 4 == 0 && title != "Locked.") {
+                    world.Resource<AudioHandler>().PlaySfx(world.Registry(), title);
+                }
+
+                text.content += dText.content[static_cast<u32>(dText.currentChar) - i];
+            }
         }
 
-        u32 oldIdx = static_cast<u32>(dText.currentChar);
+        dText.prevIdx     = static_cast<u32>(dText.currentChar);
         dText.currentChar += world.Resource<Time::TimeState>().deltaTime * 50.0F;
-
-        if (static_cast<u32>(dText.currentChar) != oldIdx) {
-            dText.changedChar = true;
-        } else {
-            dText.changedChar = false;
-        }
     });
 
     world.Registry().All<DialogueTitle>().ForEach<Text>([&](Text &text) {

@@ -18,6 +18,7 @@ set(PROJECT_SOURCES
         src/Door.hpp
         src/Events.hpp
         src/GameState.hpp
+        src/AudioHandler.hpp
 )
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
