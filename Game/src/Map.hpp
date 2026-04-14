@@ -1464,7 +1464,7 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                     Message{
                                         .title  = "Joel",
                                         .text   = "Finally, I got so tired of running around town. I wanna go beddybyes now...",
-                                        .events = {"quit"},
+                                        .events = {"end"},
                                     },
                                 }
                             },
@@ -1489,7 +1489,7 @@ inline void CreateGirlfren(World &world, Tile &tile) {
                                     Message{
                                         .title  = "Joel",
                                         .text   = "haha funni.",
-                                        .events = {"quit"},
+                                        .events = {"end"},
                                     },
                                 }
                             }

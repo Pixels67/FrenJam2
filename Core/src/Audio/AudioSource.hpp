@@ -9,6 +9,7 @@ namespace Flock::Audio {
     struct FLK_API AudioSource {
         std::string audioClipPath;
         bool        play       = false;
+        bool        stop       = false;
         Vector3f    position   = {};
         f32         volume     = 0.5F;
         f32         pitch      = 1.0F;
@@ -18,6 +19,10 @@ namespace Flock::Audio {
 
         void Play() {
             play = true;
+        }
+
+        void Stop() {
+            stop = true;
         }
     };
 

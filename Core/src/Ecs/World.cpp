@@ -62,7 +62,7 @@ namespace Flock::Ecs {
         Registry().Register<Gui::Box>();
     }
 
-    Ecs::Registry &World::Registry() {
+    Registry &World::Registry() {
         return m_Registry;
     }
 

@@ -30,11 +30,8 @@ struct AudioHandler {
         this->loop   = loop;
     }
 
-    void StopMusic() {
-        fadeTime     = 0.0F;
-        fadeOut      = true;
-        currentMusic = "";
-        loop         = false;
+    void StopMusic(Registry &reg) const {
+        reg.Get<AudioSource>(musicPlayer)->get().Stop();
     }
 
     void Update(Registry &reg, const f32 deltaTime) {

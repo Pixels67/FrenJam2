@@ -1,0 +1,883 @@
+{
+  "registry": {
+    "entities": [
+      {
+        "id": 0,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 1,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 2,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 3,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 4,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 5,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 6,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 7,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 8,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 9,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 10,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 11,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 12,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 13,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 14,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 15,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 16,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 17,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 18,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 19,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 20,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 21,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 22,
+        "alive": true,
+        "version": 0
+      },
+      {
+        "id": 23,
+        "alive": true,
+        "version": 0
+      }
+    ],
+    "components": {
+      "Interactable": [],
+      "DialogueYesButton": [],
+      "DialogueNoButton": [],
+      "DialogueBox": [],
+      "DialogueImage": [],
+      "DialogueTitle": [],
+      "DialogueText": [],
+      "Player": [],
+      "Tile": [],
+      "Box": [],
+      "Image": [
+        {
+          "id": 22,
+          "data": {
+            "imagePath": "assets/bg.png"
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "Button": [
+        {
+          "id": 23,
+          "data": {
+            "imagePath": "",
+            "defaultColor": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 255
+            },
+            "hoverTint": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 40
+            },
+            "pressTint": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 20
+            },
+            "onPressEvent": "",
+            "onReleaseEvent": "start"
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "Text": [
+        {
+          "id": 23,
+          "data": {
+            "content": "Start",
+            "fontSize": 40,
+            "fontPath": "assets/font.ttf",
+            "color": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 255
+            },
+            "horizontalAlignment": 1,
+            "verticalAlignment": 1
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "AudioSource": [
+        {
+          "id": 0,
+          "data": {
+            "audioClipPath": "assets/sfx/walk.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 0.25,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 1,
+          "data": {
+            "audioClipPath": "assets/music/scsa-reveal.oga",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 2,
+          "data": {
+            "audioClipPath": "assets/sfx/d_joel.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 3,
+          "data": {
+            "audioClipPath": "assets/sfx/d_mike.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 4,
+          "data": {
+            "audioClipPath": "assets/sfx/d_fren.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 5,
+          "data": {
+            "audioClipPath": "assets/sfx/d_girlfren.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 6,
+          "data": {
+            "audioClipPath": "assets/sfx/d_scsa.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 7,
+          "data": {
+            "audioClipPath": "assets/sfx/d_dilto.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 8,
+          "data": {
+            "audioClipPath": "assets/sfx/d_dilto.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 9,
+          "data": {
+            "audioClipPath": "assets/sfx/d_samson.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 10,
+          "data": {
+            "audioClipPath": "assets/sfx/d_maggie.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 11,
+          "data": {
+            "audioClipPath": "assets/sfx/d_vinny.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 12,
+          "data": {
+            "audioClipPath": "assets/sfx/d_jack.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 13,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 14,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 15,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 16,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 17,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 18,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 19,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 20,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 21,
+          "data": {
+            "audioClipPath": "assets/sfx/d_default.wav",
+            "play": false,
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "volume": 1.0,
+            "pitch": 1.0,
+            "pan": 0.0,
+            "looping": false,
+            "spatialize": false
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "RigidBody": [],
+      "SphereCollider": [],
+      "BoxCollider": [],
+      "ModelRenderer": [],
+      "SpriteRenderer": [],
+      "RectTransform": [
+        {
+          "id": 22,
+          "data": {
+            "rect": {
+              "origin": {
+                "x": 0,
+                "y": 0
+              },
+              "aspect": {
+                "x": 1280,
+                "y": 720
+              }
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        },
+        {
+          "id": 23,
+          "data": {
+            "rect": {
+              "origin": {
+                "x": 540,
+                "y": 400
+              },
+              "aspect": {
+                "x": 200,
+                "y": 50
+              }
+            }
+          },
+          "config": {
+            "enabled": true
+          }
+        }
+      ],
+      "RigidTransform": [],
+      "Door": [],
+      "Transform": []
+    }
+  },
+  "resources": {
+    "Inventory": {
+      "items": []
+    },
+    "GameState": {
+      "characterIndices": null,
+      "characterImagePaths": {
+        "girlfren": "assets/girlfren.png",
+        "vinny": "assets/vinny.png",
+        "dilto": "assets/dilto.png",
+        "jack": "assets/jack.png",
+        "chris": "assets/chris.png",
+        "maggie": "assets/maggie.png",
+        "samson": "assets/samson.png",
+        "mike": "assets/mike.png"
+      },
+      "completedCharacters": null,
+      "itemsLocked": {
+        "jack": true,
+        "toothbrush": true,
+        "maxwell": true,
+        "card": true,
+        "cd": true,
+        "coin": true,
+        "grill": true,
+        "statuette": true,
+        "pillow": true
+      },
+      "items": {
+        "toothbrush": true,
+        "maxwell": true,
+        "card": true,
+        "cd": true,
+        "coin": true,
+        "grill": true,
+        "statuette": true,
+        "pillow": true
+      }
+    },
+    "AudioListener": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "AudioHandler": {
+      "musicPlayer": {
+        "id": 16777215,
+        "version": 0
+      },
+      "sfxPlayers": {
+        "Maxwell": {
+          "id": 19,
+          "version": 0
+        },
+        "Saitama Body Pillow": {
+          "id": 18,
+          "version": 0
+        },
+        "Electric Toothbrush": {
+          "id": 15,
+          "version": 0
+        },
+        "Vinerizon Card": {
+          "id": 21,
+          "version": 0
+        },
+        "CD": {
+          "id": 20,
+          "version": 0
+        },
+        "Radio": {
+          "id": 13,
+          "version": 0
+        },
+        "Jack Black™": {
+          "id": 12,
+          "version": 0
+        },
+        "???": {
+          "id": 14,
+          "version": 0
+        },
+        "Vinny": {
+          "id": 11,
+          "version": 0
+        },
+        "Samson": {
+          "id": 9,
+          "version": 0
+        },
+        "Mike": {
+          "id": 3,
+          "version": 0
+        },
+        "Chris": {
+          "id": 8,
+          "version": 0
+        },
+        "D*lto": {
+          "id": 7,
+          "version": 0
+        },
+        "STEVE AUSTIN": {
+          "id": 6,
+          "version": 0
+        },
+        "Grill": {
+          "id": 16,
+          "version": 0
+        },
+        "Maggie Pie": {
+          "id": 10,
+          "version": 0
+        },
+        "Girlfren": {
+          "id": 5,
+          "version": 0
+        },
+        "Joel": {
+          "id": 2,
+          "version": 0
+        },
+        "Fren": {
+          "id": 4,
+          "version": 0
+        },
+        "Statuette": {
+          "id": 17,
+          "version": 0
+        },
+        "steve": {
+          "id": 1,
+          "version": 0
+        },
+        "walk": {
+          "id": 0,
+          "version": 0
+        }
+      },
+      "currentMusic": "assets/music/title.oga",
+      "fadeTime": 1.0,
+      "fadeOut": true
+    },
+    "Skybox": {
+      "filePath": ""
+    },
+    "Dialogue": {
+      "messages": []
+    },
+    "AmbientLight": {
+      "color": {
+        "r": 20,
+        "g": 20,
+        "b": 20
+      },
+      "intensity": 0.05000000074505806
+    },
+    "ItemUi": {
+      "items": []
+    },
+    "Camera": {
+      "transform": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": -10.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "eulerAngles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "projection": 0,
+      "size": 3.0,
+      "fovY": 60.0,
+      "nearZ": 0.10000000149011612,
+      "farZ": 1000.0
+    }
+  }
+}

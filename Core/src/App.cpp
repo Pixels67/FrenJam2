@@ -160,6 +160,11 @@ namespace Flock {
                 source.play = false;
                 m_Services.audioPlayer.Play(clip.value(), config);
             }
+
+            if (source.stop) {
+                source.stop = false;
+                m_Services.audioPlayer.Stop(clip.value());
+            }
         });
 
         std::vector<Physics::PhysicsObject> physicsObjects;
@@ -346,16 +351,6 @@ namespace Flock {
                 tint = button.hoverTint;
             }
 
-            const auto events = m_World.Resource<Event::EventRegistry>();
-
-            if (input.IsCursorInRect(trans.rect) && mousePressed) {
-                events.Invoke(button.onPressEvent);
-            }
-
-            if (input.IsCursorInRect(trans.rect) && mouseReleased) {
-                events.Invoke(button.onReleaseEvent);
-            }
-
             OptionalRef<Graphics::Texture> tex = std::nullopt;
 
             if (button.imagePath != "" && m_Services.assetLoader.Get<Graphics::Texture>(button.imagePath)) {
@@ -368,6 +363,16 @@ namespace Flock {
                 tint,
                 tex
             );
+
+            const auto events = m_World.Resource<Event::EventRegistry>();
+
+            if (input.IsCursorInRect(trans.rect) && mousePressed) {
+                events.Invoke(button.onPressEvent);
+            }
+
+            if (input.IsCursorInRect(trans.rect) && mouseReleased) {
+                events.Invoke(button.onReleaseEvent);
+            }
         });
 
         m_World.Registry().ForEach<RectTransform, Text>([&](const RectTransform &trans, const Text &text) {

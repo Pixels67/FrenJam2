@@ -20,7 +20,7 @@ struct Dialogue {
     std::vector<Message> messages;
     u32                  currentMessage = 0;
 
-    bool IsFinished() const {
+    [[nodiscard]] bool IsFinished() const {
         return currentMessage >= messages.size();
     }
 };

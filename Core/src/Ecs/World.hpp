@@ -50,7 +50,7 @@ namespace Flock::Ecs {
             return std::any_cast<T &>(m_Resources.at(GetTypeId<T>()));
         }
 
-        [[nodiscard]] Ecs::Registry &Registry();
+        [[nodiscard]] Registry &Registry();
 
         void Archive(Serial::IArchive &archive);
 

@@ -89,6 +89,102 @@ inline void SetEvents(World &world) {
     auto &ereg = world.Resource<Event::EventRegistry>();
     auto &reg  = world.Registry();
 
+    ereg.Add("start", [&] {
+        world.Resource<AudioHandler>().StopMusic(reg);
+
+        world.Registry().All<Gui::Image>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Gui::Image>(e);
+        });
+
+        world.Registry().All<Button>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Button>(e);
+        });
+
+        world.Registry().All<Text>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Text>(e);
+        });
+
+        world.Registry().Create(
+            RectTransform{
+                {{0, 520}, {1280, 200}}
+            },
+            Box{
+                .color = Color4u8::Black()
+            },
+            DialogueBox{}
+        );
+
+        world.Registry().Create(
+            RectTransform{
+                {{0, 0}, {1280, 90}}
+            },
+            Box{
+                .color = Color4u8::Black()
+            }
+        );
+
+        world.Registry().Create(
+            RectTransform{
+                {{10, 530}, {1270, 190}}
+            },
+            Text{
+                .content  = "Title",
+                .fontPath = "assets/font.ttf",
+                .color    = {40, 120, 140, 255}
+            },
+            DialogueTitle{}
+        );
+
+        world.Registry().Create(
+            RectTransform{
+                {{10, 560}, {1270, 190}}
+            },
+            Text{
+                .content  = "Content\nMore content\nEven more content",
+                .fontPath = "assets/font.ttf"
+            },
+            DialogueText{}
+        );
+
+        world.Registry().Create(
+            RectTransform{
+                {{660, 330}, {180, 60}}
+            },
+            Button{
+                .hoverTint      = {20, 40, 255, 40},
+                .onReleaseEvent = "yes",
+            },
+            Text{
+                .content             = "Yes",
+                .fontSize            = 40,
+                .fontPath            = "assets/font.ttf",
+                .horizontalAlignment = Center,
+                .verticalAlignment   = Middle,
+            },
+            DialogueYesButton{}
+        );
+
+        world.Registry().Create(
+            RectTransform{
+                {{440, 330}, {180, 60}}
+            },
+            Button{
+                .hoverTint      = {255, 40, 20, 40},
+                .onReleaseEvent = "no",
+            },
+            Text{
+                .content             = "No",
+                .fontSize            = 40,
+                .fontPath            = "assets/font.ttf",
+                .horizontalAlignment = Center,
+                .verticalAlignment   = Middle,
+            },
+            DialogueNoButton{}
+        );
+
+        LoadMap(world, "assets/map.txt");
+    });
+
     // Items
     ereg.Add("u_maxwell", [&] {
         UnlockItem(world, "maxwell");
@@ -238,6 +334,10 @@ inline void SetEvents(World &world) {
         });
     });
 
+    ereg.Add("reveal", [&] {
+        BaldifyCharacter(world, "girlfren");
+    });
+
     ereg.Add("yes", [&] {
         auto &dialogue = world.Resource<Dialogue>();
         dialogue       = dialogue.messages[dialogue.currentMessage].choices[1];
@@ -260,7 +360,7 @@ inline void SetEvents(World &world) {
         });
         reg.Create(
             Transform{
-                .position = {3.0F, -3.0F, -0.5F},
+                .position = {4.0F, -3.0F, -0.5F},
                 .scale    = Vector3f::One() * 3.0F,
             },
             SpriteRenderer{
@@ -278,6 +378,74 @@ inline void SetEvents(World &world) {
                 world.Registry().Destroy(e);
             }
         });
+    });
+
+    ereg.Add("end", [&] {
+        world.Registry().All<Gui::Image>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Gui::Image>(e);
+        });
+
+        world.Registry().All<Button>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Button>(e);
+        });
+
+        world.Registry().All<Text>().ForEach<Entity>([&](Entity e) {
+            world.Registry().Disable<Text>(e);
+        });
+
+        bool goodend = false;
+        world.Registry().All<Player>().ForEach<SpriteRenderer>([&](SpriteRenderer &renderer) {
+            goodend = renderer.spritePath == "assets/joel_b.png";
+        });
+
+        if (!goodend) {
+            world.Resource<AudioHandler>().PlayMusic("assets/music/bad-end.oga");
+        }
+
+        world.Registry().Create(RectTransform{{{0, 0}, {1280, 720}}}, Box{.color = Color4u8::Black()});
+        world.Registry().Create(
+            RectTransform{{{240, 40}, {800, 360}}},
+            Text{
+                .content = R"(
+Game made by:
+
+
+Programming - Pixels
+
+Art - Major
+
+Music & SFX - Zephix
+
+Narrative - Major + Zephix
+
+Art assets from CraftPix and The Spriters Resource were used
+
+
+Major's Twitch: MsMajor
+
+
+Game made for FrenJam 2
+
+Thank you for playing!
+)",
+                .fontSize            = 20,
+                .fontPath            = "assets/font.ttf",
+                .horizontalAlignment = Center
+            }
+        );
+
+        world.Registry().Create(
+            RectTransform{{{540, 600}, {200, 50}}},
+            Button{.defaultColor = Color4u8::White(), .hoverTint = {255, 255, 255, 40}, .onReleaseEvent = "quit"},
+            Text{
+                .content             = "Quit",
+                .fontSize            = 30,
+                .fontPath            = "assets/font.ttf",
+                .color               = Color4u8::Black(),
+                .horizontalAlignment = Center,
+                .verticalAlignment   = Middle
+            }
+        );
     });
 
     ereg.Add("quit", [&] {

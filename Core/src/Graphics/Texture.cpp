@@ -108,7 +108,7 @@ namespace Flock::Graphics {
                 image.size.x,
                 image.size.y,
                 0,
-                format,
+                ToGlType(image.format),
                 GL_UNSIGNED_BYTE,
                 flipped.data.Get())
         );

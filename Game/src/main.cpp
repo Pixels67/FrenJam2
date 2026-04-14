@@ -17,7 +17,10 @@ void RegisterComps(World &world) {
     world.Registry().Register<DialogueTitle>();
     world.Registry().Register<DialogueImage>();
     world.Registry().Register<DialogueBox>();
+    world.Registry().Register<DialogueNoButton>();
+    world.Registry().Register<DialogueYesButton>();
     world.Registry().Register<Interactable>();
+    world.Registry().Register<Door>();
 }
 
 void SetPipelines(World &world) {
@@ -74,7 +77,6 @@ void Init(World &world) {
 
     world.Resource<AmbientLight>().color = {20, 20, 20};
 
-    LoadMap(world, "assets/map.txt", true);
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "walk", "assets/sfx/walk.wav", 0.25F);
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "steve", "assets/music/scsa-reveal.oga");
 
@@ -100,85 +102,19 @@ void Init(World &world) {
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "CD", "assets/sfx/d_default.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "Vinerizon Card", "assets/sfx/d_default.wav");
 
+    world.Resource<AudioHandler>().PlayMusic("assets/music/title.oga");
+    world.Registry().Create(RectTransform{{{0, 0}, {1280, 720}}}, Gui::Image{.imagePath = "assets/bg.png"});
     world.Registry().Create(
-        RectTransform{
-            {{0, 520}, {1280, 200}}
-        },
-        Box{
-            .color = Color4u8::Black()
-        },
-        DialogueBox{}
+        RectTransform{{{540, 450}, {200, 50}}},
+        Button{.hoverTint = {255, 255, 255, 40}, .onReleaseEvent = "start"},
+        Text{.content = "Start", .fontSize = 30, .fontPath = "assets/font.ttf", .horizontalAlignment = Center, .verticalAlignment = Middle}
     );
 
     world.Registry().Create(
-        RectTransform{
-            {{0, 0}, {1280, 90}}
-        },
-        Box{
-            .color = Color4u8::Black()
-        }
+        RectTransform{{{540, 550}, {200, 50}}},
+        Button{.hoverTint = {255, 255, 255, 40}, .onReleaseEvent = "quit"},
+        Text{.content = "Quit", .fontSize = 30, .fontPath = "assets/font.ttf", .horizontalAlignment = Center, .verticalAlignment = Middle}
     );
-
-    world.Registry().Create(
-        RectTransform{
-            {{10, 530}, {1270, 190}}
-        },
-        Text{
-            .content  = "Title",
-            .fontPath = "assets/font.ttf",
-            .color    = {40, 120, 140, 255}
-        },
-        DialogueTitle{}
-    );
-
-    world.Registry().Create(
-        RectTransform{
-            {{10, 560}, {1270, 190}}
-        },
-        Text{
-            .content  = "Content\nMore content\nEven more content",
-            .fontPath = "assets/font.ttf"
-        },
-        DialogueText{}
-    );
-
-    world.Registry().Create(
-        RectTransform{
-            {{660, 330}, {180, 60}}
-        },
-        Button{
-            .hoverTint      = {20, 40, 255, 40},
-            .onReleaseEvent = "yes",
-        },
-        Text{
-            .content             = "Yes",
-            .fontSize            = 40,
-            .fontPath            = "assets/font.ttf",
-            .horizontalAlignment = Center,
-            .verticalAlignment   = Middle,
-        },
-        DialogueYesButton{}
-    );
-
-    world.Registry().Create(
-        RectTransform{
-            {{440, 330}, {180, 60}}
-        },
-        Button{
-            .hoverTint      = {255, 40, 20, 40},
-            .onReleaseEvent = "no",
-        },
-        Text{
-            .content             = "No",
-            .fontSize            = 40,
-            .fontPath            = "assets/font.ttf",
-            .horizontalAlignment = Center,
-            .verticalAlignment   = Middle,
-        },
-        DialogueNoButton{}
-    );
-
-    world.Save("../../../assets/world.json");
 }
 
 i32 main() {
