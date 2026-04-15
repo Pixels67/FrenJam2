@@ -72,7 +72,7 @@ namespace Flock {
         App &AddSystem(Ecs::Stage stage, const Ecs::System &system);
 
         /**
-         * Adds multiple systems to a stage; executed in order.
+         * @brief Adds multiple systems to a stage; executed in order.
          * @tparam Args The system types.
          * @param stage The stage.
          * @param args The systems.

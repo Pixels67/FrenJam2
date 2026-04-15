@@ -235,7 +235,7 @@ inline void SetEvents(World &world) {
         ereg.Invoke("a_dilto");
     });
     ereg.Add("a_statuette", [&] {
-        AddItem(world, "Statuette", "assets/sprite/statuette.png");
+        AddItem(world, "Statuette", "assets/sprites/statuette.png");
         ereg.Invoke("a_mike");
     });
     ereg.Add("a_verse", [&] {
@@ -243,7 +243,7 @@ inline void SetEvents(World &world) {
         ereg.Invoke("a_samson");
     });
     ereg.Add("a_cd", [&] {
-        AddItem(world, "CD", "assets/sprites/cd.png");
+        AddItem(world, "CD", "assets/sprites/cd_item.png");
         ereg.Invoke("a_jack");
     });
     ereg.Add("a_pillow", [&] {

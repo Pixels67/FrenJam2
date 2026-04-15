@@ -1632,7 +1632,7 @@ inline void CreateCard(World &world, Tile &tile) {
 }
 
 inline void CreateDoor(World &world, Tile &tile, const std::string &mapPath) {
-    const Entity door = world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = ""}, Door{.mapPath = mapPath});
+    const Entity door = world.Registry().Create(Transform{}, SpriteRenderer{.spritePath = "assets/sprites/door.png"}, Door{.mapPath = mapPath});
     tile.occupant     = door;
 }
 
@@ -1885,11 +1885,21 @@ inline void LoadMap(World &world, const std::string &mapPath, const bool overwor
 
         world.Registry().Create(
             Transform{
-                .position = {20.0F, -8.0F, -4.0F},
-                .scale    = {1.0F, 1.0F, 1.0F}
+                .position = {18.0F, -7.0F, -4.0F},
+                .scale    = {2.0F, 2.0F, 1.0F}
             },
             SpriteRenderer{
                 .spritePath = "assets/sprites/pile.png"
+            }
+        );
+
+        world.Registry().Create(
+            Transform{
+                .position = {7.5F, -13.0F, -4.0F},
+                .scale    = {6.0F, 3.0F, 1.0F}
+            },
+            SpriteRenderer{
+                .spritePath = "assets/sprites/dilto_house.png"
             }
         );
     }

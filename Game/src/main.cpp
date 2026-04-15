@@ -111,7 +111,7 @@ void Init(World &world) {
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "select", "assets/sfx/select.wav");
     world.Resource<AudioHandler>().AddSfx(world.Registry(), "item", "assets/sfx/itemget.wav");
 
-    world.Resource<AudioHandler>().PlayMusic("assets/music/title.oga", false);
+    world.Resource<AudioHandler>().PlayMusic("assets/music/title.oga");
     world.Registry().Create(RectTransform{{{0, 0}, {1280, 720}}}, Gui::Image{.imagePath = "assets/bg.png"});
     world.Registry().Create(
         RectTransform{{{540, 450}, {200, 50}}},
